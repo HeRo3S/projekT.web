@@ -110,12 +110,13 @@ html
 
 #banner-content .gameTitle
 {
-    font-size: 6.6vw;
-    font-family: Glaive;
+    font-size: 8vw;
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 300;
     background: linear-gradient(to right, #014298 0%, #1c8acf 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 2px #FFA500;
+    -webkit-text-stroke: 2.5px #FFA500;
     margin: 0 auto;
 }
 
