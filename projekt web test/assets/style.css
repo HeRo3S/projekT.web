@@ -3,11 +3,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    max-height: 96969696px;
 }
 
 html
 {
     font-family: 'El Messiri',sans-serif;
+    line-height: 1;
 }
 
 @font-face {
@@ -89,7 +91,7 @@ html
     position: relative;
     top: -50px;
     left: 0;
-    height: 1070px;
+    height: 100%;
     width: 100%;
 }
 
@@ -147,4 +149,133 @@ html
 {
     opacity: 1;
     transition: 0.3s;
+}
+
+#container
+{
+    margin-top: -60px;
+}
+
+#news
+{
+    background: url(./img/news.jpg) center top no-repeat;
+    width: 100%;
+    height: auto;
+    display: block;
+    background-size: cover;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+#news h2
+{
+    -webkit-text-stroke-color: #fff;
+    -webkit-text-stroke-width: 1px;
+    font-weight: normal;
+    font-size: 81px;
+    color: transparent;
+    padding: 60px 0 30px;
+}
+
+#news-content
+{
+    display: flex;
+    justify-content: space-around;
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+#news-content .topic
+{
+    --topic-width:378px;
+    --topic-height:250px;
+    max-width: var(--topic-width);
+    width: 100%;
+    height: var(--topic-height);
+    background-color: rgba(255,255,255,0.8);
+    border: 1px solid #0961ba;
+    position: relative;
+}
+
+#news-content .topic time
+{
+    z-index: 5;
+    position: absolute;
+    left: 1px;
+    top: 0;
+    width: 96px;
+    height: 20px;
+    background-color: #fffba7;
+    color:#d8245b;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px 0 0;
+
+}
+
+#news-content .topic img
+{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--topic-width) - 2px);
+    height: calc(var(--topic-height) * 0.52);
+}
+
+#news-content .topic a
+{
+    display: block;
+    position: absolute;
+    top: calc(var(--topic-height) * 0.52);
+    left: 0;
+    font-size: 20px;
+    line-height: 26px;
+    padding: 15px 20px;
+    color: #0961ba;
+    text-decoration: none;
+}
+
+#news-content .topic a:hover
+{
+    color: #d8245b;
+}
+
+#news .normalBtn
+{
+    display: block;
+    width: 300px;
+    height: 58px;
+    margin: 40px auto;
+    font-size: 32px;
+    text-decoration: none;
+    background: #d8245b;
+    border: 4px solid #d8245b;
+    color: #fff;
+    position: relative;
+    padding: 10.5px 0;
+}
+
+#news .normalBtn::after
+{
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ffa4a4;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#news .normalBtn:hover
+{
+    background: #fffba7;
+    color: #d8245b;
+    transition: 0.4s;
+}
+
+#news .normalBtn:hover::after
+{
+    display: none;
 }
