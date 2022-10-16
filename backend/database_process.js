@@ -1,11 +1,13 @@
 var mysql = require('mysql');
 var moment = require('moment');
+const { utc } = require('moment');
+global.articleStorage;
 var con = mysql.createConnection({
   host: "db4free.net",
   user: "wcstudio",
   password: "wcstudio",
   database: "wcsarticles",
-  dateStrings:true
+  timezone : 'utc'
 });
 exports.connect = function () {
 con.connect(function(err) {
@@ -13,9 +15,10 @@ con.connect(function(err) {
   });
 }
 
+
 exports.sendArticle = function (category, name, content) {
   //function to send article to database
-    var date = moment().format('YYYY-MM-DD HH:mm:ss');
+    var date = moment.utc(new Date()).format("YYYY-MM-DD HH:mm:ss");
     command = `insert into articles(category, a_name, a_date, content) values (\'${category}\', \'${name}\', \'${date}\', \'${content}\');`;
     console.log(command);
     con.query(command, function (err, result, fields){
@@ -23,20 +26,39 @@ exports.sendArticle = function (category, name, content) {
         console.log(fields);
     });
 };
-exports.getArticlesID = function (type, amount, sort) {
+
+exports.editArticle = function (id, category, name, content) {
+    command = `update articles set a_name = \'${name}\', category = \'${category}\', content = \'${content}\' where id = ${id}`;
+    con.query(command, function (err, result, fields){
+      if(err) throw err;
+      console.log(fields);
+  });
+}
+
+exports.getArticlesID = async function (category, amount, sort) {
 /*Get a number of article from database
     type: type of articles to get
     amount: the number of articles to get
     sort: asc/desc get the articles by ascending/descending id
 */
-    command = `select id from articles where type = \'${type}\' order by id \'${sort}\' limit \'${amount}\'`;
-    con.query(command, function (err,rows) {
-      if(err) throw err;
-      console.log(rows);
-      return rows;
-    })
+    command = `select id, a_name, a_date from articles where category = \'${category}\' order by id ${sort} limit ${amount}`;
+    return new Promise(function (resolve, reject) {
+      con.query(command, function (err,rows) {
+        if(err) {
+          return reject(err);
+        }
+        
+        //Process data to change date to local time
+        for(data of rows){
+          data.a_date.toUTCString();
+          data.a_date = moment(data.a_date).local().format("DD/MM/YYYY HH:mm");
+        }
 
-}
+        resolve(rows);
+      })
+    })
+  }
+
 
 exports.getArticle = async function (id) {
 
@@ -47,6 +69,13 @@ exports.getArticle = async function (id) {
       if(err) {
         return reject(err);
       }
+        
+        //Process data to change date to local time
+        for(data of rows){
+          data.a_date.toUTCString();
+          data.a_date = moment(data.a_date).local().format("DD/MM/YYYY HH:mm");
+        }
+
       resolve(rows);
     })
   })
