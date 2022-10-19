@@ -154,10 +154,14 @@ html
     font-size: 5.4vw;
     font-family: 'Philosopher', sans-serif;
     font-weight: 300;
-    /* background: linear-gradient(to right, #ff7e5f 0%, #feb47b 100%);
-	-webkit-background-clip: text; */
 	color: white;
     -webkit-text-stroke: 1.5px black;
+    text-shadow: 
+    0 0 7px #191919,
+    0 0 10px #191919,
+    0 0 21px #191919,
+    0 0 42px #5a5a5a,
+    0 0 82px #5a5a5a;
     margin: 0 auto;
 }
 
@@ -166,6 +170,8 @@ html
     color: red;
     -webkit-text-stroke: 0;
     font-size: 6vw;
+
+    font-weight: bold;
 }
 
 #banner-content a.buyBtn
@@ -401,8 +407,7 @@ html
     0 0 42px #f6e680,
     0 0 82px #f6e680,
     0 0 92px #f6e680,
-    0 0 102px #f6e680,
-    0 0 151px #f6e680;
+    0 0 102px #f6e680;
     color: #fff;
     font-weight: normal;
 }
