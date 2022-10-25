@@ -161,7 +161,7 @@ html
     0 0 10px #191919,
     0 0 21px #191919,
     0 0 42px #5a5a5a,
-    0 0 82px #5a5a5a;
+    0 0 62px #5a5a5a;
     margin: 0 auto;
 }
 
@@ -405,9 +405,7 @@ html
     0 0 10px #e9af6a,
     0 0 21px #e9af6a,
     0 0 42px #f6e680,
-    0 0 82px #f6e680,
-    0 0 92px #f6e680,
-    0 0 102px #f6e680;
+    0 0 62px #f6e680;
     color: #fff;
     font-weight: normal;
 }
