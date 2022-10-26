@@ -223,9 +223,9 @@ html
 {
     -webkit-text-stroke-color: #fff;
     -webkit-text-stroke-width: 1px;
+    color: transparent;
     font-weight: normal;
     font-size: 81px;
-    color: transparent;
     padding: 60px 0 30px;
 }
 
@@ -423,3 +423,112 @@ html
     font-weight: bold;
     letter-spacing: 0.04em;
 }
+
+
+#character
+{
+    position: relative;
+    width: 100%;
+    padding: 200px 0 0;
+}
+
+#character-content
+{
+    position: relative;
+    max-width: 1500px;
+    width: 100%;
+    height: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 2;
+}
+
+#character-content h2
+{
+    position: absolute;
+    top: 0;
+    right: 5px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #0961ba;
+    color: transparent;
+    font-weight: normal;
+    font-size: 100px;
+    letter-spacing: 0.02rem;
+}
+
+#character-content .character-title
+{
+    position: absolute;
+    top: 150px;
+    left: 20px;
+}
+
+#character-content .character-title h3
+{
+    font-size: 140px;
+    letter-spacing: 0.2rem;
+    line-height: 118px;
+    text-shadow: 0 0 12px #5dccff, 0 0 12px #5dccff;
+    color: #fff;
+}
+
+#character-content .character-title .normalBtn
+{
+    width: 300px;
+    height: 80px;
+    font-size: 45px;
+    line-height: 80px;
+    letter-spacing: 0.1rem;
+    margin: 50px auto;
+}
+
+#character-content .description
+{
+    position: absolute;
+    top: 150px;
+    right: 0px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #0961ba;
+    text-align: left;
+    width: 365px;
+    padding: 45px 40px;
+    font-size: 18px;
+    line-height: 31px;
+    color: #0961ba;
+    letter-spacing: 0.03rem;
+}
+
+#character .character-img
+{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%,0);
+    width: 500px;
+    height: 1290px;
+    background: url(./img/keiichi.png) left top no-repeat;
+}
+
+#character .character-background
+{
+    position: absolute;
+    top: 190px;
+    right: 0;
+    width: 90%;
+    height: 60%;
+    background: url(./img/character-background.png);
+    z-index: -1;
+}
+
+#character .bg-deco-1
+{
+    position: absolute;
+    top: 422px;
+    left: 0;
+    width: 90%;
+    height: 50%;
+    z-index: -2;
+}
+
+
+
