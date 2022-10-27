@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavbarForum from "./components/navbar/NavbarForum";
-import NavbarMain from "./components/navbar/NavbarMain";
+import NavbarForum from "./components/navbarForum/NavbarForum";
+import NavbarMain from "./components/navbarMain/NavbarMain";
 import HomeForum from "./pages/forum/home/HomeForum";
 
 function App() {
@@ -8,11 +8,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route element={<NavbarMain />}>
-            <Route path="/" element />
+          <Route path="/" element={<NavbarMain />}>
+            <Route index element />
           </Route>
-          <Route element={<NavbarForum />}>
-            <Route path="/forum" element={<HomeForum />}></Route>
+          <Route path="/forum" element={<NavbarForum />}>
+            <Route index element={<HomeForum />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
