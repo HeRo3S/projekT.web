@@ -10,6 +10,16 @@ html
 {
     font-family: 'El Messiri',sans-serif;
     line-height: 1;
+    color: #0961ba;
+}
+
+h2
+{
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #0961ba;
+    color: transparent;
+    font-weight: normal;
+    letter-spacing: 0.02rem;
 }
 
 @font-face {
@@ -88,8 +98,8 @@ html
     padding: 0 10px;
     margin: 0 17px;
     letter-spacing: 0.1em;
-    color: #0961ba;
     text-decoration: none;
+    color: #0961ba;
 }
 
 #nav li a::before
@@ -222,9 +232,6 @@ html
 #news h2
 {
     -webkit-text-stroke-color: #fff;
-    -webkit-text-stroke-width: 1px;
-    color: transparent;
-    font-weight: normal;
     font-size: 81px;
     padding: 60px 0 30px;
 }
@@ -343,10 +350,6 @@ html
 #introduction-content .description h2
 {
     font-size: 100px;
-    color: transparent;
-    -webkit-text-stroke-color: #0961ba;
-    -webkit-text-stroke-width: 1px;
-    font-weight: normal;
     letter-spacing: 0.05em;
 }
 
@@ -429,14 +432,13 @@ html
 {
     position: relative;
     width: 100%;
-    padding: 200px 0 0;
+    padding-top: 200px;
 }
 
 #character-content
 {
     position: relative;
     max-width: 1500px;
-    width: 100%;
     height: 1100px;
     margin: 0 auto;
     text-align: center;
@@ -448,10 +450,6 @@ html
     position: absolute;
     top: 0;
     right: 5px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #0961ba;
-    color: transparent;
-    font-weight: normal;
     font-size: 100px;
     letter-spacing: 0.02rem;
 }
@@ -494,7 +492,6 @@ html
     padding: 45px 40px;
     font-size: 18px;
     line-height: 31px;
-    color: #0961ba;
     letter-spacing: 0.03rem;
 }
 
@@ -531,4 +528,53 @@ html
 }
 
 
+#gameplay
+{
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    margin-top: 100px;
+}
 
+#gameplay-content
+{
+    max-width: 600px;
+    text-align: center;
+    margin-left: 7%;
+    height: 800px;
+}
+
+#gameplay-content h2
+{
+    font-size: 110px;
+    letter-spacing: 0.2rem;
+}
+
+#gameplay-content .description
+{
+    font-size: 30px;
+    padding-top: 50px;
+    line-height: 50px;
+    letter-spacing: 0.02rem;
+}
+
+#gameplay .bg-deco-2
+{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: 60%;
+    width: 70%;
+    z-index: -1;
+}
+
+#gameplay .gameplay-img
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(./img/gameplay.jpg) left top no-repeat;
+    background-size: cover;
+    width: 57.0625vw;
+    height: 32.125vw;
+}
