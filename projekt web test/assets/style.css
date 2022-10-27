@@ -410,6 +410,7 @@ h2
     0 0 42px #f6e680,
     0 0 62px #f6e680;
     color: #fff;
+    -webkit-text-stroke-width: 0;
     font-weight: normal;
 }
 
