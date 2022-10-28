@@ -2,70 +2,92 @@
 /**
  * Required External Modules
  */
- const express = require("express");
- const router = express.Router();
- const passport = require("passport");
- const querystring = require("querystring");
+const { response } = require("express");
+const express = require("express");
+const router = express.Router();
+const UserAccount = require("./models/user");
+const UserInfo = require("./models/user_info");
+var loginMsg = [];
+var regMsg = [];
  require("dotenv").config();
+
+//Session 
+
+var sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.redirect('/');
+  } else {
+      next();
+  }    
+};
 
 /**
  * Routes Definitions
  */
 
- router.get(
-    "/login",
-    passport.authenticate("auth0", {
-      scope: "openid email profile"
-    }),
-    (req, res) => {
-      res.redirect("/");
-    }
-  );
+ router.route('/register')
+ .get(sessionChecker, (req, res) => {
+     res.send({response : regMsg, user: req.session.user});
+     regMsg = "";
+ }).post(async (req, res) => {
+     UserAccount.create({
+         username: req.body.username,
+         email: req.body.email,
+         password: req.body.password,
+     })
+     .then(() => {
+         loginMsg = "Register successfully please login to continues";
+         res.redirect('/login');
+     })
+     .catch(error => {
+        JSON.stringify(error);
+        console.log(error);
+        regMsg = [];
+        error.errors.forEach(err => {
+          regMsg.push(err.message); 
+        });
+         res.redirect("/register");
+     });
+ });
 
-  router.get("/callback", (req, res, next) => {
-    passport.authenticate("auth0", (err, user, info) => {
-      if (err) {
-        return next(err);
+router.route('/login').get((req, res) => {
+  res.render('login', {response : loginMsg, user: req.session.user});
+  loginMsg = "";
+}).post((req,res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+  UserAccount.findOne({where: {email : email}, include: UserInfo})
+  .then(async function (user){
+      if(!user){
+        loginMsg = "Incorrect email or password";
+        res.redirect("/login");
       }
-      if (!user) {
-        return res.redirect("/login");
+      else if(!user.validPassword(user, password)){
+        loginMsg = "Incorrect email or password";
+        res.redirect("/login");
       }
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        const returnTo = req.session.returnTo;
-        delete req.session.returnTo;
-        res.redirect(returnTo || "/");
-      });
-    })(req, res, next);
-  });
+      else{
+        req.session.user = user.toJSON();
+        delete req.session.user.password;
+        console.log(req.session.user);
+        res.redirect('/');
+      }
+  }).catch(error => {
+    loginMsg = "Some problem orcurred please try again";
+    res.redirect("/login");
+  })
+})
 
-  router.get("/logout", (req, res) => {
-    req.logOut();
-  
-    let returnTo = req.protocol + "://" + req.hostname;
-    const port = req.socket.localPort;
-  
-    if (port !== undefined && port !== 80 && port !== 443) {
-      returnTo =
-        process.env.NODE_ENV === "production"
-          ? `${returnTo}/`
-          : `${returnTo}:${port}/`;
-    }
-  
-    const logoutURL = new URL(
-      `https://${process.env.AUTH0_DOMAIN}/v2/logout`
-    );
-  
-    const searchString = querystring.stringify({
-      client_id: process.env.AUTH0_CLIENT_ID,
-      returnTo: returnTo
-    });
-    logoutURL.search = searchString;
-  
-    res.redirect(logoutURL);
-  });
+
+
+router.get('/logout', (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.clearCookie('user_sid');
+      res.redirect('/');
+  } else {
+      res.redirect('/');
+  }
+});
 /**
  * Module Exports
  */

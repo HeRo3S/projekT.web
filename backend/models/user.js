@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt');
 const UserInfo = require("./user_info");
 const Article = require("./articles");
 const Comment = require("./comment");
-const UserAccount = db_sequelize.define('UserAccount', {
+var UserAccount = db_sequelize.define('UserAccount', {
     id: {
         type: DataTypes.INTEGER,
         allowNull : false,
@@ -102,6 +102,6 @@ UserAccount.hasMany(Comment, {
 Comment.belongsTo(UserAccount, {
     foreignKey: "authorId",
 })
-// db_sequelize.sync({alter: true});
+db_sequelize.sync({force : true});
 // export User model for use in other files.
 module.exports = UserAccount;

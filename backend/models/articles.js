@@ -1,16 +1,13 @@
 const { DataTypes } = require('sequelize');
 var Comment = require("./comment");
+var Tag = require("./tag");
 var db_sequelize = require('./db_sequelize');
-const Article = db_sequelize.define("Article", {
+var Article = db_sequelize.define("Article", {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
-    },
-    category: {
-        type: DataTypes.STRING,
-        allowNull: false,
     },
     authorId: {
         type: DataTypes.INTEGER,
@@ -25,7 +22,9 @@ const Article = db_sequelize.define("Article", {
         allowNull: false,
     }
 })
-
+Tag.hasMany(Article, {
+    foreignKey: 'tagId',
+})
 Article.hasMany(Comment, {
     foreignKey: 'articleId',
 })
