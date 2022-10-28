@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import "./register.css";
-import { FormGroup, FormControlLabel, Button } from "@mui/material";
+import { FormGroup, FormControlLabel } from "@mui/material";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 
 function Register() {
@@ -39,10 +39,8 @@ function Register() {
           </div>
         </div>
         <button className="registerButton" type="submit">
-          <div>
-            <AppRegistrationIcon />
-            <span>Register</span>
-          </div>
+          <AppRegistrationIcon />
+          <span>Register</span>
         </button>
       </form>
     </div>

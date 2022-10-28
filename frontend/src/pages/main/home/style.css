@@ -1,0 +1,454 @@
+#banner {
+  position: relative;
+  top: -50px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#banner img {
+  width: 100%;
+  height: auto;
+}
+
+#banner-content {
+  position: absolute;
+  right: 1vw;
+  top: 0;
+  padding: 39vh 0 0 0;
+  margin-left: 50px;
+}
+
+#banner-content .gameTitle {
+  font-size: 5.4vw;
+  font-family: "Philosopher", sans-serif;
+  font-weight: 300;
+  color: white;
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 0 0 7px #191919, 0 0 10px #191919, 0 0 21px #191919,
+    0 0 42px #5a5a5a, 0 0 62px #5a5a5a;
+  margin: 0 auto;
+}
+
+#banner-content .gameTitle span {
+  color: red;
+  -webkit-text-stroke: 0;
+  font-size: 6vw;
+
+  font-weight: bold;
+}
+
+#banner-content Link.buyBtn {
+  display: block;
+  position: relative;
+  background: url(../../../images/buy_btn.jpg) left top no-repeat;
+  width: 340px;
+  height: 86px;
+  margin: 50px auto;
+}
+
+#banner-content Link.buyBtn::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url(../../../images/buy_btn.jpg) left top -90px no-repeat;
+  width: 100%;
+  height: 86px;
+  opacity: 0;
+}
+
+#banner-content Link.buyBtn:hover::after {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+#container {
+  margin-top: -60px;
+}
+
+#news {
+  background: url(../../../images/news.jpg) center top no-repeat;
+  width: 100%;
+  height: auto;
+  display: block;
+  background-size: cover;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+#news h2 {
+  -webkit-text-stroke-color: #fff;
+  font-size: 81px;
+  padding: 60px 0 30px;
+}
+
+#news-content {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1230px;
+  margin: 0 auto;
+}
+
+#news-content .topic {
+  --topic-width: 378px;
+  --topic-height: 250px;
+  max-width: var(--topic-width);
+  width: 100%;
+  height: var(--topic-height);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #0961ba;
+  position: relative;
+}
+
+#news-content .topic time {
+  z-index: 5;
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 96px;
+  height: 20px;
+  background-color: #fffba7;
+  color: #d8245b;
+  font-size: 14px;
+  text-align: center;
+  padding: 5px 0 0;
+}
+
+#news-content .topic img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--topic-width) - 2px);
+  height: calc(var(--topic-height) * 0.52);
+}
+
+#news-content .topic Link {
+  display: block;
+  position: absolute;
+  top: calc(var(--topic-height) * 0.52);
+  left: 0;
+  font-size: 20px;
+  line-height: 26px;
+  padding: 15px 20px;
+  color: #0961ba;
+  text-decoration: none;
+}
+
+#news-content .topic Link:hover {
+  color: #d8245b;
+}
+
+#news .normalBtn {
+  width: 300px;
+  height: 58px;
+  margin: 40px auto;
+  font-size: 32px;
+  padding: 10.5px 0;
+}
+
+#news .normalBtn:hover::after {
+  display: none;
+}
+
+#introduction {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 1088px;
+}
+
+#introduction .bg-deco-1 {
+  position: absolute;
+  right: 0;
+  width: 87.5vw;
+  height: 280px;
+  z-index: -1;
+}
+
+#introduction-content {
+  display: flex;
+  position: absolute;
+  max-width: 1600px;
+  left: 10%;
+  margin-top: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#introduction-content .description {
+  margin-right: 20px;
+}
+
+#introduction-content .description h2 {
+  font-size: 100px;
+  letter-spacing: 0.05em;
+}
+
+#introduction-content .description p {
+  font-size: 30px;
+  line-height: 70px;
+  background: linear-gradient(to right, #c9de70 0%, #1479d3 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+#introduction-content img {
+  height: 1000px;
+  width: 900px;
+  background-size: cover;
+}
+
+#introduction .bg-deco-2 {
+  position: absolute;
+  left: 0;
+  width: 87.5vw;
+  height: 180px;
+  top: 900px;
+  z-index: -1;
+}
+
+#story {
+  position: relative;
+  width: 100%;
+  height: 1000px;
+  margin-top: -10px;
+  background: url(../../../images/story.jpg) center top no-repeat;
+  background-size: cover;
+}
+
+#story-content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+  padding: 70px 80px 0 0;
+}
+
+#story-content h2 {
+  font-size: 116px;
+  text-shadow: 0 0 7px #e9af6a, 0 0 10px #e9af6a, 0 0 21px #e9af6a,
+    0 0 42px #f6e680, 0 0 62px #f6e680;
+  color: #fff;
+  -webkit-text-stroke-width: 0;
+  font-weight: normal;
+}
+
+#story-content p {
+  font-size: 26px;
+  color: #fff;
+  text-shadow: 0 0 7px #e9af6a, 0 0 10px #e9af6a, 0 0 21px #e9af6a,
+    0 0 42px #f6e680;
+  line-height: 70px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+#character {
+  position: relative;
+  width: 100%;
+  padding-top: 200px;
+}
+
+#character-content {
+  position: relative;
+  max-width: 1500px;
+  height: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 2;
+}
+
+#character-content h2 {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 100px;
+  letter-spacing: 0.02rem;
+}
+
+#character-content .character-title {
+  position: absolute;
+  top: 150px;
+  left: 20px;
+}
+
+#character-content .character-title h3 {
+  font-size: 140px;
+  letter-spacing: 0.2rem;
+  line-height: 118px;
+  text-shadow: 0 0 12px #5dccff, 0 0 12px #5dccff;
+  color: #fff;
+}
+
+#character-content .character-title .normalBtn {
+  width: 300px;
+  height: 80px;
+  font-size: 45px;
+  line-height: 80px;
+  letter-spacing: 0.1rem;
+  margin: 50px auto;
+}
+
+#character-content .description {
+  position: absolute;
+  top: 150px;
+  right: 0px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #0961ba;
+  text-align: left;
+  width: 365px;
+  padding: 45px 40px;
+  font-size: 18px;
+  line-height: 31px;
+  letter-spacing: 0.03rem;
+}
+
+#character .character-img {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0);
+  width: 500px;
+  height: 1290px;
+  background: url(../../../images/keiichi.png) left top no-repeat;
+}
+
+#character .character-background {
+  position: absolute;
+  top: 190px;
+  right: 0;
+  width: 90%;
+  height: 60%;
+  background: url(../../../images/character-background.png);
+  z-index: -1;
+}
+
+#character .bg-deco-1 {
+  position: absolute;
+  top: 422px;
+  left: 0;
+  width: 90%;
+  height: 50%;
+  z-index: -2;
+}
+
+#gameplay {
+  position: relative;
+  width: 100%;
+  padding-top: 150px;
+  margin-top: 100px;
+}
+
+#gameplay-content {
+  max-width: 600px;
+  text-align: center;
+  margin-left: 7%;
+  height: 800px;
+}
+
+#gameplay-content h2 {
+  font-size: 110px;
+  letter-spacing: 0.2rem;
+}
+
+#gameplay-content .description {
+  font-size: 30px;
+  padding-top: 50px;
+  line-height: 50px;
+  letter-spacing: 0.02rem;
+}
+
+#gameplay .bg-deco-2 {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 60%;
+  width: 70%;
+  z-index: -1;
+}
+
+#gameplay .gameplay-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../../../images/gameplay.jpg) left top no-repeat;
+  background-size: cover;
+  width: 57.0625vw;
+  height: 32.125vw;
+}
+
+#creator {
+  position: relative;
+  height: 1000px;
+  width: 100%;
+  margin-top: -130px;
+  padding-top: 100px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#creator h2 {
+  font-size: 120px;
+}
+
+#creator-content {
+  display: flex;
+  width: 100%;
+  height: 535px;
+  margin-top: 50px;
+}
+
+#creator-content .chad {
+  width: 50%;
+  padding: 20px;
+  background: url(../../../images/creator-1.png) center top no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+#creator-content .chad + .chad {
+  background: url(../../../images/creator-2.png) center top no-repeat;
+  background-size: contain;
+}
+
+.chad div {
+  height: 490px;
+  padding-top: 70px;
+  border: 1px solid #0961ba;
+}
+
+.chad div h4 {
+  font-size: 30px;
+  letter-spacing: 0.1rem;
+}
+
+.chad div h3 {
+  display: block;
+  margin: 10px 0 50px;
+  font-size: 45px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 9px 0 7px;
+  letter-spacing: 0.2rem;
+}
+
+.chad div p {
+  font-size: 23px;
+  text-align: left;
+  line-height: 40px;
+  padding: 0 75px;
+}
+
+#sky-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url(../../../images/sky.jpg) center bottom no-repeat;
+  background-size: cover;
+  z-index: -100;
+}

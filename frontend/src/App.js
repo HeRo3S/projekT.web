@@ -4,6 +4,7 @@ import NavbarMain from "./components/navbarMain/NavbarMain";
 import HomeForum from "./pages/forum/home/HomeForum";
 import Login from "./pages/forum/login/Login";
 import Register from "./pages/forum/register/Register";
+import Home from "./pages/main/home/Home";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavbarMain />}>
-            <Route index element />
+            <Route index element={<Home />} />
           </Route>
           <Route path="/forum" element={<NavbarForum />}>
             <Route index element={<HomeForum />}></Route>
