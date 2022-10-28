@@ -16,22 +16,22 @@ function NavbarMain() {
             </Link>
           </li>
           <li>
-            <a href="">News</a>
+            <Link to="">News</Link>
           </li>
           <li>
-            <a href="">Introduction</a>
+            <Link to="">Introduction</Link>
           </li>
           <li>
-            <a href="">Story</a>
+            <Link to="">Story</Link>
           </li>
           <li>
-            <a href="">Characters</a>
+            <Link to="">Characters</Link>
           </li>
           <li>
-            <a href="">Gameplay</a>
+            <Link to="">Gameplay</Link>
           </li>
           <li>
-            <a href="">Creators</a>
+            <Link to="">Creators</Link>
           </li>
           <li>
             <Link to="/forum">Forum</Link>
