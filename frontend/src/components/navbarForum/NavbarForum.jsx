@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import "./navbarForum.css";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -21,10 +21,10 @@ function NavbarForum() {
             <input type="text" placeholder="Search..."></input>
           </li>
           <li>
-            <a>Login</a>
+            <Link to="/forum/login">Login</Link>
           </li>
           <li>
-            <a>Regiseter</a>
+            <Link to="/forum/register">Regiseter</Link>
           </li>
         </ul>
       </div>
