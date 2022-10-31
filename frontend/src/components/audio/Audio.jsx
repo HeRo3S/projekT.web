@@ -5,9 +5,9 @@ function Audio() {
     <>
       <div id="player">
         <audio controls autoplay loop>
-          <source src="../audio/You.mp3" type="audio/ogg" />
+          <source src="../../../audio/You.mp3" type="audio/ogg" />
           <embed
-            src="../audio/You.mp3"
+            src="../../../audio/You.mp3"
             autostart="true"
             loop="true"
             hidden="true"

@@ -38,7 +38,7 @@
   font-weight: bold;
 }
 
-#banner-content Link.buyBtn {
+#banner-content a.buyBtn {
   display: block;
   position: relative;
   background: url(../../../images/buy_btn.jpg) left top no-repeat;
@@ -47,7 +47,7 @@
   margin: 50px auto;
 }
 
-#banner-content Link.buyBtn::after {
+#banner-content a.buyBtn::after {
   content: "";
   display: block;
   position: absolute;
@@ -59,7 +59,7 @@
   opacity: 0;
 }
 
-#banner-content Link.buyBtn:hover::after {
+#banner-content a.buyBtn:hover::after {
   opacity: 1;
   transition: 0.3s;
 }
@@ -125,7 +125,7 @@
   height: calc(var(--topic-height) * 0.52);
 }
 
-#news-content .topic Link {
+#news-content .topic a {
   display: block;
   position: absolute;
   top: calc(var(--topic-height) * 0.52);
@@ -137,7 +137,7 @@
   text-decoration: none;
 }
 
-#news-content .topic Link:hover {
+#news-content .topic a:hover {
   color: #d8245b;
 }
 
@@ -440,6 +440,51 @@
   text-align: left;
   line-height: 40px;
   padding: 0 75px;
+}
+
+
+#footer
+{
+    position: relative;
+    width: 100%;
+    background-color: rgba(254,247,148,0.5);
+    border-top: #bbb solid 1px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#footer-content
+{
+    padding-top: 50px;
+}
+
+#footer-content .link
+{
+    display: flex;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#footer-content .link a
+{
+    display: block;
+    width: 45%;
+    height: 80px;
+    background: url(../../../images/entergram.png) center center no-repeat;
+    background-size: cover;
+}
+
+#footer-content .link a + a
+{
+    background: url(../../../images/07th-expansion.png) center center no-repeat;
+}
+
+#footer-content .copyright
+{
+    padding-top: 50px;
+    font-size: 25px;
+    line-height: 60px;
 }
 
 #sky-bg {
