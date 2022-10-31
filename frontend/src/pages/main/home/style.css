@@ -449,7 +449,7 @@
     width: 100%;
     background-color: rgba(254,247,148,0.5);
     border-top: #bbb solid 1px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     text-align: center;
 }
 
@@ -496,4 +496,11 @@
   background: url(../../../images/sky.jpg) center bottom no-repeat;
   background-size: cover;
   z-index: -100;
+}
+
+.scroll-container {
+  position: fixed;
+  will-change: transform;
+  right: 0;
+  left: 0;
 }

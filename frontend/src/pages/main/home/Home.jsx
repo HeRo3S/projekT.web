@@ -8,13 +8,15 @@ import Story from "../../../components/home/Story";
 import "./style.css";
 import Footer from "../../../components/home/Footer";
 import Audio from "../../../components/audio/Audio";
+import ScrollContainer from "../../../components/home/ScrollContainer";
+const scrollIntertia = 70;
 
 function Home() {
   return (
     <>
       <div className="mainContainer">
         <Audio />
-        <div className="luxy">
+        <ScrollContainer scrollIntertia={scrollIntertia}>
           <Banner />
           <div id="container">
             <News />
@@ -25,7 +27,7 @@ function Home() {
           <Gameplay />
           <Creators />
           <Footer />
-        </div>
+          </ScrollContainer>
         <div id="sky-bg"></div>
       </div>
       {/* <script src="./luxy.js" charset="utf-8"></script>
