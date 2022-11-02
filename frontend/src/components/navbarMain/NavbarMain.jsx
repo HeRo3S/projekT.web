@@ -4,8 +4,8 @@ import "./navbarMain.css";
 function NavbarMain() {
   return (
     <>
-      <div id="header">
-        <ul id="nav">
+      <div id="main-header" className="header">
+        <ul id="main-nav" className="nav">
           <li>
             <Link to="" id="studioLogoContainer">
               <img

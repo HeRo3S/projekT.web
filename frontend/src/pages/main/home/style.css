@@ -442,49 +442,42 @@
   padding: 0 75px;
 }
 
-
-#footer
-{
-    position: relative;
-    width: 100%;
-    background-color: rgba(254,247,148,0.5);
-    border-top: #bbb solid 1px;
-    padding-bottom: 40px;
-    text-align: center;
+#footer {
+  position: relative;
+  width: 100%;
+  background-color: rgba(254, 247, 148, 0.5);
+  border-top: #bbb solid 1px;
+  padding-bottom: 40px;
+  text-align: center;
 }
 
-#footer-content
-{
-    padding-top: 50px;
+#footer-content {
+  padding-top: 50px;
 }
 
-#footer-content .link
-{
-    display: flex;
-    justify-content: space-around;
-    max-width: 800px;
-    margin: 0 auto;
+#footer-content .link {
+  display: flex;
+  justify-content: space-around;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-#footer-content .link a
-{
-    display: block;
-    width: 45%;
-    height: 80px;
-    background: url(../../../images/entergram.png) center center no-repeat;
-    background-size: cover;
+#footer-content .link a {
+  display: block;
+  width: 45%;
+  height: 80px;
+  background: url(../../../images/entergram.png) center center no-repeat;
+  background-size: cover;
 }
 
-#footer-content .link a + a
-{
-    background: url(../../../images/07th-expansion.png) center center no-repeat;
+#footer-content .link a + a {
+  background: url(../../../images/07th-expansion.png) center center no-repeat;
 }
 
-#footer-content .copyright
-{
-    padding-top: 50px;
-    font-size: 25px;
-    line-height: 60px;
+#footer-content .copyright {
+  padding-top: 50px;
+  font-size: 25px;
+  line-height: 60px;
 }
 
 #sky-bg {

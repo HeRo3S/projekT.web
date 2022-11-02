@@ -27,11 +27,9 @@ function Home() {
           <Gameplay />
           <Creators />
           <Footer />
-          </ScrollContainer>
+        </ScrollContainer>
         <div id="sky-bg"></div>
       </div>
-      {/* <script src="./luxy.js" charset="utf-8"></script>
-      <script>luxy.init();</script> */}
     </>
   );
 }

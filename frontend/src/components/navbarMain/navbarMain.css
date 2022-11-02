@@ -1,4 +1,4 @@
-#header {
+.header {
   position: fixed;
   top: 0;
   background-color: rgba(255, 255, 255, 0.9);
@@ -8,29 +8,31 @@
   z-index: 1;
 }
 
-#nav {
+.nav {
   display: flex;
+  align-items: center;
   list-style-type: none;
   height: var(--header-height);
 }
 
-#nav li {
+.nav li {
   display: block;
   line-height: var(--header-height);
 }
 
-#nav li a {
+.nav li a {
   position: relative;
   display: block;
   font-size: 20px;
   padding: 0 10px;
   margin: 0 17px;
   letter-spacing: 0.1em;
-  color: #0961ba;
+  color: 0.0961ba;
   text-decoration: none;
+  color: #0961ba;
 }
 
-#nav li a::before {
+.nav li a::before {
   display: block;
   content: "";
   position: absolute;
@@ -43,11 +45,11 @@
   z-index: -1;
 }
 
-#nav li:hover a::before {
+.nav li:hover a::before {
   width: 100%;
 }
 
-#nav li:hover a#studioLogoContainer::before {
+.nav li:hover a#studioLogoContainer::before {
   width: 0;
 }
 

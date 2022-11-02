@@ -5,8 +5,8 @@ import SearchIcon from "@mui/icons-material/Search";
 function NavbarForum() {
   return (
     <>
-      <div id="header">
-        <ul id="nav">
+      <div id="forum-header" className="header">
+        <ul id="forum-nav" className="nav">
           <li>
             <Link to="/" id="studioLogoContainer">
               <img
@@ -16,9 +16,11 @@ function NavbarForum() {
               ></img>
             </Link>
           </li>
-          <li>
-            <SearchIcon />
+          <li className="search-form">
             <input type="text" placeholder="Search..."></input>
+            <button>
+              <SearchIcon style={{ fontSize: 30 }} />
+            </button>
           </li>
           <li>
             <Link to="/forum/login">Login</Link>

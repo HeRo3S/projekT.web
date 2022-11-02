@@ -6,7 +6,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 function HomeThread() {
   return (
     <div className="homethreadContainer">
-      <img src="" alt="Avatar" />
+      <img src={require("../../../images/avatar-test.jpg")} alt="Avatar" />
       <div className="threadDescContainer">
         <Link className="link" to="">
           <h3>お持ち帰り</h3>

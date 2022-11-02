@@ -3,17 +3,30 @@ import "./homeforum.css";
 
 function HomeForum() {
   return (
-    <div className="mainContainer">
-      <div className="bannerContainer">
-        <h1>WELCOME TO PROJEKT PROTOTYPE FORUM</h1>
-      </div>
-      <div className="discussionContainer">
-        <h2>DISCUSSION</h2>
-        <ul>
-          <li>
-            <HomeThread />
-          </li>
-        </ul>
+    <div id="home-forum">
+      <div id="home-forum-content">
+        <div className="forum-banner">Welcome to Hinamizawa</div>
+
+        <div className="forum-discussion">
+          <h2>Discussion</h2>
+          <ul>
+            <li>
+              <HomeThread />
+            </li>
+
+            <li>
+              <HomeThread />
+            </li>
+
+            <li>
+              <HomeThread />
+            </li>
+
+            <li>
+              <HomeThread />
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
