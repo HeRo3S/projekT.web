@@ -3,7 +3,7 @@ h1 {
 }
 
 .box {
-  margin: auto;
+  /* margin: auto; */
   width: 60vw;
   height: 30vh;
   display: flex;

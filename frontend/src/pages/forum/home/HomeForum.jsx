@@ -3,8 +3,8 @@ import "./homeforum.css";
 
 function HomeForum() {
   return (
-    <div id="home-forum">
-      <div id="home-forum-content">
+    <div id="home-forum" className="main">
+      <div id="home-forum-content" className="content">
         <div className="forum-banner">Welcome to Hinamizawa</div>
 
         <div className="forum-discussion">
