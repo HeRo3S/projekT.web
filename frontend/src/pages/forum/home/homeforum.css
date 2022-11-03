@@ -1,0 +1,33 @@
+#home-forum-content .forum-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  background: url(../../../images/forum-banner.png) center center no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-size: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+#home-forum-content .forum-discussion {
+  margin-top: 50px;
+}
+
+#home-forum-content .forum-discussion h2 {
+  font-size: 40px;
+  letter-spacing: 0.1rem;
+  padding-bottom: 30px;
+}
+
+#home-forum-content .forum-discussion ul {
+  box-shadow: 0 4px 8px 4px rgb(107 119 128 / 12%);
+  list-style-type: none;
+}
+
+#home-forum-content .forum-discussion ul li {
+  padding: 15px;
+  border-top: 1px solid #e0e0e0;
+}

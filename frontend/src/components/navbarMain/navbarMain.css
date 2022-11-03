@@ -1,0 +1,60 @@
+.header {
+  position: fixed;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  --header-height: 53px;
+  height: var(--header-height);
+  width: 100%;
+  z-index: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  height: var(--header-height);
+}
+
+.nav li {
+  display: block;
+  line-height: var(--header-height);
+}
+
+.nav li a {
+  position: relative;
+  display: block;
+  font-size: 20px;
+  padding: 0 10px;
+  margin: 0 17px;
+  letter-spacing: 0.1em;
+  color: 0.0961ba;
+  text-decoration: none;
+  color: #0961ba;
+}
+
+.nav li a::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #fffba7;
+  transition: 0.25s;
+  z-index: -1;
+}
+
+.nav li:hover a::before {
+  width: 100%;
+}
+
+.nav li:hover a#studioLogoContainer::before {
+  width: 0;
+}
+
+#studioLogo {
+  height: 28px;
+  width: 46px;
+  vertical-align: middle;
+}

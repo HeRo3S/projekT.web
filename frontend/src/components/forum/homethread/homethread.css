@@ -1,0 +1,75 @@
+.homethreadContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.homethreadContainer img {
+  align-self: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.threadDescContainer {
+  margin-left: 20px;
+  flex: 2 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.threadDescContainer > a {
+  flex: 1;
+  text-decoration: none;
+}
+.threadDescContainer > a > h3 {
+  padding: 5px 0px;
+  color: #0961ba;
+  font-size: 18px;
+}
+
+.threadDescContainer > div {
+  flex: 1;
+}
+
+.threadDescContainer > div > span {
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.stateContainer {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: row;
+}
+
+.stateContainer > div {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+  max-width: 120px;
+  margin-right: 50px;
+}
+
+.stateContainer > div > p {
+  line-height: 10 px;
+}
+
+.stateLastComment {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.stateLastComment > span {
+  flex: 1;
+  padding: 7px 10px;
+}
+
+.stateLastComment > span + span {
+  padding-bottom: 0;
+}
