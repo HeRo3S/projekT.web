@@ -102,6 +102,6 @@ UserAccount.hasMany(Comment, {
 Comment.belongsTo(UserAccount, {
     foreignKey: "authorId",
 })
-db_sequelize.sync({force : true});
+// db_sequelize.sync({force : true});
 // export User model for use in other files.
 module.exports = UserAccount;

@@ -2,42 +2,28 @@
 /**
  * Required External Modules
  */
-const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 const UserAccount = require("./models/user");
 const UserInfo = require("./models/user_info");
+const jwt = require("jsonwebtoken")
 var loginMsg = [];
 var regMsg = [];
- require("dotenv").config();
-
-//Session 
-
-var sessionChecker = (req, res, next) => {
-  if (req.session.user && req.cookies.user_sid) {
-      res.redirect('/');
-  } else {
-      next();
-  }    
-};
+require("dotenv").config();
 
 /**
  * Routes Definitions
  */
 
  router.route('/register')
- .get(sessionChecker, (req, res) => {
-     res.send({response : regMsg, user: req.session.user});
-     regMsg = "";
- }).post(async (req, res) => {
+  .post(async (req, res) => {
      UserAccount.create({
          username: req.body.username,
          email: req.body.email,
          password: req.body.password,
      })
      .then(() => {
-         loginMsg = "Register successfully please login to continues";
-         res.redirect('/login');
+        res.send({username: req.body.username, email: req.body.email})
      })
      .catch(error => {
         JSON.stringify(error);
@@ -46,39 +32,53 @@ var sessionChecker = (req, res, next) => {
         error.errors.forEach(err => {
           regMsg.push(err.message); 
         });
-         res.redirect("/register");
+        res.status(401).send({regMsg})
+
      });
  });
 
-router.route('/login').get((req, res) => {
-  res.render('login', {response : loginMsg, user: req.session.user});
-  loginMsg = "";
-}).post((req,res) => {
+router.route('/login').post((req,res) => {
   var email = req.body.email;
   var password = req.body.password;
   UserAccount.findOne({where: {email : email}, include: UserInfo})
   .then(async function (user){
       if(!user){
-        loginMsg = "Incorrect email or password";
-        res.redirect("/login");
+        return res.status(401)
       }
       else if(!user.validPassword(user, password)){
-        loginMsg = "Incorrect email or password";
-        res.redirect("/login");
+        return res.status(401)
       }
       else{
-        req.session.user = user.toJSON();
-        delete req.session.user.password;
-        console.log(req.session.user);
-        res.redirect('/');
-      }
-  }).catch(error => {
-    loginMsg = "Some problem orcurred please try again";
-    res.redirect("/login");
+        const {password, ...account_info} = user
+        console.log(account_info);
+        token = jwt.sign(user, process.env.JWT_SECRET, {
+          expiresIn: process.env.JWT_EXPIRE
+      })
+      return res.send({accessToken: token})
+    }
+      }).catch(error => {
+        return res.status(500).send(error)
   })
 })
 
-
+verifyToken = async (req, res, next) => {
+  token = req.headers["x-access-token"]
+  if(token){
+      try{
+          decoded = jwt.verify(token, process.env.JWT_SECRET)
+          req.user = decoded
+          req.user.user_code = req.user.username
+          if(req.user.access_level == 0){
+              req.user.user_code = ""
+          }
+          return next()
+      }
+      catch(err){
+          console.log(err)
+      }
+  }
+  return res.status(403).send({message: "Unauthorized"})
+}
 
 router.get('/logout', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {

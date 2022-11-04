@@ -39,7 +39,6 @@ app.use(logger('dev'));
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public'))); 
 
-//Test the connection
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded( {extended: true} ));
@@ -48,17 +47,7 @@ app.use(express.urlencoded( {extended: true} ));
 
 app.use(cookieParser());
 
-//Cookie configuration
 
-app.use(session({
-  key: 'user_sid',
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-      expires: 600000
-  }
-}));
 
 //Clear residue cookie
 
