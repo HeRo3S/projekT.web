@@ -13,13 +13,10 @@
 .threadDescContainer {
   margin-left: 20px;
   flex: 2 1 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .threadDescContainer > a {
-  flex: 1;
+  display: inline-block;
   text-decoration: none;
 }
 .threadDescContainer > a > h3 {
@@ -28,8 +25,8 @@
   font-size: 18px;
 }
 
-.threadDescContainer > div {
-  flex: 1;
+.threadDescContainer > a > h3:hover {
+  color: #d8245b;
 }
 
 .threadDescContainer > div > span {

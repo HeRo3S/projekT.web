@@ -8,15 +8,20 @@ function Login() {
         <h1>LOGIN</h1>
         <form className="loginForm">
           <div className="box">
-            <div className="labelContainer"></div>
+            <div className="labelContainer">
+              <span>Username:</span>
+              <span>Password:</span>
+            </div>
             <div className="inputContainer">
               <TextField
+                className="input"
                 required
                 label="Username"
                 type="text"
                 placeholder="Enter your username: "
               />
               <TextField
+                className="input"
                 required
                 label="Password"
                 type="password"
@@ -24,8 +29,8 @@ function Login() {
               />
             </div>
           </div>
-          <button className="loginButton" type="submit">
-            <span>Login</span>
+          <button className="normalBtn" type="submit">
+            Login
           </button>
         </form>
       </div>
