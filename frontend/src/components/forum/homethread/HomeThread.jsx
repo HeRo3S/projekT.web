@@ -8,7 +8,7 @@ function HomeThread() {
     <div className="homethreadContainer">
       <img src={require("../../../images/avatar-test.jpg")} alt="Avatar" />
       <div className="threadDescContainer">
-        <Link className="link" to="">
+        <Link className="link" to="/forum/Post">
           <h3>お持ち帰り</h3>
         </Link>
         <div>

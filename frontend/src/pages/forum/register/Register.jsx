@@ -2,13 +2,33 @@ import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import "./register.css";
 import { FormGroup, FormControlLabel } from "@mui/material";
+import { useState } from "react";
+import axios from "axios";
 
 function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const userInfo = {
+      username: username,
+      email: email,
+      password: password,
+    };
+    try {
+      const res = await axios.get("/register", userInfo);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div id="register" className="main">
       <div id="register-content" className="content">
         <h1>REGISTER</h1>
-        <form className="registerForm">
+        <form className="registerForm" onSubmit={handleSubmit}>
           <div className="box">
             <div className="labelContainer">
               <span>Username:</span>
@@ -22,18 +42,21 @@ function Register() {
                 label="Username"
                 type="text"
                 placeholder="Enter your username: "
+                onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
                 required
                 label="Email"
                 type="text"
                 placeholder="Enter your email: "
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 required
                 label="Password"
                 type="password"
                 placeholder="Enter your password: "
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormGroup className="formGroup">
                 <FormControlLabel
