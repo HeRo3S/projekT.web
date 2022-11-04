@@ -1,12 +1,30 @@
 import TextField from "@mui/material/TextField";
+import axios from "axios";
+import { useState } from "react";
 import "./login.css";
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.get("login", {
+        username,
+        password,
+      });
+      //jwt code in here
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div id="login" className="main">
       <div id="login-content" className="content">
         <h1>LOGIN</h1>
-        <form className="loginForm">
+        <form className="loginForm" onSubmit={handleSubmit}>
           <div className="box">
             <div className="labelContainer">
               <span>Username:</span>
@@ -18,6 +36,7 @@ function Login() {
                 required
                 label="Username"
                 type="text"
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter your username: "
               />
               <TextField
@@ -25,6 +44,7 @@ function Login() {
                 required
                 label="Password"
                 type="password"
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password: "
               />
             </div>

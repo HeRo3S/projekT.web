@@ -19,6 +19,10 @@ function Register() {
     };
     try {
       const res = await axios.get("/register", userInfo);
+      if (res) {
+        console.log("Register succesful");
+        window.location.replace("/forum/login");
+      }
     } catch (err) {
       console.log(err);
     }

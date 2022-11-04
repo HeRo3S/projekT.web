@@ -4,7 +4,7 @@ import NavbarMain from "./components/navbarMain/NavbarMain";
 import HomeForum from "./pages/forum/home/HomeForum";
 import Login from "./pages/forum/login/Login";
 import Register from "./pages/forum/register/Register";
-import Post from "./pages/forum/post/Post";
+import Thread from "./pages/forum/thread/Thread";
 import Home from "./pages/main/home/Home";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
             <Route index element={<HomeForum />}></Route>
             <Route path="/forum/register" element={<Register />} />
             <Route path="/forum/login" element={<Login />} />
-            <Route path="/forum/post" element={<Post />} />
+            <Route path="/forum/thread/:thread_id" element={<Thread />} />
           </Route>
         </Routes>
       </BrowserRouter>

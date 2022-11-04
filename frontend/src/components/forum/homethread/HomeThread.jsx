@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CommentIcon from "@mui/icons-material/Comment";
 
-function HomeThread() {
+function HomeThread({ post }) {
   return (
     <div className="homethreadContainer">
       <img src={require("../../../images/avatar-test.jpg")} alt="Avatar" />
       <div className="threadDescContainer">
-        <Link className="link" to="/forum/Post">
+        <Link className="link" to={`/forum/thread/${post && post._id}`}>
           <h3>お持ち帰り</h3>
         </Link>
         <div>
