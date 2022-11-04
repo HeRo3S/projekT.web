@@ -4,14 +4,14 @@ import { useState } from "react";
 import "./login.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post("/login", {
-        username,
+        email,
         password,
       });
       //jwt code in here
@@ -27,17 +27,17 @@ function Login() {
         <form className="loginForm" onSubmit={handleSubmit}>
           <div className="box">
             <div className="labelContainer">
-              <span>Username:</span>
+              <span>Email:</span>
               <span>Password:</span>
             </div>
             <div className="inputContainer">
               <TextField
                 className="input"
                 required
-                label="Username"
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username: "
+                label="Email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email: "
               />
               <TextField
                 className="input"

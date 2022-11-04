@@ -51,7 +51,7 @@ function Register() {
               <TextField
                 required
                 label="Email"
-                type="text"
+                type="email"
                 placeholder="Enter your email: "
                 onChange={(e) => setEmail(e.target.value)}
               />

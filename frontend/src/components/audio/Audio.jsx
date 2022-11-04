@@ -4,7 +4,7 @@ function Audio() {
   return (
     <>
       <div id="player">
-        <audio controls autoplay loop>
+        {/* <audio controls autoplay loop>
           <source src="../../audio/You.mp3" type="audio/ogg" />
           <embed
             src="../../audio/You.mp3"
@@ -12,7 +12,7 @@ function Audio() {
             loop="true"
             hidden="true"
           />
-        </audio>
+        </audio> */}
       </div>
     </>
   );
