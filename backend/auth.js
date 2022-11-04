@@ -38,8 +38,8 @@ require("dotenv").config();
  });
 
 router.route('/login').post((req,res) => {
-  var email = req.body.email;
-  var password = req.body.password;
+  var email = req.body.email
+  var password = req.body.password
   UserAccount.findOne({where: {email : email}, include: UserInfo})
   .then(async function (user){
       if(!user){
@@ -49,14 +49,15 @@ router.route('/login').post((req,res) => {
         return res.status(401)
       }
       else{
+        user = user.toJSON()
         const {password, ...account_info} = user
-        console.log(account_info);
-        token = jwt.sign(user, process.env.JWT_SECRET, {
-          expiresIn: process.env.JWT_EXPIRE
+        token = jwt.sign(account_info, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRE
       })
       return res.send({accessToken: token})
     }
       }).catch(error => {
+        console.log(error)
         return res.status(500).send(error)
   })
 })

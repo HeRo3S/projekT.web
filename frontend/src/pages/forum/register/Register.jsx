@@ -18,7 +18,7 @@ function Register() {
       password: password,
     };
     try {
-      const res = await axios.get("/register", userInfo);
+      const res = await axios.post("/register", userInfo);
       if (res) {
         console.log("Register succesful");
         window.location.replace("/forum/login");
