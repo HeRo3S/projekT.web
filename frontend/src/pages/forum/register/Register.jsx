@@ -3,7 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import "./register.css";
 import { FormGroup, FormControlLabel } from "@mui/material";
 import { useState } from "react";
-import axios from "axios";
+import { register } from "../../../api/auth.service";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -18,7 +18,7 @@ function Register() {
       password: password,
     };
     try {
-      const res = await axios.post("/register", userInfo);
+      const res = await register(userInfo);
       if (res) {
         console.log("Register succesful");
         window.location.replace("/forum/login");

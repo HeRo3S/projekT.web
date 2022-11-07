@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
-import axios from "axios";
 import { useState } from "react";
+import { login } from "../../../api/auth.service";
 import "./login.css";
 
 function Login() {
@@ -10,7 +10,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/login", {
+      const { data } = await login({
         email,
         password,
       });
