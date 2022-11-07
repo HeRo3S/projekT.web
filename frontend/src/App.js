@@ -6,6 +6,7 @@ import Login from "./pages/forum/login/Login";
 import Register from "./pages/forum/register/Register";
 import Thread from "./pages/forum/thread/Thread";
 import Home from "./pages/main/home/Home";
+import News from "./pages/main/news/News";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<NavbarMain />}>
             <Route index element={<Home />} />
+            <Route path="/news" element={<News />} />
           </Route>
           <Route path="/forum" element={<NavbarForum />}>
             <Route index element={<HomeForum />}></Route>
