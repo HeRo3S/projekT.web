@@ -1,7 +1,7 @@
 import "./news_page.css";
 import New from "../../../components/home/news/New";
 
-function News_Page() {
+function NewsPage() {
   return (
     <>
       <div id="news-page" className="main">
@@ -29,4 +29,4 @@ function News_Page() {
   );
 }
 
-export default News_Page;
+export default NewsPage;

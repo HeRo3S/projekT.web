@@ -6,7 +6,8 @@ import Login from "./pages/forum/login/Login";
 import Register from "./pages/forum/register/Register";
 import Thread from "./pages/forum/thread/Thread";
 import Home from "./pages/main/home/Home";
-import News_Page from "./pages/main/news_page/News_Page";
+import DetailsNew from "./pages/main/news_page/DetailsNews";
+import NewsPage from "./pages/main/news_page/NewsPage";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<NavbarMain />}>
             <Route index element={<Home />} />
-            <Route path="/news" element={<News_Page />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:news_id" element={<DetailsNew />} />
           </Route>
           <Route path="/forum" element={<NavbarForum />}>
             <Route index element={<HomeForum />}></Route>
