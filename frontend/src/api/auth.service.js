@@ -5,8 +5,14 @@ export const login = async (userCredentials) => {
     email: userCredentials.email,
     password: userCredentials.password,
   });
-  console.log(data);
+  if (data.accessToken) {
+    localStorage.setItem("user", JSON.stringify(data));
+  }
   return data;
+};
+
+export const logout = () => {
+  localStorage.removeItem("user");
 };
 
 export const register = async (userCredentials) => {
