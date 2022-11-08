@@ -91,7 +91,7 @@
   margin: 0 auto;
 }
 
-#news-content .topic {
+.topic {
   --topic-width: 378px;
   --topic-height: 250px;
   max-width: var(--topic-width);
@@ -102,8 +102,8 @@
   position: relative;
 }
 
-#news-content .topic time {
-  z-index: 5;
+.topic time {
+  z-index: 1;
   position: absolute;
   left: 1px;
   top: 0;
@@ -116,7 +116,7 @@
   padding: 5px 0 0;
 }
 
-#news-content .topic img {
+.topic img {
   display: block;
   position: absolute;
   top: 0;
@@ -125,7 +125,7 @@
   height: calc(var(--topic-height) * 0.52);
 }
 
-#news-content .topic a {
+.topic a {
   display: block;
   position: absolute;
   top: calc(var(--topic-height) * 0.52);
@@ -137,7 +137,7 @@
   text-decoration: none;
 }
 
-#news-content .topic a:hover {
+.topic a:hover {
   color: #d8245b;
 }
 
@@ -480,7 +480,7 @@
   line-height: 60px;
 }
 
-#sky-bg {
+.sky-bg {
   position: fixed;
   top: 0;
   left: 0;
