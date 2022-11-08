@@ -6,7 +6,7 @@ import Login from "./pages/forum/login/Login";
 import Register from "./pages/forum/register/Register";
 import Thread from "./pages/forum/thread/Thread";
 import Home from "./pages/main/home/Home";
-import DetailsNew from "./pages/main/news_page/DetailsNews";
+import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
 
 function App() {

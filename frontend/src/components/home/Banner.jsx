@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function Banner() {
   return (
     <div>
@@ -10,10 +8,12 @@ function Banner() {
             Higurashi When They <span>C</span>ry
           </div>
           <p className="subTitle"></p>
-          <Link
-            to="https://store.steampowered.com/app/310360/Higurashi_When_They_Cry_Hou__Ch1_Onikakushi/"
+          <a
+            href="https://store.steampowered.com/app/310360/Higurashi_When_They_Cry_Hou__Ch1_Onikakushi/"
             className="buyBtn"
-          ></Link>
+          >
+            {" "}
+          </a>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ function New() {
       <div className="topic">
         <time>19/06/1983</time>
         <img src={require("../../../images/rena-test.png")} alt="" />
-        <Link to="">DLC Update</Link>
+        <Link to="/news/:news_id">DLC Update</Link>
       </div>
     </>
   );
