@@ -17,7 +17,7 @@ function Thread() {
             <div className="thread-description">
               <div className="thread-creator">
                 <PersonIcon className="person-icon" />
-                <span>Rena Ryuugu</span>
+                <Link to="/forum/user/user_id">Rena Ryuugu</Link>
               </div>
 
               <div className="thread-time">

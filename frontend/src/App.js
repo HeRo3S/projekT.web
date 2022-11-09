@@ -8,6 +8,7 @@ import Thread from "./pages/forum/thread/Thread";
 import Home from "./pages/main/home/Home";
 import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
+import User from "./pages/forum/user/User";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/forum/register" element={<Register />} />
             <Route path="/forum/login" element={<Login />} />
             <Route path="/forum/thread/:thread_id" element={<Thread />} />
+            <Route path="/forum/user/:users_id" element={<User />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -28,6 +28,11 @@
   margin-right: 30px;
 }
 
+.thread-description .thread-creator a:hover {
+  color: #0961ba;
+  text-decoration: underline;
+}
+
 .thread-description .thread-creator .person-icon {
   margin-right: 10px;
   height: 30px;

@@ -12,7 +12,9 @@ function HomeThread({ post }) {
           <h3>お持ち帰り</h3>
         </Link>
         <div>
-          <span>Rena Ryuugu</span>
+          <Link className="link" to="/forum/user/:user_id">
+            Rena Ryuugu
+          </Link>
           <span>Oct 9th, 2022</span>
         </div>
       </div>
