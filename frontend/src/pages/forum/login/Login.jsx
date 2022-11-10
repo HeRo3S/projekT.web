@@ -1,23 +1,32 @@
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
-import { login } from "../../../api/auth.service";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../../redux/features/authSlice";
+import { clearMessage } from "../../../redux/features/messageSlice";
 import "./login.css";
 
 function Login() {
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const message = useSelector((state) => state.auth.message);
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await login({
-        email,
-        password,
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        console.log(user);
+      })
+      .catch(() => {
+        // TODO handle error function
       });
-      //jwt code in here
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   return (

@@ -1,30 +1,46 @@
-import TextField from "@mui/material/TextField";
+import { FormControlLabel, FormGroup } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../../../redux/features/authSlice";
+import { clearMessage } from "../../../redux/features/messageSlice";
 import "./register.css";
-import { FormGroup, FormControlLabel } from "@mui/material";
-import { useState } from "react";
-import { register } from "../../../api/auth.service";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [succesful, setSuccesful] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccesful(false);
     const userInfo = {
       username: username,
       email: email,
       password: password,
     };
-    try {
-      const res = await register(userInfo);
-      if (res) {
-        console.log("Register succesful");
-        window.location.replace("/forum/login");
-      }
-    } catch (err) {
-      console.log(err);
+
+    dispatch(register(userInfo))
+      .unwrap()
+      .then(() => {
+        setSuccesful(true);
+      })
+      .catch(() => {
+        setSuccesful(false);
+      });
+
+    if (succesful) {
+      console.log("Register succesful");
+      window.location.replace("/forum/login");
     }
   };
 

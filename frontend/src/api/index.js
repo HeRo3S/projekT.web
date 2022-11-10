@@ -5,17 +5,12 @@ const authHeader = () => {
 
   if (user && user.accessToken) {
     return { "x-access-token": user.accessToken };
-  } else {
-    return {};
-  }
+  } else return {};
 };
 
 const instance = axios.create({
-  base_url: "http://localhost:3001",
-  headers: {
-    // * insert token here
-    authHeader,
-  },
+  baseURL: "http://localhost:3001/",
+  headers: authHeader(),
 });
 
 export default instance;

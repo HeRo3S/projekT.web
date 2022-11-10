@@ -1,6 +1,6 @@
 import instance from "./index.js";
 
-export const login = async (userCredentials) => {
+const login = async (userCredentials) => {
   const { data } = await instance.post("/login", {
     email: userCredentials.email,
     password: userCredentials.password,
@@ -11,11 +11,11 @@ export const login = async (userCredentials) => {
   return data;
 };
 
-export const logout = () => {
+const logout = () => {
   localStorage.removeItem("user");
 };
 
-export const register = async (userCredentials) => {
+const register = async (userCredentials) => {
   const { data } = await instance.post("/register", {
     username: userCredentials.username,
     password: userCredentials.password,
@@ -23,3 +23,10 @@ export const register = async (userCredentials) => {
   });
   return data;
 };
+
+const AuthService = {
+  login,
+  logout,
+  register,
+};
+export default AuthService;
