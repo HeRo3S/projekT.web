@@ -1,63 +1,69 @@
 //Require module
 require("dotenv").config();
-var path = require('path');
-var express = require('express');
-var logger = require('morgan');
+var path = require("path");
+var express = require("express");
+var logger = require("morgan");
+var cors = require("cors");
 var app = express();
-var session = require('express-session');
+var session = require("express-session");
 const authRouter = require("./auth");
 const userRouter = require("./user_manager");
-var db_process = require('./article_process');
+var db_process = require("./article_process");
 
 // Variable for controlling news listing page
 //   current/total is the current/total page
 //   per_page is max number of articles per page
 //   max_show_page is the max number of page in pagination bar of each side for example 2 will be << 2 3 4 5 6 >> assume current page is 4
-var news_list_pagination = {current: 1, total: 1, per_page: 4, max_show_page: 2};
-var news_comment_pagination = {current: 1, total: 1, per_page: 3, max_show_page: 2};
-const cookieParser = require('cookie-parser');
+var news_list_pagination = {
+  current: 1,
+  total: 1,
+  per_page: 4,
+  max_show_page: 2,
+};
+var news_comment_pagination = {
+  current: 1,
+  total: 1,
+  per_page: 3,
+  max_show_page: 2,
+};
+const cookieParser = require("cookie-parser");
 const Article = require("./models/articles");
 const Comment = require("./models/comment");
 const UserAccount = require("./models/user");
 
-
-
 //Connect to the database
-
 
 if (app.get("env") === "production") {
   // Serve secure cookies, requires HTTPS
   session.cookie.secure = true;
 }
 
-
 //                                APP CONFIGURATION
 
 // Log the requests
-app.use(logger('dev'));
+app.use(logger("dev"));
+// *Cors
+app.use(cors());
 //Change display to EJS
 // Serve static files
-app.use(express.static(path.join(__dirname, 'public'))); 
-app.use(express.json())
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
 
 // Parse URL-encoded bodies (as sent by HTML forms)
-app.use(express.urlencoded( {extended: true} ));
+app.use(express.urlencoded({ extended: true }));
 
 //Cookie parser
 
 app.use(cookieParser());
 
-
-
 //Clear residue cookie
 
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
-      res.clearCookie('user_sid');        
+    res.clearCookie("user_sid");
   }
   next();
 });
-
 
 app.use("/", authRouter);
 // app.use("/", userRouter);
@@ -124,7 +130,7 @@ app.use("/", authRouter);
 //   else{
 //   res.send({data: data,user: req.session.user});
 //   }
-// }) 
+// })
 
 // //Edit existing article
 
@@ -241,4 +247,4 @@ app.use("/", authRouter);
 
 //Start server
 app.listen(3001);
-console.log('Listening on port 3001');
+console.log("Listening on port 3001");
