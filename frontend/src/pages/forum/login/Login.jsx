@@ -1,23 +1,35 @@
 import TextField from "@mui/material/TextField";
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../../redux/features/authSlice";
+import { clearMessage } from "../../../redux/features/messageSlice";
 import "./login.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const message = useSelector((state) => state.auth.message);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.get("login", {
-        username,
-        password,
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        navigate("/forum");
+      })
+      .catch(() => {
+        // TODO handle error function
       });
-      //jwt code in here
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   return (
@@ -27,17 +39,17 @@ function Login() {
         <form className="loginForm" onSubmit={handleSubmit}>
           <div className="box">
             <div className="labelContainer">
-              <span>Username:</span>
+              <span>Email:</span>
               <span>Password:</span>
             </div>
             <div className="inputContainer">
               <TextField
                 className="input"
                 required
-                label="Username"
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username: "
+                label="Email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email: "
               />
               <TextField
                 className="input"
