@@ -28,7 +28,7 @@ function Home() {
           <Creators />
           <Footer />
         </ScrollContainer>
-        <div id="sky-bg"></div>
+        <div className="sky-bg"></div>
       </div>
     </>
   );

@@ -16,7 +16,7 @@ function NavbarMain() {
             </Link>
           </li>
           <li>
-            <Link to="">News</Link>
+            <Link to="/news">News</Link>
           </li>
           <li>
             <Link to="">Introduction</Link>

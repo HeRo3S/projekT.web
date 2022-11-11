@@ -12,8 +12,10 @@ function HomeThread({ post }) {
           <h3>お持ち帰り</h3>
         </Link>
         <div>
-          <span>Rena Ryuugu</span>
-          <span>Oct 9th 2022</span>
+          <Link className="link" to="/forum/user/:user_id">
+            Rena Ryuugu
+          </Link>
+          <span>Oct 9th, 2022</span>
         </div>
       </div>
       <div className="stateContainer">
@@ -27,7 +29,7 @@ function HomeThread({ post }) {
         </div>
       </div>
       <div className="stateLastComment">
-        <span>Oct 9th 2022</span>
+        <span>Oct 9th, 2022</span>
         <span>Keiichi Maebara</span>
       </div>
     </div>

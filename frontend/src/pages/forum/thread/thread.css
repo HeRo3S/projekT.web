@@ -1,0 +1,148 @@
+.thread-banner {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(74deg, #fffcbc 15%, #8cd3f0 71%, #8cd3f0 100%);
+  border-radius: 8px;
+  padding: 50px 40px;
+}
+
+.thread-banner-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.thread-banner-content .thread-title {
+  font-size: 30px;
+}
+
+.thread-banner-content .thread-description {
+  display: flex;
+  font-size: 20px;
+}
+
+.thread-description .thread-creator {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 30px;
+}
+
+.thread-description .thread-creator a:hover {
+  color: #0961ba;
+  text-decoration: underline;
+}
+
+.thread-description .thread-creator .person-icon {
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+.thread-description .thread-time {
+  display: flex;
+  align-items: flex-end;
+}
+
+.thread-description .thread-time .watch-icon {
+  margin-right: 10px;
+  height: 28px;
+  width: 28px;
+}
+
+.thread-body {
+  width: 100%;
+  min-height: 1000px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.thread-body-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.thread-body-content article {
+  display: flex;
+  width: 100%;
+  min-height: 300px;
+  margin-bottom: 50px;
+}
+
+article .user {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+article .user .avatar {
+  height: 150px;
+  width: 150px;
+}
+
+article .user .user-info {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.user .user-info a {
+  text-decoration: none;
+  color: #0961ba;
+  font-size: 20px;
+}
+
+.user .user-info a:hover {
+  color: #d8245b;
+}
+
+.user .user-info span {
+  margin-top: 10px;
+  color: black;
+  font-size: 18px;
+}
+
+article .message {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 20px 20px 0 rgb(0 0 0 / 8%);
+  color: black;
+  padding: 20px 20px 0 20px;
+}
+
+.message .message-head {
+  color: #9e9fa2;
+  font-size: 18px;
+}
+
+.message .message-body {
+  min-height: 200px;
+  padding-top: 20px;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.message .message-foot {
+  border-top: 1px solid #e0e0e0;
+  margin: 0 -20px;
+  padding: 20px;
+}
+
+.message .message-foot a {
+  float: right;
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  font-size: 18px;
+  color: #9e9fa2;
+  text-align: center;
+}
+
+.message .message-foot a:hover {
+  color: black;
+}

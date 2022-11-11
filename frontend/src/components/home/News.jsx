@@ -12,7 +12,7 @@ function News() {
           <New />
           <New />
         </div>
-        <Link to="" className="normalBtn">
+        <Link to="/news" className="normalBtn">
           More News
         </Link>
       </div>
