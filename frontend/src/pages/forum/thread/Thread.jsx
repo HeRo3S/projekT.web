@@ -38,8 +38,6 @@ function Thread() {
                   className="avatar"
                 />
                 <div className="user-info">
-                  alt=""
-                <div className="user-info">
                   <Link to="/forum/user/user_id">Rena Ryuugu</Link>
                   <span>Member</span>
                 </div>
