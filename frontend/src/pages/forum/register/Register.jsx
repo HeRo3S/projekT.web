@@ -3,6 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../../redux/features/authSlice";
 import { clearMessage } from "../../../redux/features/messageSlice";
 import "./register.css";
@@ -12,9 +13,8 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [succesful, setSuccesful] = useState(false);
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(clearMessage());
@@ -22,7 +22,6 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccesful(false);
     const userInfo = {
       username: username,
       email: email,
@@ -32,16 +31,12 @@ function Register() {
     dispatch(register(userInfo))
       .unwrap()
       .then(() => {
-        setSuccesful(true);
+        console.log("Register succesful");
+        navigate("/forum/login");
       })
       .catch(() => {
-        setSuccesful(false);
+        // TODO write error handle function here
       });
-
-    if (succesful) {
-      console.log("Register succesful");
-      window.location.replace("/forum/login");
-    }
   };
 
   return (
