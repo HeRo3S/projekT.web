@@ -10,6 +10,7 @@ import Home from "./pages/main/home/Home";
 import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
 import User from "./pages/forum/user/User";
+import PostThread from "./pages/forum/post thread/PostThread";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/forum/write" element={<Write />} />
             <Route path="/forum/thread/:thread_id" element={<Thread />} />
             <Route path="/forum/user/:users_id" element={<User />} />
+            <Route path="/forum/post-thread" element={<PostThread />} />
           </Route>
         </Routes>
       </BrowserRouter>

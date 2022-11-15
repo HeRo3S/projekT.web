@@ -1,0 +1,36 @@
+#post-thread-content h3 {
+  margin-top: 50px;
+  font-size: 50px;
+  letter-spacing: 0.1rem;
+}
+
+#post-thread-content form {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgb(107 119 128 / 12%),
+    2px 0 8px rgb(107 119 128 / 8%);
+}
+
+#post-thread-content form input {
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 25px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9fafa;
+}
+
+#post-thread-content .normalBtn {
+  margin-bottom: 100px;
+  width: 180px;
+  height: 58px;
+  margin-top: 50px;
+  float: right;
+  font-size: 25px;
+  font-family: "El Messiri", sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.1rem;
+}
