@@ -1,0 +1,10 @@
+.ql-toolbar {
+  border-top: 3px solid #d8245d !important;
+  background-color: #f9fafa;
+}
+
+.ql-editor {
+  height: 400px !important;
+  background-color: #f9fafa;
+  color: black;
+}

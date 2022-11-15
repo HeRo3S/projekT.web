@@ -13,16 +13,30 @@
 }
 
 #home-forum-content .forum-discussion {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 #home-forum-content .forum-discussion h2 {
+  display: inline-block;
   font-size: 40px;
   letter-spacing: 0.1rem;
-  padding-bottom: 30px;
+}
+
+#home-forum-content .forum-discussion a.normalBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  float: right;
+  font-size: 23px;
+  font-family: "El Messiri", sans-serif;
+  letter-spacing: 0.1rem;
 }
 
 #home-forum-content .forum-discussion ul {
+  clear: both;
+  margin-top: 30px;
   box-shadow: 0 4px 8px 4px rgb(107 119 128 / 12%);
   list-style-type: none;
 }
