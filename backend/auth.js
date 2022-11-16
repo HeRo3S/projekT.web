@@ -7,7 +7,6 @@ const router = express.Router();
 const UserAccount = require("./models/user");
 const UserInfo = require("./models/user_info");
 const jwt = require("jsonwebtoken")
-var loginMsg = [];
 var regMsg = [];
 require("dotenv").config();
 
@@ -17,6 +16,7 @@ require("dotenv").config();
 
  router.route('/register')
   .post(async (req, res) => {
+    console.log(req.body)
      UserAccount.create({
          username: req.body.username,
          email: req.body.email,
@@ -92,5 +92,7 @@ router.get('/logout', (req, res) => {
 /**
  * Module Exports
  */
+
+
 
  module.exports = router;

@@ -7,6 +7,7 @@ var cors = require("cors");
 var app = express();
 var session = require("express-session");
 const authRouter = require("./auth");
+const articleRouter = require('./article_router')
 const userRouter = require("./user_manager");
 var db_process = require("./article_process");
 
@@ -44,7 +45,6 @@ if (app.get("env") === "production") {
 app.use(logger("dev"));
 // *Cors
 app.use(cors());
-//Change display to EJS
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -65,7 +65,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", authRouter);
+app.use("/", authRouter)
+app.use('/', articleRouter)
 // app.use("/", userRouter);
 // //Send data to MySQL Server
 
