@@ -1,5 +1,13 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { refresh } from "../redux/features/authSlice";
+import { setMessage } from "../redux/features/messageSlice";
+
+let store;
+
+export const injectStore = (_store) => {
+  store = _store;
+};
 
 const authHeader = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -26,9 +34,11 @@ instance.interceptors.request.use(
             token: user.refreshToken,
           });
           localStorage.setItem("user", JSON.stringify(res));
+          store.dispatch(refresh(res.user));
           config.headers["x-access-token"] = res.accessToken;
         } catch (err) {
           // TODO logout
+          store.dispatch(setMessage("Refresh token error"));
         }
       }
       console.log(decodeToken);
