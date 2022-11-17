@@ -41,7 +41,6 @@ instance.interceptors.request.use(
           store.dispatch(setMessage("Refresh token error"));
         }
       }
-      console.log(decodeToken);
     }
     return config;
   },

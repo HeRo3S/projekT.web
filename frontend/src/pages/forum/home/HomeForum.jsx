@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { getPosts } from "../../../api/user.service";
 import HomeThread from "../../../components/forum/homethread/HomeThread";
 import "./homeforum.css";
+import { Link } from "react-router-dom";
 
 function HomeForum() {
   useEffect(() => {
@@ -15,6 +16,11 @@ function HomeForum() {
 
         <div className="forum-discussion">
           <h2>Discussion</h2>
+
+          <Link to={"/forum/post-thread"} className="normalBtn">
+            Post Thread
+          </Link>
+
           <ul>
             <li>
               <HomeThread />
