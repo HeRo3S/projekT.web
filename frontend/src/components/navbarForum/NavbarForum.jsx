@@ -40,6 +40,9 @@ function NavbarForum() {
           <li>
             <Link to="/forum">Forum</Link>
           </li>
+          <li>
+            <Link to="/forum/create-news">Create News</Link>
+          </li>
           {user ? (
             <>
               <li>
