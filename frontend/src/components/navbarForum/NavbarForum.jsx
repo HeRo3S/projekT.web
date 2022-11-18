@@ -55,7 +55,7 @@ function NavbarForum() {
                 <Link to="/forum/login">Login</Link>
               </li>
               <li>
-                <Link to="/forum/register">Regiseter</Link>
+                <Link to="/forum/register">Register</Link>
               </li>
             </>
           )}

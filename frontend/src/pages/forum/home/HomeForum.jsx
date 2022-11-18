@@ -1,8 +1,14 @@
+import { useEffect } from "react";
+import { getPosts } from "../../../api/user.service";
 import HomeThread from "../../../components/forum/homethread/HomeThread";
 import "./homeforum.css";
 import { Link } from "react-router-dom";
 
 function HomeForum() {
+  useEffect(() => {
+    const res = getPosts();
+  }, []);
+
   return (
     <div id="home-forum" className="main">
       <div id="home-forum-content" className="content">
