@@ -1,8 +1,24 @@
-import HomeThread from "../../../components/forum/homethread/HomeThread";
-import "./homeforum.css";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getThreads } from "../../../api/user.service";
+import HomeThread from "../../../components/forum/homethread/HomeThread";
+import { dummyThreads } from "../../../utils/dummy.data";
+import "./homeforum.css";
 
 function HomeForum() {
+  const [threads, setThreads] = useState([]);
+  useEffect(() => {
+    const res = getThreads();
+    res.data && setThreads(res.data);
+  }, []);
+
+  // ! DELETE THIS IN PRODUCTION BUILD
+  if (threads.length === 0) {
+    setThreads(dummyThreads);
+    console.log("using dummy data");
+  }
+  console.log(threads);
+
   return (
     <div id="home-forum" className="main">
       <div id="home-forum-content" className="content">
@@ -16,21 +32,12 @@ function HomeForum() {
           </Link>
 
           <ul>
-            <li>
-              <HomeThread />
-            </li>
-
-            <li>
-              <HomeThread />
-            </li>
-
-            <li>
-              <HomeThread />
-            </li>
-
-            <li>
-              <HomeThread />
-            </li>
+            {threads &&
+              threads.map((thread) => (
+                <li>
+                  <HomeThread thread={thread} />
+                </li>
+              ))}
           </ul>
         </div>
       </div>

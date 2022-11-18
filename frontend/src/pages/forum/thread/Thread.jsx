@@ -1,17 +1,27 @@
-import "./thread.css";
-import { Link } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
-import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import ReplyIcon from "@mui/icons-material/Reply";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getDetailsThreads } from "../../../api/user.service";
+import "./thread.css";
 
 function Thread() {
+  const { thread_id } = useParams();
+
+  const [thread, setThread] = useState({});
+  useEffect(() => {
+    const res = getDetailsThreads(thread_id);
+    res.data && setThread(res.data);
+  }, [thread_id]);
+
   return (
     <div id="thread" className="main">
       <div id="thread-content" className="content">
         <div className="thread-banner">
           <div className="thread-banner-content">
             <div className="thread-title">
-              <h3>お持ち帰り</h3>
+              <h3>{thread?.a_name}</h3>
             </div>
 
             <div className="thread-description">
@@ -22,7 +32,7 @@ function Thread() {
 
               <div className="thread-time">
                 <WatchLaterIcon className="watch-icon" />
-                <time dateTime="2022-10-09 19:00">09/10/2022 at 19:00</time>
+                <time dateTime="2022-10-09 19:00">{thread?.updatedAt}</time>
               </div>
             </div>
           </div>
