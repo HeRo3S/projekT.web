@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getThreads } from "../../../api/user.service";
 import HomeThread from "../../../components/forum/homethread/HomeThread";
@@ -6,6 +7,8 @@ import { dummyThreads } from "../../../utils/dummy.data";
 import "./homeforum.css";
 
 function HomeForum() {
+  const user = useSelector((state) => state.auth.user);
+
   const [threads, setThreads] = useState([]);
   useEffect(() => {
     const res = getThreads();
@@ -27,9 +30,11 @@ function HomeForum() {
         <div className="forum-discussion">
           <h2>Discussion</h2>
 
-          <Link to={"/forum/post-thread"} className="normalBtn">
-            Post Thread
-          </Link>
+          {user && (
+            <Link to={"/forum/post-thread"} className="normalBtn">
+              Post Thread
+            </Link>
+          )}
 
           <ul>
             {threads &&

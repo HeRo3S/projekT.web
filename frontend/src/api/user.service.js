@@ -38,3 +38,15 @@ export const getDetailsThreads = async (threadID) => {
     const res = await instance.get(`/thread/${threadID}`);
   } catch (err) {}
 };
+
+export const postThread = async ({ user, title, content }) => {
+  try {
+    // ? response data {thread_id}
+    const res = await instance.post("/thread", {
+      user,
+      title,
+      content,
+    });
+    return res;
+  } catch (err) {}
+};
