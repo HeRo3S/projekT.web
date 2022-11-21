@@ -4,15 +4,22 @@ import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getDetailsThreads } from "../../../api/user.service";
+import Comment from "../../../components/forum/comment/Comment";
+import { dummyDetailsThreads } from "../../../utils/dummy.data";
 import "./thread.css";
 
 function Thread() {
+  const intialValue = dummyDetailsThreads;
   const { thread_id } = useParams();
 
-  const [thread, setThread] = useState({});
+  const [thread, setThread] = useState(intialValue);
+  const [comments, setComments] = useState(intialValue.comments);
   useEffect(() => {
     const res = getDetailsThreads(thread_id);
-    res.data && setThread(res.data);
+    if (res.data) {
+      setThread(res.data);
+      setComments(res.data.comments);
+    }
   }, [thread_id]);
 
   return (
@@ -68,6 +75,9 @@ function Thread() {
                 </div>
               </div>
             </article>
+            {comments?.map((comment) => (
+              <Comment comment={comment} />
+            ))}
           </div>
 
           <div className="pageNav"></div>

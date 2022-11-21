@@ -9,18 +9,12 @@ import "./homeforum.css";
 function HomeForum() {
   const user = useSelector((state) => state.auth.user);
 
-  const [threads, setThreads] = useState([]);
+  const intialValue = dummyThreads;
+  const [threads, setThreads] = useState(intialValue);
   useEffect(() => {
     const res = getThreads();
     res.data && setThreads(res.data);
   }, []);
-
-  // ! DELETE THIS IN PRODUCTION BUILD
-  if (threads.length === 0) {
-    setThreads(dummyThreads);
-    console.log("using dummy data");
-  }
-  console.log(threads);
 
   return (
     <div id="home-forum" className="main">
