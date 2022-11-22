@@ -1,6 +1,7 @@
 import PersonIcon from "@mui/icons-material/Person";
 import ReplyIcon from "@mui/icons-material/Reply";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getDetailsThreads } from "../../../api/user.service";
@@ -34,7 +35,9 @@ function Thread() {
             <div className="thread-description">
               <div className="thread-creator">
                 <PersonIcon className="person-icon" />
-                <Link to="/forum/user/user_id">Rena Ryuugu</Link>
+                <Link to="/forum/user/user_id">
+                  {thread?.UserAccount?.username}
+                </Link>
               </div>
 
               <div className="thread-time">
@@ -55,18 +58,18 @@ function Thread() {
                   className="avatar"
                 />
                 <div className="user-info">
-                  <Link to="/forum/user/user_id">Rena Ryuugu</Link>
+                  <Link to="/forum/user/user_id">
+                    {thread?.UserAccount.username}
+                  </Link>
                   <span>Member</span>
                 </div>
               </div>
 
               <div className="message">
                 <time dateTime="2022-10-09 19:00" className="message-head">
-                  09/10/2022 at 19:00
+                  {thread?.updatedAt}
                 </time>
-                <div className="message-body">
-                  <p>Hauu. Omochi Kaeri</p>
-                </div>
+                <div className="message-body">{parse(thread?.content)}</div>
                 <div className="message-foot">
                   <Link>
                     <ReplyIcon />

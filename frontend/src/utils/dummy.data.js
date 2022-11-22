@@ -28,6 +28,7 @@ export const dummyDetailsThreads = {
   id: "1",
   a_name: "Dummy Test_name",
   updatedAt: "16/11/2022 22:42",
+  content: "<p>Dummy Text</p>",
   UserAccount: {
     username: "Dummy_TTStudio",
     userInfo: {
@@ -43,6 +44,7 @@ export const dummyDetailsThreads = {
         },
       },
       updatedAt: "18/11/2022 07:15",
+      content: "<p>Dummy Comment Text</p>",
     },
   ],
 };

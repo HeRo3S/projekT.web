@@ -1,4 +1,5 @@
 import ReplyIcon from "@mui/icons-material/Reply";
+import parse from "html-react-parser";
 import { Link } from "react-router-dom";
 
 function Comment({ comment }) {
@@ -11,18 +12,16 @@ function Comment({ comment }) {
           className="avatar"
         />
         <div className="user-info">
-          <Link to="/forum/user/user_id">Rena Ryuugu</Link>
+          <Link to="/forum/user/user_id">{comment?.UserAccount.username}</Link>
           <span>Member</span>
         </div>
       </div>
 
       <div className="message">
         <time dateTime="2022-10-09 19:00" className="message-head">
-          09/10/2022 at 19:00
+          {comment?.updatedAt}
         </time>
-        <div className="message-body">
-          <p>Hauu. Omochi Kaeri</p>
-        </div>
+        <div className="message-body">{parse(comment?.content)}</div>
         <div className="message-foot">
           <Link>
             <ReplyIcon />
