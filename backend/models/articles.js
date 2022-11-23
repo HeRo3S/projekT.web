@@ -13,6 +13,11 @@ var Article = db_sequelize.define("Article", {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    category:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
+    ,
     a_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,6 +33,9 @@ Tag.hasMany(Article, {
 Article.hasMany(Comment, {
     foreignKey: 'articleId',
 })
+// Article.hasOne(Comment, {
+//     foreignKey: 'lastComment'
+// })
 Comment.belongsTo(Article, {
     foreignKey: 'articleId',
 })
