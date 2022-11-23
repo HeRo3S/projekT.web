@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDetailsThreads } from "../../../api/user.service";
 import Comment from "../../../components/forum/comment/Comment";
 import { dummyDetailsThreads } from "../../../utils/dummy.data";
+import Editor from "../../../components/forum/editor/Editor";
 import "./thread.css";
 
 function Thread() {
@@ -15,6 +16,7 @@ function Thread() {
 
   const [thread, setThread] = useState(intialValue);
   const [comments, setComments] = useState(intialValue.comments);
+  const [content, setContent] = useState("");
   useEffect(() => {
     const res = getDetailsThreads(thread_id);
     if (res.data) {
@@ -85,7 +87,28 @@ function Thread() {
 
           <div className="pageNav"></div>
 
-          <div className="reply"></div>
+          <form className="reply">
+            <div className="user">
+              <img
+                src={require("../../../images/avatar-test.jpg")}
+                alt=""
+                className="avatar"
+              />
+              <div className="user-info">
+                <Link to="/forum/user/user_id">
+                  {thread?.UserAccount.username}
+                </Link>
+                <span>Member</span>
+              </div>
+            </div>
+
+            <div className="reply-content">
+              <Editor setContent={setContent} />
+              <button type="submit" className="normalBtn">
+                Post
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

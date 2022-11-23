@@ -70,18 +70,18 @@
   margin-bottom: 50px;
 }
 
-article .user {
+.user {
   display: flex;
   flex-direction: column;
   margin-right: 50px;
 }
 
-article .user .avatar {
+.user .avatar {
   height: 150px;
   width: 150px;
 }
 
-article .user .user-info {
+.user .user-info {
   display: flex;
   flex-direction: column;
   margin: 20px auto;
@@ -145,4 +145,28 @@ article .message {
 
 .message .message-foot a:hover {
   color: black;
+}
+
+.reply {
+  display: flex;
+  width: 100%;
+  min-height: 300px;
+  margin-bottom: 100px;
+}
+
+.reply-content {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 20px 20px 0 rgb(0 0 0 / 8%);
+}
+
+.reply-content .ql-editor {
+  height: 200px !important;
+}
+
+.reply-content .normalBtn {
+  margin: 20px 0 0 0;
+  width: 150px;
 }
