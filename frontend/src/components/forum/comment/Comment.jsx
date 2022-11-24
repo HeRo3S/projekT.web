@@ -1,6 +1,6 @@
 import ReplyIcon from "@mui/icons-material/Reply";
 import parse from "html-react-parser";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 
 function Comment({ comment }) {
   return (
@@ -23,7 +23,7 @@ function Comment({ comment }) {
         </time>
         <div className="message-body">{parse(comment?.content)}</div>
         <div className="message-foot">
-          <Link>
+          <Link to="reply" smooth="true">
             <ReplyIcon />
             <span>Reply</span>
           </Link>

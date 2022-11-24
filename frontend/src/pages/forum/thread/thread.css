@@ -147,7 +147,7 @@ article .message {
   color: black;
 }
 
-.reply {
+#reply {
   display: flex;
   width: 100%;
   min-height: 300px;

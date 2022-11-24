@@ -3,7 +3,8 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import parse from "html-react-parser";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "react-scroll";
 import { getDetailsThreads } from "../../../api/user.service";
 import Comment from "../../../components/forum/comment/Comment";
 import { dummyDetailsThreads } from "../../../utils/dummy.data";
@@ -73,7 +74,7 @@ function Thread() {
                 </time>
                 <div className="message-body">{parse(thread?.content)}</div>
                 <div className="message-foot">
-                  <Link>
+                  <Link to="reply" smooth={true}>
                     <ReplyIcon />
                     <span>Reply</span>
                   </Link>
@@ -87,7 +88,7 @@ function Thread() {
 
           <div className="pageNav"></div>
 
-          <form className="reply">
+          <form id="reply">
             <div className="user">
               <img
                 src={require("../../../images/avatar-test.jpg")}
