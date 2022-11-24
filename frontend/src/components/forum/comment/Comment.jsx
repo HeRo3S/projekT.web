@@ -1,6 +1,7 @@
 import ReplyIcon from "@mui/icons-material/Reply";
 import parse from "html-react-parser";
 import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom";
 
 function Comment({ comment }) {
   return (
@@ -12,7 +13,9 @@ function Comment({ comment }) {
           className="avatar"
         />
         <div className="user-info">
-          <Link to="/forum/user/user_id">{comment?.UserAccount.username}</Link>
+          <NavLink to="/forum/user/user_id">
+            {comment?.UserAccount.username}
+          </NavLink>
           <span>Member</span>
         </div>
       </div>

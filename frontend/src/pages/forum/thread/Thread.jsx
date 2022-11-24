@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom";
 import { getDetailsThreads } from "../../../api/user.service";
 import Comment from "../../../components/forum/comment/Comment";
 import { dummyDetailsThreads } from "../../../utils/dummy.data";
@@ -38,9 +39,9 @@ function Thread() {
             <div className="thread-description">
               <div className="thread-creator">
                 <PersonIcon className="person-icon" />
-                <Link to="/forum/user/user_id">
+                <NavLink to="/forum/user/user_id">
                   {thread?.UserAccount?.username}
-                </Link>
+                </NavLink>
               </div>
 
               <div className="thread-time">
@@ -61,9 +62,9 @@ function Thread() {
                   className="avatar"
                 />
                 <div className="user-info">
-                  <Link to="/forum/user/user_id">
+                  <NavLink to="/forum/user/user_id">
                     {thread?.UserAccount.username}
-                  </Link>
+                  </NavLink>
                   <span>Member</span>
                 </div>
               </div>
@@ -96,9 +97,9 @@ function Thread() {
                 className="avatar"
               />
               <div className="user-info">
-                <Link to="/forum/user/user_id">
+                <NavLink to="/forum/user/user_id">
                   {thread?.UserAccount.username}
-                </Link>
+                </NavLink>
                 <span>Member</span>
               </div>
             </div>
