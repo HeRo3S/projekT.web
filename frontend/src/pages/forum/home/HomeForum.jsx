@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getThreads } from "../../../api/user.service";
-=======
-import { useEffect } from "react";
-import { getPosts } from "../../../api/user.service";
->>>>>>> eb54c66bfa8da3dc4528257b396d35025cf6a267
 import HomeThread from "../../../components/forum/homethread/HomeThread";
 import { dummyThreads } from "../../../utils/dummy.data";
 import "./homeforum.css";
