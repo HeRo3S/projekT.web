@@ -1,36 +1,34 @@
-import "./homethread.css";
-import { Link } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import CommentIcon from "@mui/icons-material/Comment";
+import { Link } from "react-router-dom";
+import "./homethread.css";
 
-function HomeThread({ post }) {
+function HomeThread({ thread }) {
+  const userAccount = thread?.UserAccount;
+  const latestComment = (thread?.latestComment ?? [])[0];
   return (
     <div className="homethreadContainer">
       <img src={require("../../../images/avatar-test.jpg")} alt="Avatar" />
       <div className="threadDescContainer">
-        <Link className="link" to={`/forum/thread/${post && post._id}`}>
-          <h3>お持ち帰り</h3>
+        <Link className="link" to={`/forum/thread/${thread?.id}`}>
+          <h3>{thread?.a_name}</h3>
         </Link>
         <div>
+          {/* TODO must have user profile page here */}
           <Link className="link" to="/forum/user/:user_id">
-            Rena Ryuugu
+            {userAccount?.username}
           </Link>
-          <span>Oct 9th, 2022</span>
+          <span>{thread?.updatedAt}</span>
         </div>
       </div>
       <div className="stateContainer">
-        <div className="view">
-          <VisibilityIcon />
-          <p>69696969</p>
-        </div>
         <div className="comment">
           <CommentIcon />
-          <p>69696969</p>
+          <p>{thread?.commentCount}</p>
         </div>
       </div>
       <div className="stateLastComment">
-        <span>Oct 9th, 2022</span>
-        <span>Keiichi Maebara</span>
+        <span>{latestComment?.updatedAt}</span>
+        <span>{latestComment?.UserAccount?.username}</span>
       </div>
     </div>
   );

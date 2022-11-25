@@ -1,12 +1,24 @@
-import { useEffect } from "react";
-import { getPosts } from "../../../api/user.service";
-import HomeThread from "../../../components/forum/homethread/HomeThread";
-import "./homeforum.css";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getThreads } from "../../../api/user.service";
+import HomeThread from "../../../components/forum/homethread/HomeThread";
+import { dummyThreads } from "../../../utils/dummy.data";
+import "./homeforum.css";
 
 function HomeForum() {
+  const user = useSelector((state) => state.auth.user);
+
+  const intialValue = dummyThreads;
+  const [threads, setThreads] = useState(intialValue);
+
+  const fetchThread = async () => {
+    const res = await getThreads();
+    res.data && setThreads(res.data);
+  };
+
   useEffect(() => {
-    const res = getPosts();
+    fetchThread();
   }, []);
 
   return (
@@ -17,26 +29,19 @@ function HomeForum() {
         <div className="forum-discussion">
           <h2>Discussion</h2>
 
-          <Link to={"/forum/post-thread"} className="normalBtn">
-            Post Thread
-          </Link>
+          {user && (
+            <Link to={"/forum/post-thread"} className="normalBtn">
+              Post Thread
+            </Link>
+          )}
 
           <ul>
-            <li>
-              <HomeThread />
-            </li>
-
-            <li>
-              <HomeThread />
-            </li>
-
-            <li>
-              <HomeThread />
-            </li>
-
-            <li>
-              <HomeThread />
-            </li>
+            {threads &&
+              threads.map((thread) => (
+                <li>
+                  <HomeThread thread={thread} />
+                </li>
+              ))}
           </ul>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavbarForum from "./components/navbarForum/NavbarForum";
 import NavbarMain from "./components/navbarMain/NavbarMain";
+import CreateNews from "./pages/forum/create news/CreateNews";
 import HomeForum from "./pages/forum/home/HomeForum";
 import Login from "./pages/forum/login/Login";
 import PostThread from "./pages/forum/post thread/PostThread";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/forum/thread/:thread_id" element={<Thread />} />
             <Route path="/forum/user/:users_id" element={<User />} />
             <Route path="/forum/post-thread" element={<PostThread />} />
+            <Route path="/forum/create-news" element={<CreateNews />} />
           </Route>
         </Routes>
       </BrowserRouter>

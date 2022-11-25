@@ -1,10 +1,9 @@
-#post-thread-content h3 {
-  margin-top: 50px;
+#create-news-content h3 {
   font-size: 50px;
   letter-spacing: 0.1rem;
 }
 
-#post-thread-content form {
+#create-news-content form {
   margin-top: 30px;
   padding: 20px;
   background-color: white;
@@ -13,16 +12,30 @@
     2px 0 8px rgb(107 119 128 / 8%);
 }
 
-#post-thread-content form input {
-  margin-bottom: 20px;
+#create-news-content form label {
+  font-size: 30px;
+}
+
+#news-date {
+  margin-bottom: 30px;
+  padding: 10px;
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+}
+
+#image-input {
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+#news-title {
+  margin-bottom: 30px;
+  font-size: 25px;
   width: 100%;
   font-size: 25px;
   padding: 10px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #f9fafa;
-}
-
-#post-thread-content .normalBtn {
-  width: 180px;
 }
