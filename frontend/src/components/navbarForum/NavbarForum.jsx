@@ -43,6 +43,9 @@ function NavbarForum() {
           {user ? (
             <>
               <li>
+                <Link to="/forum/create-news">Create News</Link>
+              </li>
+              <li>
                 <Link to="/forum/write">Write</Link>
               </li>
               <li onClick={handleLogout}>

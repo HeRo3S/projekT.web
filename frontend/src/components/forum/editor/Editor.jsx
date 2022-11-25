@@ -1,13 +1,13 @@
-import "./editor.css";
-import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import Quill from "quill";
-import "react-quill/dist/quill.snow.css";
 import ImageResize from "quill-image-resize-module-react";
+import React from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "./editor.css";
 
 Quill.register("modules/imageResize", ImageResize);
 
-function Editor() {
+function Editor({ setContent }) {
   var modules = {
     toolbar: [
       [{ font: [] }, { size: [] }],
@@ -30,16 +30,8 @@ function Editor() {
       modules: ["Resize", "DisplaySize", "Toolbar"],
     },
   };
-  const [value, setValue] = useState("");
 
-  return (
-    <ReactQuill
-      theme="snow"
-      value={value}
-      onChange={setValue}
-      modules={modules}
-    />
-  );
+  return <ReactQuill theme="snow" onChange={setContent} modules={modules} />;
 }
 
 export default Editor;

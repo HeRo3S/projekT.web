@@ -26,9 +26,27 @@ const getDetailNew = async (newId) => {
   }
 };
 
-export const getPosts = async () => {
+export const getThreads = async () => {
   try {
-    const res = await instance.get("/posts");
+    const res = await instance.get("/thread");
+    return res;
+  } catch (err) {}
+};
+
+export const getDetailsThreads = async (threadID) => {
+  try {
+    const res = await instance.get(`/thread/${threadID}`);
+  } catch (err) {}
+};
+
+export const postThread = async ({ user, title, content }) => {
+  try {
+    // ? response data {thread_id}
+    const res = await instance.post("/thread", {
+      user,
+      title,
+      content,
+    });
     return res;
   } catch (err) {}
 };

@@ -11,6 +11,7 @@ import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
 import User from "./pages/forum/user/User";
 import PostThread from "./pages/forum/post thread/PostThread";
+import CreateNews from "./pages/forum/create news/CreateNews";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/forum/thread/:thread_id" element={<Thread />} />
             <Route path="/forum/user/:users_id" element={<User />} />
             <Route path="/forum/post-thread" element={<PostThread />} />
+            <Route path="/forum/create-news" element={<CreateNews />} />
           </Route>
         </Routes>
       </BrowserRouter>

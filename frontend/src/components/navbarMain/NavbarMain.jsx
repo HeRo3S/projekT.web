@@ -1,4 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
+import { Link } from "react-scroll";
 import "./navbarMain.css";
 
 function NavbarMain() {
@@ -16,25 +17,25 @@ function NavbarMain() {
             </Link>
           </li>
           <li>
-            <Link to="/news">News</Link>
+            <Link to="news">News</Link>
           </li>
           <li>
-            <Link to="">Introduction</Link>
+            <Link to="introduction">Introduction</Link>
           </li>
           <li>
-            <Link to="">Story</Link>
+            <Link to="story">Story</Link>
           </li>
           <li>
-            <Link to="">Characters</Link>
+            <Link to="character">Characters</Link>
           </li>
           <li>
-            <Link to="">Gameplay</Link>
+            <Link to="gameplay">Gameplay</Link>
           </li>
           <li>
-            <Link to="">Creators</Link>
+            <Link to="creator">Creators</Link>
           </li>
           <li>
-            <Link to="/forum">Forum</Link>
+            <NavLink to="/forum">Forum</NavLink>
           </li>
         </ul>
       </div>
