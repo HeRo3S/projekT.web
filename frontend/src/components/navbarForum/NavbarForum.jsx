@@ -2,6 +2,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/features/authSlice";
+import AlertPopup from "../forum/alert/AlertPopup";
 import "./navbarForum.css";
 
 function NavbarForum() {
@@ -64,6 +65,8 @@ function NavbarForum() {
           )}
         </ul>
       </div>
+
+      <AlertPopup />
       <Outlet />
     </>
   );

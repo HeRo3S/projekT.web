@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import AuthService from "../../api/auth.service";
+import { SEVERITY } from "../../utils/enum";
 import { setMessage } from "./messageSlice";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -13,11 +14,16 @@ export const register = createAsyncThunk(
   async ({ username, password, email }, thunkAPI) => {
     try {
       const res = await AuthService.register({ username, password, email });
-      thunkAPI.dispatch(setMessage(res.message));
+      thunkAPI.dispatch(
+        setMessage({
+          message: "Register succesfully",
+          severity: SEVERITY.SUCCESS,
+        })
+      );
       return res;
     } catch (err) {
       const message = err.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setMessage({ message, severity: SEVERITY.ALERT }));
       return thunkAPI.rejectWithValue();
     }
   }
@@ -28,10 +34,16 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const data = await AuthService.login({ email, password });
+      thunkAPI.dispatch(
+        setMessage({
+          message: "Login success!",
+          severity: SEVERITY.SUCCESS,
+        })
+      );
       return { user: data };
     } catch (err) {
       const message = err.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setMessage({ message, severity: SEVERITY.ALERT }));
       return thunkAPI.rejectWithValue();
     }
   }
