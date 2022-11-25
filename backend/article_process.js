@@ -3,6 +3,8 @@ const UserAccount = require("./models/user");
 const UserInfo = require("./models/user_info");
 const moment = require('moment');
 const Comment = require("./models/comment");
+const Sequelize = require("sequelize")
+const { model } = require("./models/db_sequelize");
 exports.sendArticle = async function (category, author, name, content) {
   //function to send article to database
     await Article.create({
@@ -13,6 +15,7 @@ exports.sendArticle = async function (category, author, name, content) {
     }).catch(error =>{
       throw error;
     })
+    return true
 };
 
 exports.editArticle = async function (id, category, name, content) {
@@ -104,7 +107,7 @@ exports.deleteArticle = async function (id) {
   })
 }
 
-exports.getComment = async function (id) {
+exports.getComment = async function (id, amount, sort) {
   var raw_data = await Comment.findAll({
     where:{
       articleId: id,
@@ -119,6 +122,10 @@ exports.getComment = async function (id) {
           },
         ],
       },
+    ],
+    limit: amount,
+    order:[
+      ['updatedAt', sort]
     ]
   }).catch(error =>{
     throw error;
@@ -132,3 +139,52 @@ exports.getComment = async function (id) {
   }
   return data;
 }
+
+exports.getArticleList = async function (category, amount, sort) {
+  /*Get a number of article from database
+      category: category of articles to get
+      amount: the number of articles to get
+      sort: asc/desc get the articles by ascending/descending id
+  */
+      var raw_data = await Article.findAll({
+        subQuery: false,
+        attributes: ['id', 'a_name', 'updatedAt',
+         [Sequelize.fn("COUNT", Sequelize.col("comments.id")), "commentCount"]],
+        where :{
+          category : category,
+        },
+        order:[
+          ['updatedAt', sort],
+        ],
+        include:[
+          {
+            model: UserAccount,
+            attributes: ['username'],
+            include:
+            [{
+              model: UserInfo,
+              attributes: ['displayName'],
+            }]
+          },
+          {
+            model: Comment,
+            
+            attributes: []
+          }
+        ],
+        group: ['Article.id']
+        ,
+        limit : amount,
+      }).catch(error =>{
+        throw error;
+      });
+      var data = [];
+      for(sub of raw_data){
+        sub = sub.toJSON();
+        sub.updatedAt.toUTCString();
+        sub.updatedAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
+        sub.lastestComment = await this.getComment(sub.id, 1, "DESC")
+        data.push(sub);
+      }
+      return data;
+    }

@@ -41,6 +41,19 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   AuthService.logout();
 });
 
+export const refresh = createAsyncThunk(
+  "auth/refresh",
+  async ({ refreshToken }, thunkAPI) => {
+    try {
+      const data = AuthService.refresh({ refreshToken });
+      return { user: data };
+    } catch (err) {
+      // TODO handle error here
+      thunkAPI.dispatch(logout);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
@@ -60,6 +73,14 @@ const authSlice = createSlice({
       state.user = null;
     },
     [logout.fulfilled]: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+    },
+    [refresh.fulfilled]: (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+    },
+    [refresh.rejected]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
     },

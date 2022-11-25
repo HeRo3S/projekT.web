@@ -12,7 +12,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.1.3",
+<<<<<<< HEAD
     "html-react-parser": "^3.0.4",
+=======
+    "jwt-decode": "^3.1.2",
+>>>>>>> eb54c66bfa8da3dc4528257b396d35025cf6a267
     "quill": "^1.3.7",
     "quill-image-resize-module-react": "^3.0.0",
     "react": "^18.2.0",

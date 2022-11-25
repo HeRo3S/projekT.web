@@ -1,4 +1,4 @@
-import instance from "./index.js";
+import { instance } from "./index.js";
 
 const login = async (userCredentials) => {
   const { data } = await instance.post("/login", {
@@ -24,9 +24,18 @@ const register = async (userCredentials) => {
   return data;
 };
 
+const refresh = async ({ refreshToken }) => {
+  const data = await instance.post("/refresh", {
+    // TODO: information for refresh here
+    token: refreshToken,
+  });
+  return data;
+};
+
 const AuthService = {
   login,
   logout,
   register,
+  refresh,
 };
 export default AuthService;
