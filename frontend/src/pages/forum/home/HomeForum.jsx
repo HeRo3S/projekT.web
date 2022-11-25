@@ -11,10 +11,14 @@ function HomeForum() {
 
   const intialValue = dummyThreads;
   const [threads, setThreads] = useState(intialValue);
-  useEffect(() => {
-    const res = getThreads();
-    res.data && setThreads(res.data);
 
+  const fetchThread = async () => {
+    const res = await getThreads();
+    res.data && setThreads(res.data);
+  };
+
+  useEffect(() => {
+    fetchThread();
   }, []);
 
   return (

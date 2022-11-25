@@ -26,7 +26,6 @@ const getDetailNew = async (newId) => {
   }
 };
 
-<<<<<<< HEAD
 export const getThreads = async () => {
   try {
     const res = await instance.get("/thread");
@@ -48,11 +47,6 @@ export const postThread = async ({ user, title, content }) => {
       title,
       content,
     });
-=======
-export const getPosts = async () => {
-  try {
-    const res = await instance.get("/posts");
->>>>>>> eb54c66bfa8da3dc4528257b396d35025cf6a267
     return res;
   } catch (err) {}
 };
