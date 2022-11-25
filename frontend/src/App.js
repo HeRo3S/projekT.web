@@ -3,14 +3,14 @@ import NavbarForum from "./components/navbarForum/NavbarForum";
 import NavbarMain from "./components/navbarMain/NavbarMain";
 import HomeForum from "./pages/forum/home/HomeForum";
 import Login from "./pages/forum/login/Login";
+import PostThread from "./pages/forum/post thread/PostThread";
 import Register from "./pages/forum/register/Register";
 import Thread from "./pages/forum/thread/Thread";
+import User from "./pages/forum/user/User";
 import Write from "./pages/forum/write/Write";
 import Home from "./pages/main/home/Home";
 import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
-import User from "./pages/forum/user/User";
-import PostThread from "./pages/forum/post thread/PostThread";
 
 function App() {
   return (
