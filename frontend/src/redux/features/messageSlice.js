@@ -13,8 +13,6 @@ const messageSlice = createSlice({
     },
     clearMessage(state, action) {
       state.message = "";
-      state.severity = SEVERITY.INFO;
-      console.log("Hello World!");
     },
   },
 });

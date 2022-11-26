@@ -39,12 +39,13 @@ export const getDetailsThreads = async (threadID) => {
   } catch (err) {}
 };
 
-export const postThread = async ({ user, title, content }) => {
+export const postThread = async ({ author, name, content, category }) => {
   try {
     // ? response data {thread_id}
     const res = await instance.post("/thread", {
-      user,
-      title,
+      category,
+      author,
+      name,
       content,
     });
     return res;
