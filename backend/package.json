@@ -12,5 +12,8 @@
     "nodemon": "^2.0.20",
     "sequelize": "^6.25.3",
     "sql": "^0.78.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
   }
 }

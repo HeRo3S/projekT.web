@@ -42,8 +42,10 @@ export const login = createAsyncThunk(
       );
       return { user: data };
     } catch (err) {
-      const message = err.toString();
-      thunkAPI.dispatch(setMessage({ message, severity: SEVERITY.ALERT }));
+      if (err.response.status === 401) {
+        const message = "Wrong credentials!";
+        thunkAPI.dispatch(setMessage({ message, severity: SEVERITY.ALERT }));
+      }
       return thunkAPI.rejectWithValue();
     }
   }
@@ -78,7 +80,7 @@ const authSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
-      state.user = action.payload.user;
+      state.user = action.payload.user.user;
     },
     [login.rejected]: (state, action) => {
       state.isLoggedIn = false;
@@ -90,7 +92,7 @@ const authSlice = createSlice({
     },
     [refresh.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
-      state.user = action.payload.user;
+      state.user = action.payload.user.user;
     },
     [refresh.rejected]: (state, action) => {
       state.isLoggedIn = false;

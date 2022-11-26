@@ -1,4 +1,4 @@
-import { Alert, AlertTitle } from "@mui/material";
+import { Alert, AlertTitle, Slide } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearMessage } from "../../../redux/features/messageSlice";
@@ -15,15 +15,16 @@ function AlertPopup() {
     return () => clearTimeout(timer);
   }, [message, dispatch]);
 
-  if (message !== "")
-    return (
+  return (
+    <Slide direction="right" in={message !== ""}>
       <Alert
         severity={severity}
         style={{ position: "fixed", margin: "5rem 0 0 1rem", zIndex: "1960" }}
       >
         <AlertTitle>{message}</AlertTitle>
       </Alert>
-    );
+    </Slide>
+  );
 }
 
 export default AlertPopup;

@@ -1,27 +1,38 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postThread } from "../../../api/user.service";
 import Editor from "../../../components/forum/editor/Editor";
+import { setMessage } from "../../../redux/features/messageSlice";
+import { SEVERITY } from "../../../utils/enum";
 import "./postthread.css";
 
 function PostThread() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const sentData = {
-      title,
+      category: "thread",
+      name: title,
       content,
-      user,
+      author: user.id,
     };
     try {
-      const { data } = postThread(sentData);
-      data?.threadID && navigate(`/thread/${data.threadID}`);
+      const res = await postThread(sentData);
+      if (res.status === 200) {
+        const data = res.data;
+        console.log(data);
+        dispatch(
+          setMessage({ message: data.message, severity: SEVERITY.SUCCESS })
+        );
+        data?.threadID && navigate(`/forum/thread/${data.threadID}`);
+      }
     } catch (err) {
       console.log(err);
     }
