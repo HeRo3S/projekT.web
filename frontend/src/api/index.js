@@ -1,7 +1,8 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { refresh } from "../redux/features/authSlice";
+import { logout, refresh } from "../redux/features/authSlice";
 import { setMessage } from "../redux/features/messageSlice";
+import { SEVERITY } from "../utils/enum";
 
 let store;
 
@@ -38,7 +39,13 @@ instance.interceptors.request.use(
           config.headers["x-access-token"] = res.accessToken;
         } catch (err) {
           // TODO logout
-          store.dispatch(setMessage("Refresh token error"));
+          store.dispatch(logout());
+          store.dispatch(
+            setMessage({
+              message: "User session expired",
+              severity: SEVERITY.WARNING,
+            })
+          );
         }
       }
     }
