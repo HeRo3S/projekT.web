@@ -59,17 +59,11 @@ export const refresh = createAsyncThunk(
   "auth/refresh",
   async ({ refreshToken }, thunkAPI) => {
     try {
-      const data = AuthService.refresh({ refreshToken });
+      const data = await AuthService.refresh({ refreshToken });
       return { user: data };
     } catch (err) {
       // TODO handle error here
-      thunkAPI.dispatch(logout);
-      thunkAPI.dispatch(
-        setMessage({
-          message: "User session expired",
-          severity: SEVERITY.WARNING,
-        })
-      );
+      return thunkAPI.rejectWithValue();
     }
   }
 );
