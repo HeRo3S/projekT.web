@@ -3,29 +3,56 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import parse from "html-react-parser";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useParams } from "react-router-dom";
 import { Link } from "react-scroll";
-import { NavLink } from "react-router-dom";
-import { getDetailsThreads } from "../../../api/user.service";
+import { getDetailsThreads, postComment } from "../../../api/user.service";
 import Comment from "../../../components/forum/comment/Comment";
-import { dummyDetailsThreads } from "../../../utils/dummy.data";
 import Editor from "../../../components/forum/editor/Editor";
+import { setMessage } from "../../../redux/features/messageSlice";
+import { dummyDetailsThreads } from "../../../utils/dummy.data";
+import { SEVERITY } from "../../../utils/enum";
 import "./thread.css";
 
 function Thread() {
   const intialValue = dummyDetailsThreads;
   const { thread_id } = useParams();
 
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
   const [thread, setThread] = useState(intialValue);
   const [comments, setComments] = useState(intialValue.comments);
-  const [content, setContent] = useState("");
-  useEffect(() => {
-    const res = getDetailsThreads(thread_id);
-    if (res.data) {
-      setThread(res.data);
-      setComments(res.data.comments);
+
+  const [clientComment, setClientContent] = useState("");
+
+  const fetchThread = async () => {
+    const { data } = await getDetailsThreads(thread_id);
+    console.log(data);
+    if (data) {
+      setThread(data);
+      setComments(data.comments);
     }
+  };
+
+  useEffect(() => {
+    fetchThread();
   }, [thread_id]);
+
+  const handleSubmitComment = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await postComment(thread_id, clientComment);
+      if (data) {
+        dispatch(
+          setMessage({ message: data.message, severity: SEVERITY.SUCCESS })
+        );
+        fetchThread();
+      }
+    } catch (err) {
+      dispatch(setMessage({ message: err, severity: SEVERITY.ALERT }));
+    }
+  };
 
   return (
     <div id="thread" className="main">
@@ -88,29 +115,30 @@ function Thread() {
           </div>
 
           <div className="pageNav"></div>
-
-          <form id="reply">
-            <div className="user">
-              <img
-                src={require("../../../images/avatar-test.jpg")}
-                alt=""
-                className="avatar"
-              />
-              <div className="user-info">
-                <NavLink to="/forum/user/user_id">
-                  {thread?.UserAccount.username}
-                </NavLink>
-                <span>Member</span>
+          {user ? (
+            <form id="reply" onSubmit={handleSubmitComment}>
+              <div className="user">
+                <img
+                  src={require("../../../images/avatar-test.jpg")}
+                  alt=""
+                  className="avatar"
+                />
+                <div className="user-info">
+                  <NavLink to="/forum/user/user_id">{user.username}</NavLink>
+                  <span>Member</span>
+                </div>
               </div>
-            </div>
 
-            <div className="reply-content">
-              <Editor setContent={setContent} />
-              <button type="submit" className="normalBtn">
-                Post
-              </button>
-            </div>
-          </form>
+              <div className="reply-content">
+                <Editor setContent={setClientContent} />
+                <button type="submit" className="normalBtn">
+                  Post
+                </button>
+              </div>
+            </form>
+          ) : (
+            <p>Login to comment this thread</p>
+          )}
         </div>
       </div>
     </div>

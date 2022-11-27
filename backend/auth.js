@@ -87,5 +87,9 @@ router.get("/logout", (req, res) => {
 /**
  * Module Exports
  */
+ const auth = {
+  authRouter: router,
+  verifyToken: verifyToken
+}
 
-module.exports = router;
+module.exports = auth;

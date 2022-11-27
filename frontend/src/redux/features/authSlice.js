@@ -59,11 +59,11 @@ export const refresh = createAsyncThunk(
   "auth/refresh",
   async ({ refreshToken }, thunkAPI) => {
     try {
-      const data = AuthService.refresh({ refreshToken });
+      const data = await AuthService.refresh({ refreshToken });
       return { user: data };
     } catch (err) {
       // TODO handle error here
-      thunkAPI.dispatch(logout);
+      return thunkAPI.rejectWithValue();
     }
   }
 );

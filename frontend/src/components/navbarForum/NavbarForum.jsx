@@ -46,10 +46,16 @@ function NavbarForum() {
           <li>
             <Link to="/forum">Forum</Link>
           </li>
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
           {user ? (
             <>
               <li>
                 <Link to="/forum/create-news">Create News</Link>
+              </li>
+              <li>
+                <Link to="/forum/user/:users_id">Profile</Link>
               </li>
               <li onClick={handleLogout}>
                 <Link>Logout</Link>

@@ -6,7 +6,6 @@ var logger = require("morgan");
 var cors = require("cors");
 var app = express();
 var session = require("express-session");
-const authRouter = require("./auth");
 const articleRouter = require('./article_router')
 const userRouter = require("./user_manager");
 var db_process = require("./article_process");
@@ -31,6 +30,8 @@ const cookieParser = require("cookie-parser");
 const Article = require("./models/articles");
 const Comment = require("./models/comment");
 const UserAccount = require("./models/user");
+const auth = require("./auth");
+const { authRouter } = require("./auth");
 
 //Connect to the database
 
