@@ -36,7 +36,19 @@ export const getThreads = async () => {
 export const getDetailsThreads = async (threadID) => {
   try {
     const res = await instance.get(`/thread/${threadID}`);
-  } catch (err) {}
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const postComment = async (threadID, comment) => {
+  try {
+    const res = await instance.post(`/thread/${threadID}/comment`, { comment });
+    return res;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const postThread = async ({ author, name, content, category }) => {

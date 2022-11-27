@@ -64,6 +64,12 @@ export const refresh = createAsyncThunk(
     } catch (err) {
       // TODO handle error here
       thunkAPI.dispatch(logout);
+      thunkAPI.dispatch(
+        setMessage({
+          message: "User session expired",
+          severity: SEVERITY.WARNING,
+        })
+      );
     }
   }
 );

@@ -158,6 +158,7 @@ exports.getArticleList = async function (category, amount, sort) {
     attributes: [
       "id",
       "a_name",
+      "createdAt",
       "updatedAt",
       [Sequelize.fn("COUNT", Sequelize.col("comments.id")), "commentCount"],
     ],
