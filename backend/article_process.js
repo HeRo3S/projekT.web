@@ -52,6 +52,8 @@ exports.getArticlesID = async function (category, amount, sort) {
     sub = sub.toJSON();
     sub.createdAt.toUTCString();
     sub.createdAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
+    sub.updatedAt.toUTCString();
+    sub.updatedAt = moment(sub.updatedAt).local().format("DD/MM/YYYY HH:mm");
     data.push(sub);
   }
   return data;
@@ -77,6 +79,8 @@ exports.getArticle = async function (id) {
   data = data.toJSON();
   data.createdAt.toUTCString();
   data.createdAt = moment(data.createdAt).local().format("DD/MM/YYYY HH:mm");
+  data.updatedAt.toUTCString();
+  data.updatedAt = moment(data.updatedAt).local().format("DD/MM/YYYY HH:mm");
   return data;
   //Get an article from the database by id
   // command = `select * from articles where id = \'${id}\'`
@@ -136,6 +140,8 @@ exports.getComment = async function (id, amount, sort) {
     sub = sub.toJSON();
     sub.createdAt.toUTCString();
     sub.createdAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
+    sub.updatedAt.toUTCString();
+    sub.updatedAt = moment(sub.updateddAt).local().format("DD/MM/YYYY HH:mm");
     data.push(sub);
   }
   return data;
@@ -184,8 +190,10 @@ exports.getArticleList = async function (category, amount, sort) {
   var data = [];
   for (sub of raw_data) {
     sub = sub.toJSON();
+    sub.createdAt.toUTCString();
+    sub.createdAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
     sub.updatedAt.toUTCString();
-    sub.updatedAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
+    sub.updatedAt = moment(sub.updatedAt).local().format("DD/MM/YYYY HH:mm");
     sub.lastestComment = await this.getComment(sub.id, 1, "DESC");
     data.push(sub);
   }
