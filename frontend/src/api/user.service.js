@@ -4,14 +4,14 @@ import { instance } from "./index";
 const postNews = async ({ title, content }) => {
   try {
     const res = await instance.post("/news", { title, content });
-    return res;
+    return res.data;
   } catch (err) {}
 };
 
 const getNews = async () => {
   try {
     const res = await instance.get("/news");
-    return res;
+    return res.data;
   } catch (err) {
     console.log(err);
   }
@@ -20,22 +20,24 @@ const getNews = async () => {
 const getDetailNew = async (newId) => {
   try {
     const res = await instance.get(`/news/${newId}`);
-    return res;
+    return res.data;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const getThreads = async () => {
+export const getThreads = async (pageParam = 1) => {
   try {
-    const res = await instance.get("/thread");
-    return res;
+    const res = await instance.get(`/thread?page=${pageParam}`);
+    // *param res = {page, total_pages, total_threads, per_page, threads[]}
+    return res.data;
   } catch (err) {}
 };
 
 export const getDetailsThreads = async (threadID) => {
   try {
     const res = await instance.get(`/thread/${threadID}`);
+    return res.data;
   } catch (err) {}
 };
 

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { Pagination } from "@mui/material";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getThreads } from "../../../api/user.service";
@@ -10,16 +12,29 @@ function HomeForum() {
   const user = useSelector((state) => state.auth.user);
 
   const intialValue = dummyThreads;
-  const [threads, setThreads] = useState(intialValue);
+  const [threads, setThreads] = useState(intialValue.threads);
+  const [totalPages, setTotalPages] = useState(intialValue.total_pages);
+  const [page, setPage] = useState(1);
 
-  const fetchThread = async () => {
-    const res = await getThreads();
-    res.data && setThreads(res.data);
+  const handleChangePagination = (event, selectedPage) => {
+    setPage(selectedPage);
   };
 
-  useEffect(() => {
-    fetchThread();
-  }, []);
+  const { isLoading, isError, error, data, isFetching, isPreviousData } =
+    useQuery(["/forum", page], () => getThreads(page), {
+      keepPreviousData: true,
+    });
+  // const fetchThread = async (pageParam) => {
+  //   const { data: res } = await getThreads(pageParam);
+  //   if (res) {
+  //     setThreads(res.threads);
+  //     setTotalPages(res.total_pages);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchThread(page);
+  // }, [page]);
 
   return (
     <div id="home-forum" className="main">
@@ -43,6 +58,12 @@ function HomeForum() {
                 </li>
               ))}
           </ul>
+
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handleChangePagination}
+          ></Pagination>
         </div>
       </div>
     </div>
