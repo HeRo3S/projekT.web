@@ -8,16 +8,16 @@ function NavbarMain() {
       <div id="main-header" className="header">
         <ul id="main-nav" className="nav">
           <li>
-            <Link to="" id="studioLogoContainer">
+            <NavLink to="" id="studioLogoContainer">
               <img
                 src={require("../../images/logo_test.png")}
                 alt=""
                 id="studioLogo"
               ></img>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="news">News</Link>
+            <NavLink to="/news">News</NavLink>
           </li>
           <li>
             <Link to="introduction">Introduction</Link>
