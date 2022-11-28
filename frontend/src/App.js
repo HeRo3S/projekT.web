@@ -11,7 +11,10 @@ import User from "./pages/forum/user/User";
 import Home from "./pages/main/home/Home";
 import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
+import NavBarAdmin from "./components/navbarAdmin/NavBarAdmin";
 import Admin from "./pages/forum/admin/Admin";
+import DisplayUser from "./pages/forum/admin/display user/DisplayUser";
+import DisplayAdmin from "./pages/forum/admin/display admin/DisplayAdmin";
 
 function App() {
   return (
@@ -32,7 +35,11 @@ function App() {
             <Route path="/forum/post-thread" element={<PostThread />} />
             <Route path="/forum/create-news" element={<CreateNews />} />
           </Route>
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<NavBarAdmin />}>
+            <Route index element={<Admin />}></Route>
+            <Route path="/admin/all_users" element={<DisplayUser />} />
+            <Route path="/admin/all_admins" element={<DisplayAdmin />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

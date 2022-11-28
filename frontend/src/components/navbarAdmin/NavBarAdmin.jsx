@@ -10,11 +10,11 @@ function NavBarAdmin() {
       <span>Admin Page</span>
       <div id="user-nav">
         <span>Forum</span>
-        <Link className="user-nav-block">
+        <Link to="/admin/all_users" className="user-nav-block">
           <PersonIcon className="icon" />
           <span>Member</span>
         </Link>
-        <Link className="user-nav-block">
+        <Link to="/admin/all_admins" className="user-nav-block">
           <AdminPanelSettingsIcon className="icon" />
           <span>Admin</span>
         </Link>
