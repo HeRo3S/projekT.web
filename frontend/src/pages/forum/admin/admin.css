@@ -1,4 +1,6 @@
 #admin-content {
+  overflow: hidden;
+  float: right;
   width: 80vw;
   height: 100vh;
   background-color: #f4f7f9;
