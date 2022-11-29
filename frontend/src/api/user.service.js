@@ -1,14 +1,14 @@
 import { instance } from "./index";
 
 // TODO: create user api call here
-const postNews = async ({ title, content }) => {
+export const postNews = async ({ title, content }) => {
   try {
     const res = await instance.post("/news", { title, content });
     return res;
   } catch (err) {}
 };
 
-const getNews = async () => {
+export const getNews = async () => {
   try {
     const res = await instance.get("/news");
     return res;
@@ -17,7 +17,7 @@ const getNews = async () => {
   }
 };
 
-const getDetailNew = async (newId) => {
+export const getDetailNew = async (newId) => {
   try {
     const res = await instance.get(`/news/${newId}`);
     return res;

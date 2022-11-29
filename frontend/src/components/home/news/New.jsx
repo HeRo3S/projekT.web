@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-function New() {
+function New({ newData }) {
   return (
     <>
       <div className="topic">
-        <time>19/06/1983</time>
+        <time>{newData.updatedAt}</time>
         <img src={require("../../../images/rena-test.png")} alt="" />
-        <Link to="/news/:news_id">DLC Update</Link>
+        <Link to={`/news/${newData.id}`}>{newData.a_name}</Link>
       </div>
     </>
   );
