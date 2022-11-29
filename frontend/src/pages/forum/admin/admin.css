@@ -1,0 +1,12 @@
+#admin-content {
+  overflow: hidden;
+  float: right;
+  width: 80vw;
+  height: 100vh;
+  background-color: #f4f7f9;
+}
+
+#admin-content > img {
+  width: 100%;
+  height: 100%;
+}
