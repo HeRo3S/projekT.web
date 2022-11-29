@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/features/authSlice";
 import { setMessage } from "../../redux/features/messageSlice";
-import { SEVERITY } from "../../utils/enum";
+import { PERMISSION_LEVEL, SEVERITY } from "../../utils/enum";
 import AlertPopup from "../forum/alert/AlertPopup";
 import "./navbarForum.css";
 
@@ -46,14 +46,18 @@ function NavbarForum() {
           <li>
             <Link to="/forum">Forum</Link>
           </li>
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
           {user ? (
             <>
-              <li>
-                <Link to="/forum/create-news">Create News</Link>
-              </li>
+              {user?.userInfo?.permissionLevel <= PERMISSION_LEVEL.ADMIN && (
+                <>
+                  <li>
+                    <Link to="/admin">Admin</Link>
+                  </li>
+                  <li>
+                    <Link to="/forum/create-news">Create News</Link>
+                  </li>
+                </>
+              )}
               <li>
                 <Link to="/forum/user/:users_id">Profile</Link>
               </li>

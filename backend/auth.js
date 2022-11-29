@@ -49,7 +49,7 @@ router.route("/login").post((req, res) => {
         token = jwt.sign(account_info, process.env.JWT_SECRET, {
           expiresIn: process.env.JWT_EXPIRE,
         });
-        return res.send({ accessToken: token, user });
+        return res.send({ accessToken: token, user: account_info });
       }
     })
     .catch((error) => {
@@ -87,9 +87,9 @@ router.get("/logout", (req, res) => {
 /**
  * Module Exports
  */
- const auth = {
+const auth = {
   authRouter: router,
-  verifyToken: verifyToken
-}
+  verifyToken: verifyToken,
+};
 
 module.exports = auth;
