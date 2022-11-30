@@ -4,14 +4,14 @@ import { instance } from "./index";
 export const postNews = async ({ title, content }) => {
   try {
     const res = await instance.post("/news", { title, content });
-    return res.data;
+    return res;
   } catch (err) {}
 };
 
 export const getNews = async () => {
   try {
     const res = await instance.get("/news");
-    return res.data;
+    return res;
   } catch (err) {
     console.log(err);
   }
@@ -20,7 +20,7 @@ export const getNews = async () => {
 export const getDetailNew = async (newId) => {
   try {
     const res = await instance.get(`/news/${newId}`);
-    return res.data;
+    return res;
   } catch (err) {
     console.log(err);
   }
