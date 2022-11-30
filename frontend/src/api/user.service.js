@@ -26,10 +26,11 @@ export const getDetailNew = async (newId) => {
   }
 };
 
-export const getThreads = async () => {
+export const getThreads = async (pageParam = 1) => {
   try {
-    const res = await instance.get("/thread");
-    return res;
+    const res = await instance.get(`/thread?page=${pageParam}`);
+    // *param res = {page, total_pages, total_threads, per_page, threads[]}
+    return res.data;
   } catch (err) {}
 };
 

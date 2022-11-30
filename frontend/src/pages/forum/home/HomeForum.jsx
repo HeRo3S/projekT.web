@@ -1,25 +1,32 @@
-import { useEffect, useState } from "react";
+import { Pagination } from "@mui/material";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getThreads } from "../../../api/user.service";
 import HomeThread from "../../../components/forum/homethread/HomeThread";
-import { dummyThreads } from "../../../utils/dummy.data";
 import "./homeforum.css";
 
 function HomeForum() {
   const user = useSelector((state) => state.auth.user);
 
-  const intialValue = dummyThreads;
-  const [threads, setThreads] = useState(intialValue);
+  const [page, setPage] = useState(1);
 
-  const fetchThread = async () => {
-    const res = await getThreads();
-    res.data && setThreads(res.data);
+  const handleChangePagination = (event, selectedPage) => {
+    setPage(selectedPage);
   };
 
-  useEffect(() => {
-    fetchThread();
-  }, []);
+  const {
+    isLoading,
+    isError,
+    error,
+    data: res,
+    isFetching,
+    isSuccess,
+    isPreviousData,
+  } = useQuery(["/forum", page], () => getThreads(page), {
+    keepPreviousData: true,
+  });
 
   return (
     <div id="home-forum" className="main">
@@ -35,14 +42,24 @@ function HomeForum() {
             </Link>
           )}
 
-          <ul>
-            {threads &&
-              threads.map((thread) => (
-                <li>
-                  <HomeThread thread={thread} />
-                </li>
-              ))}
-          </ul>
+          <p>{isFetching && "Loading...."}</p>
+          {res && (
+            <>
+              <ul>
+                {res.data.map((thread) => (
+                  <li>
+                    <HomeThread thread={thread} />
+                  </li>
+                ))}
+              </ul>
+
+              <Pagination
+                count={Math.ceil(res.total / res.per_page)}
+                page={page}
+                onChange={handleChangePagination}
+              ></Pagination>
+            </>
+          )}
         </div>
       </div>
     </div>

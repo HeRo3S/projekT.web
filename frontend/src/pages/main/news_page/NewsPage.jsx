@@ -14,7 +14,7 @@ function NewsPage() {
   const fetchNews = async () => {
     try {
       const { data } = await getNews();
-      setNews(data);
+      setNews(data.data);
     } catch (err) {
       dispatch(
         setMessage({ message: err.message, severity: SEVERITY.WARNING })
