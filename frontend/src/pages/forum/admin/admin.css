@@ -1,4 +1,7 @@
-#admin-content {
+.admin-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   float: right;
   width: 80vw;
@@ -6,7 +9,7 @@
   background-color: #f4f7f9;
 }
 
-#admin-content > img {
+.admin-content > img {
   width: 100%;
   height: 100%;
 }
