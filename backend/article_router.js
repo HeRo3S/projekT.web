@@ -3,6 +3,8 @@ const router = express.Router();
 const article_process = require("./article_process");
 const { verifyToken } = require("./auth");
 
+const per_page = 7
+
 router
   .route("/thread/:id?")
   .post(verifyToken, async (req, res) => {
@@ -24,7 +26,15 @@ router
   })
   .get(async (req, res) => {
     if (!req.params.id) {
-      res.send(await article_process.getArticleList("thread", 3, "DESC"));
+      var page = 1
+      if(req.query.page != null)
+      {
+        page = req.query.page
+      }
+      var data = await article_process.getArticleList("thread", 1000, "DESC");
+      var total_length = data.length
+      data = Paginate(data, page, per_page)
+      res.send({data: data, per_page: per_page, total: total_length})
     } else {
       article_process
         .getArticle(req.params.id)
@@ -59,7 +69,16 @@ router
   })
   .get(async (req, res) => {
     if (!req.params.id) {
-      res.send(await article_process.getArticleList("news", 3, "DESC"));
+      var page = 1
+      if(req.query.page != null)
+      {
+        page = req.query.page
+      }
+      console.log(req.query.page)
+      var data = await article_process.getArticleList("news", 1000, "DESC");
+      var total_length = data.length
+      data = Paginate(data, page, per_page)
+      res.send({data: data, per_page: per_page, total: total_length})
     } else {
       article_process
         .getArticle(req.params.id)
@@ -72,4 +91,16 @@ router
         });
     }
   });
+
+  Paginate = (target, page, per_page) =>
+  {
+    var start_point = per_page * (page - 1)
+    var end_point = start_point + per_page
+    if(end_point > target.length)
+    {
+      end_point = target.length
+    }
+    return target.slice(start_point, end_point)
+
+  }
 module.exports = router;
