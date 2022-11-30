@@ -1,0 +1,100 @@
+#nav-bar-admin {
+  display: inline-flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 100vh;
+  padding: 40px 20px;
+  background-color: #1e1e1e;
+  color: #ededed;
+}
+
+#nav-bar-admin > span {
+  text-align: center;
+  font-size: 50px;
+  letter-spacing: 0.2rem;
+  padding-bottom: 10px;
+}
+
+#user-nav {
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid #ededed;
+  padding: 40px 0;
+}
+
+#user-nav > span {
+  font-size: 40px;
+  letter-spacing: 0.1rem;
+}
+
+.user-nav-block {
+  display: inline-flex;
+  align-items: flex-end;
+  width: fit-content;
+  font-size: 30px;
+  margin-top: 20px;
+  padding-left: 5px;
+  color: #ededed;
+}
+
+.user-nav-block .icon {
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+#admin-profile {
+  margin-top: 50px;
+}
+
+#admin-profile > span {
+  font-size: 40px;
+}
+
+#profile-content {
+  display: flex;
+  margin-top: 30px;
+}
+
+#profile-content img {
+  height: 130px;
+  width: 130px;
+  border-radius: 180px;
+}
+
+#admin-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 15px;
+}
+
+#admin-name span:first-child {
+  font-size: 35px;
+  color: #a09eff;
+  letter-spacing: 0.05rem;
+}
+
+#admin-name span:nth-child(2) {
+  font-size: 20px;
+  color: #e0e0e0;
+}
+
+#nav-bar-admin button {
+  margin: 50px auto;
+  height: 70px;
+  width: 250px;
+  font-size: 30px;
+  letter-spacing: 0.1rem;
+  font-family: "El Messiri", sans-serif;
+  cursor: pointer;
+  background-color: #323435;
+  border: none;
+  border-radius: 90px;
+  color: #fff;
+}
+
+#nav-bar-admin button:hover {
+  background-color: #e0e0e0;
+  color: #323435;
+  transition: 0.4s;
+}

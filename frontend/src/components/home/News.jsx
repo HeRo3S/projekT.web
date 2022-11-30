@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getNews } from "../../api/user.service";
+import { setMessage } from "../../redux/features/messageSlice";
+import { SEVERITY } from "../../utils/enum";
 import New from "./news/New";
 
 function News() {
+  const [news, setNews] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const fetchNews = async () => {
+    try {
+      const { data } = await getNews();
+      setNews(data);
+    } catch (err) {
+      dispatch(
+        setMessage({ message: err.message, severity: SEVERITY.WARNING })
+      );
+    }
+  };
+
+  useEffect(() => fetchNews, []);
+
   return (
     <>
       <div id="news">
         <h2>News</h2>
         <div id="news-content">
-          <New />
-          <New />
-          <New />
+          {news?.map((newData) => (
+            <New newData={newData} />
+          ))}
         </div>
         <Link to="/news" className="normalBtn">
           More News
