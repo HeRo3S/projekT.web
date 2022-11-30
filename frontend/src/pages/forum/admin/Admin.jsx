@@ -2,7 +2,7 @@ import "./admin.css";
 
 function Admin() {
   return (
-    <div id="admin-content">
+    <div className="admin-content">
       <img src={require("../../../images/admin-background.png")} alt="" />
     </div>
   );
