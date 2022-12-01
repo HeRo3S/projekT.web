@@ -20,9 +20,9 @@ exports.sendArticle = async function (category, author, name, content) {
 
 exports.sendComment = async function (article, author, content){
   const comment = await Comment.create({
-    authorId: req.body.authorId,
-    articleId: req.body.articleId,
-    content: req.body.comment,
+    authorId: author,
+      articleId: article,
+      content: content,
   }).catch((error) => {
     throw error
   })
