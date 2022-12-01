@@ -7,6 +7,13 @@ const UserAccount = require("./models/user");
 const UserInfo = require("./models/user_info");
 const jwt = require("jsonwebtoken");
 var regMsg = [];
+
+export const PERMISSION_LEVEL = {
+    SUPER_ADMIN: 0,
+    ADMIN: 1,
+    USER: 2,
+};
+
 require("dotenv").config();
 
 /**
@@ -64,10 +71,6 @@ verifyToken = async (req, res, next) => {
     try {
       decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.user = decoded;
-      req.user.user_code = req.user.username;
-      if (req.user.access_level == 0) {
-        req.user.user_code = "";
-      }
       return next();
     } catch (err) {
       console.log(err);

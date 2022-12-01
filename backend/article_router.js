@@ -1,4 +1,5 @@
 const express = require("express");
+const { PERMISSION_LEVEL } = require("../frontend/src/utils/enum");
 const router = express.Router();
 const article_process = require("./article_process");
 const { verifyToken } = require("./auth");
@@ -7,17 +8,17 @@ const per_page = 7
 
 //comment
 
-router.route("/thead/:id/comment").post(verifyToken, async (req, res) =>
+router.route("/thread/:id/comment").post(verifyToken, async (req, res) =>
 {
-  try {
+    try {
     const comment = await article_process.sendComment(req.params.id ,req.user.id, req.body.content);
     if (comment.id) {
       res.status(200).send({ message: "Comment success", commentId: comment.id });
       return;
     }
   } catch (err) {
-    console.log(err);
-    res.send({ message: "An error has occurred" });
+        console.log(err);
+        res.status(400).send({ message: "An error has occurred" });
   }
 })
 
@@ -36,8 +37,8 @@ router
         return;
       }
     } catch (err) {
-      console.log(err);
-      res.send({ message: "An error has occurred" });
+        console.log(err);
+        res.status(400).send({ message: "An error has occurred" });
     }
   })
   .get(async (req, res) => {
@@ -58,8 +59,8 @@ router
           res.send(data);
         })
         .catch((err) => {
-          console.log(err);
-          res.send({ message: "An error has occurred" });
+            console.log(err);
+            res.status(400).send({ message: "An error has occurred" });
         });
     }
   });
@@ -67,7 +68,10 @@ router
 router
   .route("/news/:id?")
   .post(verifyToken, async (req, res) => {
-    try {
+      try {
+          if (req.user.permissionLevel < PERMISSION_LEVEL.ADMIN) {
+              return res.status(403).send({ message: "Unauthorized" })
+          }
       const news = await article_process.sendArticle(
         "news",
         req.user.id,
@@ -79,8 +83,8 @@ router
         return;
       }
     } catch (err) {
-      console.log(err);
-      res.send({ message: "An error has occurred" });
+        console.log(err);
+        res.status(400).send({ message: "An error has occurred" });
     }
   })
   .get(async (req, res) => {
@@ -102,8 +106,8 @@ router
           res.send(data);
         })
         .catch((err) => {
-          console.log(err);
-          res.send({ message: "An error has occurred" });
+            console.log(err);
+            res.status.send({ message: "An error has occurred" });
         });
     }
   });
