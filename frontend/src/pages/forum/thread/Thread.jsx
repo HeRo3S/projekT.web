@@ -59,23 +59,27 @@ function Thread() {
       <div id="thread-content" className="content">
         <div className="thread-banner">
           <div className="thread-banner-content">
-            <div className="thread-title">
-              <h3>{thread?.a_name}</h3>
-            </div>
-
-            <div className="thread-description">
-              <div className="thread-creator">
-                <PersonIcon className="person-icon" />
-                <NavLink to="/forum/user/user_id">
-                  {thread?.UserAccount?.username}
-                </NavLink>
+            <div className="thread-banner-container">
+              <div className="thread-title">
+                <h3>{thread?.a_name}</h3>
               </div>
 
-              <div className="thread-time">
-                <WatchLaterIcon className="watch-icon" />
-                <time dateTime="2022-10-09 19:00">{thread?.updatedAt}</time>
+              <div className="thread-description">
+                <div className="thread-creator">
+                  <PersonIcon className="person-icon" />
+                  <NavLink to="/forum/user/user_id">
+                    {thread?.UserAccount?.username}
+                  </NavLink>
+                </div>
+
+                <div className="thread-time">
+                  <WatchLaterIcon className="watch-icon" />
+                  <time dateTime="2022-10-09 19:00">{thread?.updatedAt}</time>
+                </div>
               </div>
             </div>
+
+            <button className="normalBtn">Delete</button>
           </div>
         </div>
 

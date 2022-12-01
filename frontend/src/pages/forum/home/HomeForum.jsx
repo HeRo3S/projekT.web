@@ -54,6 +54,7 @@ function HomeForum() {
               </ul>
 
               <Pagination
+                className="pagination"
                 count={Math.ceil(res.total / res.per_page)}
                 page={page}
                 onChange={handleChangePagination}
