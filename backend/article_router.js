@@ -5,6 +5,22 @@ const { verifyToken } = require("./auth");
 
 const per_page = 7
 
+//comment
+
+router.route("/thead/:id/comment").post(verifyToken, async (req, res) =>
+{
+  try {
+    const comment = await article_process.sendComment(req.params.id ,req.user.id, req.body.content);
+    if (comment.id) {
+      res.status(200).send({ message: "Comment success", commentId: comment.id });
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+    res.send({ message: "An error has occurred" });
+  }
+})
+
 router
   .route("/thread/:id?")
   .post(verifyToken, async (req, res) => {

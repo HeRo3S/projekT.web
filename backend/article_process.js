@@ -18,6 +18,17 @@ exports.sendArticle = async function (category, author, name, content) {
   return article;
 };
 
+exports.sendComment = async function (article, author, content){
+  const comment = await Comment.create({
+    authorId: req.body.authorId,
+    articleId: req.body.articleId,
+    content: req.body.comment,
+  }).catch((error) => {
+    throw error
+  })
+  return comment
+}
+
 exports.editArticle = async function (id, category, name, content) {
   await Article.update(
     { category: category, a_name: name, content: content },
