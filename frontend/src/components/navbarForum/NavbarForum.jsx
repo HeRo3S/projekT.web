@@ -48,15 +48,16 @@ function NavbarForum() {
           </li>
           {user ? (
             <>
+              {user?.userInfo?.permissionLevel ===
+                PERMISSION_LEVEL.SUPER_ADMIN && (
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+              )}
               {user?.userInfo?.permissionLevel <= PERMISSION_LEVEL.ADMIN && (
-                <>
-                  <li>
-                    <Link to="/admin">Admin</Link>
-                  </li>
-                  <li>
-                    <Link to="/forum/create-news">Create News</Link>
-                  </li>
-                </>
+                <li>
+                  <Link to="/forum/create-news">Create News</Link>
+                </li>
               )}
               <li>
                 <Link to="/forum/user/:users_id">Profile</Link>

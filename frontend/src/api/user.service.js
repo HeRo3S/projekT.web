@@ -8,10 +8,10 @@ export const postNews = async ({ title, content }) => {
   } catch (err) {}
 };
 
-export const getNews = async () => {
+export const getNews = async (pageParam = 1) => {
   try {
-    const res = await instance.get("/news");
-    return res;
+    const res = await instance.get(`/news?page=${pageParam}`);
+    return res.data;
   } catch (err) {
     console.log(err);
   }
