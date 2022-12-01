@@ -1,10 +1,13 @@
 #details-new-content {
-  text-align: center;
+  padding-bottom: 100px;
 }
 
 .news-time {
-  display: inline-block;
-  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: 50px auto;
   padding: 5px 50px 2px;
   background: #0961ba;
   color: #fff;
@@ -39,13 +42,12 @@
 }
 
 .news-description {
-  margin: 50px 0 100px;
+  margin: 50px 0;
   width: 100%;
-  min-height: 50vh;
+  min-height: 50%;
   padding: 45px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #0961ba;
   font-size: 20px;
   line-height: 40px;
-  text-align: left;
 }
