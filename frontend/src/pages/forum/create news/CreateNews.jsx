@@ -40,11 +40,11 @@ function CreateNews() {
         <h3>Create News</h3>
 
         <form action="" className="create-news-form" onSubmit={handleSubmit}>
-          <label htmlFor="news-date">Date</label>
+          {/* <label htmlFor="news-date">Date</label>
           <br />
           <br />
           <input type="date" id="news-date" />
-          <UploadAndDisplayImage />
+          <UploadAndDisplayImage /> */}
           <label htmlFor="news-title">News Title</label>
           <br />
           <br />
