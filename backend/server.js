@@ -6,7 +6,7 @@ var logger = require("morgan");
 var cors = require("cors");
 var app = express();
 var session = require("express-session");
-const articleRouter = require('./article_router')
+const articleRouter = require("./article_router");
 const userRouter = require("./user_manager");
 var db_process = require("./article_process");
 
@@ -66,8 +66,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", authRouter)
-app.use('/', articleRouter)
+app.use("/", authRouter);
+app.use("/", articleRouter);
 // app.use("/", userRouter);
 // //Send data to MySQL Server
 

@@ -13,8 +13,10 @@ function News() {
 
   const fetchNews = async () => {
     try {
-      const { data } = await getNews();
-      setNews(data.data);
+      const { data: news } = await getNews();
+      if (news) {
+        setNews(news.slice(0, 3));
+      }
     } catch (err) {
       dispatch(
         setMessage({ message: err.message, severity: SEVERITY.WARNING })
