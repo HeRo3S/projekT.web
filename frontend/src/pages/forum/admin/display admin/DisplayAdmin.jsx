@@ -7,22 +7,17 @@ import "./displayadmin.css";
 
 function DisplayAdmin() {
   const [page, setPage] = useState(1);
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleChangePagination = (event, selectedPage) => {
     setPage(selectedPage);
   };
 
-  const handleDialogOpen = () => setDialogOpen(true);
-  const handleDialogClose = () => setDialogOpen(false);
-  const handleClickDemoteAdmin = () => {
-    // TODO connect demote admin api here
-  };
-
+  // TODO connect demote admin api here
   const {
     data: res,
     isLoading,
     isFetching,
+    refetch,
   } = useQuery(["/admin", page], () => getAdminsList(page), {
     keepPreviousData: true,
   });
@@ -33,7 +28,7 @@ function DisplayAdmin() {
           {res?.data &&
             res.data.map((adminInfo) => (
               <li>
-                <Admins adminInfo={adminInfo} />
+                <Admins adminInfo={adminInfo} refetchData={refetch} />
               </li>
             ))}
         </ul>
