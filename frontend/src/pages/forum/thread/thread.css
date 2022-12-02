@@ -180,3 +180,13 @@ article .message {
   margin: 20px 0 0 0;
   width: 150px;
 }
+
+.thread-body > p {
+  float: right;
+}
+
+.thread-body .pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}

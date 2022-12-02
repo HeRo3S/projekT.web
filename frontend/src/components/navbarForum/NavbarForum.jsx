@@ -38,10 +38,10 @@ function NavbarForum() {
             </Link>
           </li>
           <li className="search-form">
-            <input type="text" placeholder="Search..."></input>
+            {/* <input type="text" placeholder="Search..."></input>
             <button>
               <SearchIcon style={{ fontSize: 30 }} />
-            </button>
+            </button> */}
           </li>
           <li>
             <Link to="/forum">Forum</Link>
