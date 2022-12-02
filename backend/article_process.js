@@ -18,16 +18,16 @@ exports.sendArticle = async function (category, author, name, content) {
   return article;
 };
 
-exports.sendComment = async function (article, author, content){
+exports.sendComment = async function (article, author, content) {
   const comment = await Comment.create({
     authorId: author,
-      articleId: article,
-      content: content,
+    articleId: article,
+    content: content,
   }).catch((error) => {
-    throw error
-  })
-  return comment
-}
+    throw error;
+  });
+  return comment;
+};
 
 exports.editArticle = async function (id, category, name, content) {
   await Article.update(
@@ -132,7 +132,7 @@ exports.getComment = async function (id, amount, sort) {
     include: [
       {
         model: UserAccount,
-        attributes: ["username"],
+        attributes: ["username", "id"],
         include: [
           {
             model: UserInfo,
@@ -200,28 +200,25 @@ exports.getArticleList = async function (category, amount, sort) {
     throw error;
   });
   var data = [];
-  test = true
+  test = true;
   for (sub of raw_data) {
     sub = sub.toJSON();
     sub.createdAt.toUTCString();
     sub.createdAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
     sub.updatedAt.toUTCString();
     sub.updatedAt = moment(sub.updatedAt).local().format("DD/MM/YYYY HH:mm");
-    newSub = {article: sub}
-    newSub.lastestComment = await this.getComment(sub.id, 1, "DESC");
+    newSub = { article: sub };
+    newSub.latestComment = await this.getComment(sub.id, 1, "DESC");
     data.push(newSub);
   }
   return data;
 };
 
-exports.Paginate = (target, page, per_page) =>
-{
-  var start_point = per_page * (page - 1)
-  var end_point = start_point + per_page
-  if(end_point > target.length)
-  {
-    end_point = target.length
+exports.Paginate = (target, page, per_page) => {
+  var start_point = per_page * (page - 1);
+  var end_point = start_point + per_page;
+  if (end_point > target.length) {
+    end_point = target.length;
   }
-  return target.slice(start_point, end_point)
-
-}
+  return target.slice(start_point, end_point);
+};

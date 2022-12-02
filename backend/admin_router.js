@@ -1,15 +1,30 @@
 const express = require("express");
-const { PERMISSION_LEVEL } = require("./auth");
 const user_process = require("./user_process");
 const router = express.Router();
 const article_process = require("./article_process");
 const { verifyToken } = require("./auth");
 const { Paginate } = require("./article_process");
+const PERMISSION_LEVEL = require("./utils/enum");
 
 const per_page = 6;
 
+
+router.route("/user/:id").get(async (req, res) =>
+{
+    try
+    {
+        data = await user_process.getUserDetail(req.params.id)
+        return res.status(200).send(data)
+    }
+    catch(err)
+    {
+        console.log(err)
+        return res.status(400).send({ message: "An error has occurred" });
+    }
+})
+
 router.route("/admin/users").get(verifyToken, async (req, res) => {
-  if (req.user.permissionLevel < PERMISSION_LEVEL.SUPER_ADMIN) {
+  if (req.user.permissionLevel > PERMISSION_LEVEL.SUPER_ADMIN) {
     return res.status(403).send({ message: "Unauthorized" });
   }
   page = 1;
@@ -30,7 +45,7 @@ router.route("/admin/users").get(verifyToken, async (req, res) => {
 });
 
 router.route("/admin/admin").get(verifyToken, async (req, res) => {
-    if (req.user.permissionLevel < PERMISSION_LEVEL.SUPER_ADMIN) {
+    if (req.user.userInfo.permissionLevel > PERMISSION_LEVEL.SUPER_ADMIN) {
       return res.status(403).send({ message: "Unauthorized" });
     }
     page = 1;

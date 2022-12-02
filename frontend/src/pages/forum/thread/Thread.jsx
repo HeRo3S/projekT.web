@@ -219,7 +219,12 @@ function Thread() {
               </div>
             </form>
           ) : (
-            <p>Login to comment this thread</p>
+            <p style={{ padding: "1rem", textAlign: "center" }}>
+              <Link to="/forum/login" style={{ fontWeight: "700" }}>
+                Login{" "}
+              </Link>
+              <span>to comment to this thread</span>
+            </p>
           )}
         </div>
       </div>

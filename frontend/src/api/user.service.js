@@ -78,3 +78,12 @@ export const postThread = async ({ author, name, content, category }) => {
     return res;
   } catch (err) {}
 };
+
+export const getUserInfo = async (userID) => {
+  try {
+    const res = await instance.get(`user/${userID}`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};

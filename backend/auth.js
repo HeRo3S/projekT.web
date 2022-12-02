@@ -8,12 +8,6 @@ const UserInfo = require("./models/user_info");
 const jwt = require("jsonwebtoken");
 var regMsg = [];
 
-exports.PERMISSION_LEVEL = {
-  SUPER_ADMIN: 0,
-  ADMIN: 1,
-  USER: 2,
-};
-
 require("dotenv").config();
 
 /**
@@ -69,11 +63,12 @@ verifyToken = async (req, res, next) => {
   token = req.headers["x-access-token"];
   if (token) {
     try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
+      decoded = jwt.verify(token, process.env.JWT_SECRET,);
       req.user = decoded;
       return next();
     } catch (err) {
       console.log(err);
+      return res.status(403).send({ message: "Unauthorized" });
     }
   }
   return res.status(403).send({ message: "Unauthorized" });

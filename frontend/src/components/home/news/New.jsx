@@ -3,9 +3,11 @@ function New({ newData }) {
   return (
     <>
       <div className="topic">
-        <time>{newData.updatedAt}</time>
+        <time>{newData?.article?.updatedAt}</time>
         <img src={require("../../../images/rena-test.png")} alt="" />
-        <Link to={`/news/${newData.id}`}>{newData.a_name}</Link>
+        <Link to={`/news/${newData?.article?.id}`}>
+          {newData?.article?.a_name}
+        </Link>
       </div>
     </>
   );

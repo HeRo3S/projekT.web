@@ -96,7 +96,7 @@ router
   .route("/news/:id?")
   .post(verifyToken, async (req, res) => {
     try {
-      if (req.user.permissionLevel > PERMISSION_LEVEL.ADMIN) {
+      if (req.user.userInfo.permissionlevel > PERMISSION_LEVEL.ADMIN) {
         return res.status(403).send({ message: "Unauthorized" });
       }
       const news = await article_process.sendArticle(
