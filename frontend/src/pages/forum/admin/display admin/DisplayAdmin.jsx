@@ -23,7 +23,7 @@ function DisplayAdmin() {
     data: res,
     isLoading,
     isFetching,
-  } = useQuery(["/admins", page], () => getAdminsList(page), {
+  } = useQuery(["/admin", page], () => getAdminsList(page), {
     keepPreviousData: true,
   });
   return (

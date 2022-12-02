@@ -60,7 +60,7 @@ function NavbarForum() {
                 </li>
               )}
               <li>
-                <Link to="/forum/user/:users_id">Profile</Link>
+                <Link to={`/forum/user/${user?.id}`}>Profile</Link>
               </li>
               <li onClick={handleLogout}>
                 <Link>Logout</Link>
