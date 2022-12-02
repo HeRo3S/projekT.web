@@ -63,11 +63,12 @@ verifyToken = async (req, res, next) => {
   token = req.headers["x-access-token"];
   if (token) {
     try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
+      decoded = jwt.verify(token, process.env.JWT_SECRET,);
       req.user = decoded;
       return next();
     } catch (err) {
       console.log(err);
+      return res.status(403).send({ message: "Unauthorized" });
     }
   }
   return res.status(403).send({ message: "Unauthorized" });

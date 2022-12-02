@@ -2,16 +2,19 @@ const express = require("express");
 const UserAccount = require("./models/user");
 const UserInfo = require("./models/user_info");
 const moment = require("moment");
-
+const Sequelize = require("sequelize");
 exports.getUserList = async (amount, orderBy, sort, level) =>
 {
     data = []
     await UserAccount.findAll({
         attributes:["id", "email", "username", "createdAt"],
-        where:{
-            permissionLevel: level
+        include: {
+            model: UserInfo,
+            required: true,
+            where:{
+                permissionLevel: level
+            }
         },
-        include: UserInfo,
         order: [[orderBy, sort]],
         group:["UserAccount.id"],
         limit: amount,
@@ -28,6 +31,20 @@ exports.getUserList = async (amount, orderBy, sort, level) =>
         throw err
     })
     return data
+}
+
+exports.getUserDetail = async (id) => 
+{
+    var user
+    await UserAccount.findByPk(id, {
+        attributes:["id", "email", "username", "createdAt"],
+        include: UserInfo,
+    }).then(user => {
+        user = user.toJSON()
+    }).catch(err => {
+        throw err
+    })
+    return user
 }
 
 exports.deleteUser = async (id) => 

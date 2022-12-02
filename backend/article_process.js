@@ -132,7 +132,7 @@ exports.getComment = async function (id, amount, sort) {
     include: [
       {
         model: UserAccount,
-        attributes: ["username"],
+        attributes: ["username", "id"],
         include: [
           {
             model: UserInfo,
