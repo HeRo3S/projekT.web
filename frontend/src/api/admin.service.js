@@ -19,7 +19,7 @@ export const getAdminsList = async (pageParam) => {
 
 export const deleteUser = async (userID) => {
   try {
-    const res = await instance.delete(`/admin/users/${userID}`);
+    const res = await instance.get(`/admin/delete/users/${userID}`);
     return res;
   } catch (err) {
     throw err;
@@ -28,7 +28,7 @@ export const deleteUser = async (userID) => {
 
 export const deleteArticle = async (threadID) => {
   try {
-    const res = await instance.delete(`admin/thread/${threadID}`);
+    const res = await instance.get(`admin/delete/thread/${threadID}`);
     return res;
   } catch (err) {
     throw err;
@@ -37,7 +37,7 @@ export const deleteArticle = async (threadID) => {
 
 export const updateUserToAdmin = async (userID) => {
   try {
-    const res = await instance.post(`/admin/promoteUser/${userID}`);
+    const res = await instance.post(`/admin/promote_user/${userID}`);
     return res;
   } catch (err) {
     throw err;
@@ -46,7 +46,7 @@ export const updateUserToAdmin = async (userID) => {
 
 export const updateAdminToUser = async (userID) => {
   try {
-    const res = await instance.post(`admin/demoteUser/${userID}`);
+    const res = await instance.post(`admin/demote_user/${userID}`);
     return res;
   } catch (err) {
     throw err;
