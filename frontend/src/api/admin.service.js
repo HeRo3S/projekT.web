@@ -8,6 +8,15 @@ export const getUsersList = async (pageParam) => {
   }
 };
 
+export const getAdminsList = async (pageParam) => {
+  try {
+    const res = await instance.get(`/admin/admins?page=${pageParam}`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const deleteUser = async (userID) => {
   try {
     const res = await instance.delete(`/admin/users/${userID}`);

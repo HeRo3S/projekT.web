@@ -1,4 +1,4 @@
-function Admins() {
+function Admins({ adminInfo }) {
   return (
     <div className="users-container">
       <div className="users-info">

@@ -6,6 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Pagination,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import parse from "html-react-parser";
@@ -14,7 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-scroll";
 import { deleteArticle } from "../../../api/admin.service";
-import { getDetailsThreads, postComment } from "../../../api/user.service";
+import {
+  getComments,
+  getDetailsThreads,
+  postComment,
+} from "../../../api/user.service";
 import Comment from "../../../components/forum/comment/Comment";
 import Editor from "../../../components/forum/editor/Editor";
 import { setMessage } from "../../../redux/features/messageSlice";
@@ -31,10 +36,13 @@ function Thread() {
 
   const navigate = useNavigate();
 
-  const [thread, setThread] = useState(intialValue);
-  const [comments, setComments] = useState(intialValue.comments);
+  const [thread, setThread] = useState({});
+  const [comments, setComments] = useState([]);
 
   const [clientComment, setClientContent] = useState("");
+
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -42,13 +50,21 @@ function Thread() {
     const { data } = await getDetailsThreads(thread_id);
     if (data) {
       setThread(data);
-      setComments(data.comments);
+    }
+  };
+
+  const fetchComment = async () => {
+    const { data } = await getComments(thread_id, page);
+    if (data) {
+      setComments(data.data);
+      setTotalPage(Math.ceil(data.total / data.per_page));
     }
   };
 
   useEffect(() => {
     fetchThread();
-  }, [thread_id]);
+    fetchComment();
+  }, [page]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -63,6 +79,10 @@ function Thread() {
     } catch (err) {
       dispatch(setMessage({ message: err, severity: SEVERITY.ALERT }));
     }
+  };
+
+  const handlePaginationChange = (event, selectedPage) => {
+    setPage(selectedPage);
   };
 
   const handleDeleteDialogOpen = () => setDialogOpen(true);
@@ -143,7 +163,7 @@ function Thread() {
                 />
                 <div className="user-info">
                   <NavLink to="/forum/user/user_id">
-                    {thread?.UserAccount.username}
+                    {thread?.UserAccount?.username}
                   </NavLink>
                   <span>Member</span>
                 </div>
@@ -153,7 +173,9 @@ function Thread() {
                 <time dateTime="2022-10-09 19:00" className="message-head">
                   {thread?.updatedAt}
                 </time>
-                <div className="message-body">{parse(thread?.content)}</div>
+                <div className="message-body">
+                  {parse(thread?.content || "")}
+                </div>
                 <div className="message-foot">
                   <Link to="reply" smooth={true}>
                     <ReplyIcon />
@@ -165,6 +187,13 @@ function Thread() {
             {comments?.map((comment) => (
               <Comment comment={comment} />
             ))}
+            {comments && (
+              <Pagination
+                page={page}
+                onChange={handlePaginationChange}
+                count={totalPage}
+              />
+            )}
           </div>
 
           <div className="pageNav"></div>
