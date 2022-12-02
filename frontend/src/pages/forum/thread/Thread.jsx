@@ -25,6 +25,7 @@ import Editor from "../../../components/forum/editor/Editor";
 import { setMessage } from "../../../redux/features/messageSlice";
 import { dummyDetailsThreads } from "../../../utils/dummy.data";
 import { PERMISSION_LEVEL, SEVERITY } from "../../../utils/enum";
+import { memberRole } from "../../../utils/utils";
 import "./thread.css";
 
 function Thread() {
@@ -136,7 +137,7 @@ function Thread() {
               <div className="thread-description">
                 <div className="thread-creator">
                   <PersonIcon className="person-icon" />
-                  <NavLink to="/forum/user/user_id">
+                  <NavLink to={`/forum/user/${thread?.authorId}`}>
                     {thread?.UserAccount?.username}
                   </NavLink>
                 </div>
@@ -165,10 +166,12 @@ function Thread() {
                   className="avatar"
                 />
                 <div className="user-info">
-                  <NavLink to="/forum/user/user_id">
+                  <NavLink to={`/forum/user/${thread?.authorId}`}>
                     {thread?.UserAccount?.username}
                   </NavLink>
-                  <span>Member</span>
+                  <span>
+                    {memberRole(thread?.UserAccount?.userInfo?.permissionLevel)}
+                  </span>
                 </div>
               </div>
 

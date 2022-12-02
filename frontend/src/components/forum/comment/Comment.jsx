@@ -1,9 +1,13 @@
 import ReplyIcon from "@mui/icons-material/Reply";
 import parse from "html-react-parser";
-import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-scroll";
+import { memberRole } from "../../../utils/utils";
 
 function Comment({ comment }) {
+  const userAccount = comment?.UserAccount;
+  const userInfo = userAccount?.userInfo;
+
   return (
     <article>
       <div className="user">
@@ -13,10 +17,10 @@ function Comment({ comment }) {
           className="avatar"
         />
         <div className="user-info">
-          <NavLink to="/forum/user/user_id">
-            {comment?.UserAccount.username}
+          <NavLink to={`/forum/user/${userAccount?.id}`}>
+            {userAccount?.username}
           </NavLink>
-          <span>Member</span>
+          <span>{memberRole(userInfo?.permissionLevel)}</span>
         </div>
       </div>
 
@@ -24,7 +28,7 @@ function Comment({ comment }) {
         <time dateTime="2022-10-09 19:00" className="message-head">
           {comment?.updatedAt}
         </time>
-        <div className="message-body">{parse(comment?.content)}</div>
+        <div className="message-body">{parse(comment?.content || "")}</div>
         <div className="message-foot">
           <Link to="reply" smooth="true">
             <ReplyIcon />
