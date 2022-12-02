@@ -39,8 +39,10 @@ exports.getUserDetail = async (id) =>
     await UserAccount.findByPk(id, {
         attributes:["id", "email", "username", "createdAt"],
         include: UserInfo,
-    }).then(user => {
-        user = user.toJSON()
+    }).then(data => {
+        user = data.toJSON()
+        user.createdAt.toUTCString();
+        user.createdAt = moment(user.createdAt).local().format("DD/MM/YYYY HH:mm");
     }).catch(err => {
         throw err
     })
