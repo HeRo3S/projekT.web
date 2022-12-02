@@ -41,16 +41,16 @@ router.route("/login").post((req, res) => {
   UserAccount.findOne({ where: { email: email }, include: UserInfo })
     .then(async function (user) {
       if (!user) {
-        return res.status(401);
+        return res.status(400).send({ message: "An error has occurred" });
       } else if (!user.validPassword(user, password)) {
-        return res.status(401);
+        return res.status(400).send({ message: "An error has occurred" });
       } else {
         user = user.toJSON();
         const { password, ...account_info } = user;
         token = jwt.sign(account_info, process.env.JWT_SECRET, {
           expiresIn: process.env.JWT_EXPIRE,
         });
-        return res.send({ accessToken: token, user: account_info });
+        return res.status(200).send({ accessToken: token, user: account_info });
       }
     })
     .catch((error) => {
