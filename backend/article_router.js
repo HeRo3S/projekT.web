@@ -6,7 +6,7 @@ const { verifyToken } = require("./auth");
 
 const per_page_news = 9;
 const per_page_comment = 7;
-const per_page = 7;
+const per_page_thread = 7;
 
 //comment
 

@@ -2,7 +2,7 @@ export const SEVERITY = {
   INFO: "info",
   SUCCESS: "success",
   WARNING: "warning",
-  ALERT: "alert",
+  ERROR: "error",
 };
 
 export const PERMISSION_LEVEL = {
