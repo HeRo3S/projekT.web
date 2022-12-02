@@ -74,7 +74,7 @@ function Thread() {
         dispatch(
           setMessage({ message: data.message, severity: SEVERITY.SUCCESS })
         );
-        fetchThread();
+        fetchComment();
       }
     } catch (err) {
       dispatch(setMessage({ message: err, severity: SEVERITY.ALERT }));
