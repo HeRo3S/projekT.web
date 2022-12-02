@@ -3,7 +3,8 @@ import AuthService from "../../api/auth.service";
 import { SEVERITY } from "../../utils/enum";
 import { setMessage } from "./messageSlice";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const localData = JSON.parse(localStorage.getItem("user"));
+const user = localData?.user;
 
 const initialState = user
   ? { isLoggedIn: true, user }

@@ -1,17 +1,25 @@
 import PersonIcon from "@mui/icons-material/Person";
 import ReplyIcon from "@mui/icons-material/Reply";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
+import Button from "@mui/material/Button";
 import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-scroll";
+import { deleteArticle } from "../../../api/admin.service";
 import { getDetailsThreads, postComment } from "../../../api/user.service";
 import Comment from "../../../components/forum/comment/Comment";
 import Editor from "../../../components/forum/editor/Editor";
 import { setMessage } from "../../../redux/features/messageSlice";
 import { dummyDetailsThreads } from "../../../utils/dummy.data";
-import { SEVERITY } from "../../../utils/enum";
+import { PERMISSION_LEVEL, SEVERITY } from "../../../utils/enum";
 import "./thread.css";
 
 function Thread() {
@@ -21,14 +29,17 @@ function Thread() {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const [thread, setThread] = useState(intialValue);
   const [comments, setComments] = useState(intialValue.comments);
 
   const [clientComment, setClientContent] = useState("");
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   const fetchThread = async () => {
     const { data } = await getDetailsThreads(thread_id);
-    console.log(data);
     if (data) {
       setThread(data);
       setComments(data.comments);
@@ -54,9 +65,44 @@ function Thread() {
     }
   };
 
+  const handleDeleteDialogOpen = () => setDialogOpen(true);
+  const handleDeleteDialogClose = () => setDialogOpen(false);
+
+  const handleClickDeleteThread = async () => {
+    try {
+      // TODO implement delete api here
+      const res = await deleteArticle(thread_id);
+      if (res) {
+        navigate("/forum");
+      }
+    } catch (err) {
+      // TODO catch err here
+      dispatch(
+        setMessage({
+          message: err?.message || "Something's happened",
+          severity: SEVERITY.ERROR,
+        })
+      );
+    }
+    handleDeleteDialogClose();
+  };
+
   return (
     <div id="thread" className="main">
       <div id="thread-content" className="content">
+        <Dialog open={dialogOpen} onClose={handleDeleteDialogClose}>
+          <DialogTitle>Delete thread?</DialogTitle>
+          <DialogContent>
+            Are you sure you want to delete this thread?
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDeleteDialogClose}>Cancel</Button>
+            <Button onClick={handleClickDeleteThread} autoFocus>
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <div className="thread-banner">
           <div className="thread-banner-content">
             <div className="thread-banner-container">
@@ -78,8 +124,11 @@ function Thread() {
                 </div>
               </div>
             </div>
-
-            <button className="normalBtn">Delete</button>
+            {user?.userInfo?.permissionLevel === PERMISSION_LEVEL.ADMIN && (
+              <button className="normalBtn" onClick={handleDeleteDialogOpen}>
+                Delete
+              </button>
+            )}
           </div>
         </div>
 

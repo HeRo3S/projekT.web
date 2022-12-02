@@ -1,5 +1,5 @@
 import { instance } from "./index";
-const getUsersList = async (pageParam) => {
+export const getUsersList = async (pageParam) => {
   try {
     const res = await instance.get(`/admin/users?page=${pageParam}`);
     return res;
@@ -8,7 +8,7 @@ const getUsersList = async (pageParam) => {
   }
 };
 
-const deleteUser = async (userID) => {
+export const deleteUser = async (userID) => {
   try {
     const res = await instance.delete(`/admin/users/${userID}`);
     return res;
@@ -17,7 +17,7 @@ const deleteUser = async (userID) => {
   }
 };
 
-const deleteArticle = async (threadID) => {
+export const deleteArticle = async (threadID) => {
   try {
     const res = await instance.delete(`admin/thread/${threadID}`);
     return res;
@@ -26,7 +26,7 @@ const deleteArticle = async (threadID) => {
   }
 };
 
-const updateUserToAdmin = async (userID) => {
+export const updateUserToAdmin = async (userID) => {
   try {
     const res = await instance.post(`/admin/promoteUser/${userID}`);
     return res;
@@ -35,7 +35,7 @@ const updateUserToAdmin = async (userID) => {
   }
 };
 
-const updateAdminToUser = async (userID) => {
+export const updateAdminToUser = async (userID) => {
   try {
     const res = await instance.post(`admin/demoteUser/${userID}`);
     return res;
