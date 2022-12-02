@@ -9,23 +9,6 @@ const per_page_news = 9
 const per_page_comment = 7
 //comment
 
-router.route("/comment").get(async (req, res) => {
-  try{
-    page = 1
-    if(req.params.page != null){
-      page = req.params.page
-    }
-    per_page = per_page_comment
-    data = await article_process.getComment(req.query.article, 1000, "ASC")
-    total = data.length
-    data = article_process.Paginate(data, page, per_page)
-    return res.status(200).send({data: data, per_page: per_page, total: total})
-  }catch(err){
-    console.log(err)
-    return res.status(400).send({ message: "An error has occurred" });
-  }
-})
-
 
 router.route("/thread/:id/comment").post(verifyToken, async (req, res) =>
 {
@@ -38,6 +21,22 @@ router.route("/thread/:id/comment").post(verifyToken, async (req, res) =>
   } catch (err) {
         console.log(err);
         res.status(400).send({ message: "An error has occurred" });
+  }
+}).get(async (req, res) =>
+{
+  try{
+    page = 1
+    if(req.query.page != null){
+      page = req.query.page
+    }
+    per_page = per_page_comment
+    data = await article_process.getComment(req.params.id, 1000, "ASC")
+    total = data.length
+    data = article_process.Paginate(data, page, per_page)
+    return res.status(200).send({data: data, per_page: per_page, total: total})
+  }catch(err){
+    console.log(err)
+    return res.status(400).send({ message: "An error has occurred" });
   }
 })
 
