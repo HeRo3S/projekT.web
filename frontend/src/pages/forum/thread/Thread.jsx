@@ -93,6 +93,9 @@ function Thread() {
       // TODO implement delete api here
       const res = await deleteArticle(thread_id);
       if (res) {
+        dispatch(
+          setMessage({ message: "Deleted thread!", severity: SEVERITY.SUCCESS })
+        );
         navigate("/forum");
       }
     } catch (err) {
@@ -144,7 +147,7 @@ function Thread() {
                 </div>
               </div>
             </div>
-            {user?.userInfo?.permissionLevel === PERMISSION_LEVEL.ADMIN && (
+            {user?.userInfo?.permissionLevel <= PERMISSION_LEVEL.ADMIN && (
               <button className="normalBtn" onClick={handleDeleteDialogOpen}>
                 Delete
               </button>

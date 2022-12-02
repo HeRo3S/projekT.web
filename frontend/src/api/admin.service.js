@@ -2,7 +2,7 @@ import { instance } from "./index";
 export const getUsersList = async (pageParam) => {
   try {
     const res = await instance.get(`/admin/users?page=${pageParam}`);
-    return res;
+    return res.data;
   } catch (err) {
     throw err;
   }
@@ -11,7 +11,7 @@ export const getUsersList = async (pageParam) => {
 export const getAdminsList = async (pageParam) => {
   try {
     const res = await instance.get(`/admin/admin?page=${pageParam}`);
-    return res;
+    return res.data;
   } catch (err) {
     throw err;
   }
