@@ -6,6 +6,7 @@
   padding: 40px 20px;
   background-color: #1e1e1e;
   color: #ededed;
+  z-index: 1;
 }
 
 #nav-bar-admin > span {
