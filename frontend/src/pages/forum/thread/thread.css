@@ -180,3 +180,7 @@ article .message {
   margin: 20px 0 0 0;
   width: 150px;
 }
+
+.thread-body > p {
+  /* float: right; */
+}

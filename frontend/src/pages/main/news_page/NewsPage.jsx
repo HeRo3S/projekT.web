@@ -33,6 +33,7 @@ function NewsPage() {
                 ))}
               </div>
               <Pagination
+                className="pagination"
                 count={Math.ceil(res.total / res.per_page)}
                 page={page}
                 onChange={handleChangePagination}
