@@ -189,6 +189,7 @@ function Thread() {
             ))}
             {comments && (
               <Pagination
+                className="pagination"
                 page={page}
                 onChange={handlePaginationChange}
                 count={totalPage}
@@ -220,9 +221,9 @@ function Thread() {
             </form>
           ) : (
             <p style={{ padding: "1rem", textAlign: "center" }}>
-              <Link to="/forum/login" style={{ fontWeight: "700" }}>
+              <NavLink to="/forum/login" style={{ fontWeight: "700" }}>
                 Login{" "}
-              </Link>
+              </NavLink>
               <span>to comment to this thread</span>
             </p>
           )}

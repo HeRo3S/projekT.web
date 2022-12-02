@@ -182,5 +182,11 @@ article .message {
 }
 
 .thread-body > p {
-  /* float: right; */
+  float: right;
+}
+
+.thread-body .pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
