@@ -8,7 +8,7 @@ const UserInfo = require("./models/user_info");
 const jwt = require("jsonwebtoken");
 var regMsg = [];
 
-export const PERMISSION_LEVEL = {
+exports.PERMISSION_LEVEL = {
     SUPER_ADMIN: 0,
     ADMIN: 1,
     USER: 2,

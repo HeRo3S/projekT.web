@@ -211,3 +211,15 @@ exports.getArticleList = async function (category, amount, sort) {
   }
   return data;
 };
+
+exports.Paginate = (target, page, per_page) =>
+{
+  var start_point = per_page * (page - 1)
+  var end_point = start_point + per_page
+  if(end_point > target.length)
+  {
+    end_point = target.length
+  }
+  return target.slice(start_point, end_point)
+
+}

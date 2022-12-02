@@ -8,6 +8,7 @@ var app = express();
 var session = require("express-session");
 const articleRouter = require('./article_router')
 const userRouter = require("./user_manager");
+const admin_router = require("./admin_router")
 var db_process = require("./article_process");
 
 // Variable for controlling news listing page
@@ -68,7 +69,7 @@ app.use((req, res, next) => {
 
 app.use("/", authRouter)
 app.use('/', articleRouter)
-// app.use("/", userRouter);
+app.use("/", admin_router)
 // //Send data to MySQL Server
 
 // app.post('/post', function(request, response){
