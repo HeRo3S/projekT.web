@@ -1,6 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBarAdmin from "./components/navbarAdmin/NavBarAdmin";
 import NavbarForum from "./components/navbarForum/NavbarForum";
 import NavbarMain from "./components/navbarMain/NavbarMain";
+import Default from "./pages/blank/Default";
+import Admin from "./pages/forum/admin/Admin";
+import DisplayAdmin from "./pages/forum/admin/display admin/DisplayAdmin";
+import DisplayUser from "./pages/forum/admin/display user/DisplayUser";
 import CreateNews from "./pages/forum/create news/CreateNews";
 import HomeForum from "./pages/forum/home/HomeForum";
 import Login from "./pages/forum/login/Login";
@@ -11,10 +16,6 @@ import User from "./pages/forum/user/User";
 import Home from "./pages/main/home/Home";
 import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
-import NavBarAdmin from "./components/navbarAdmin/NavBarAdmin";
-import Admin from "./pages/forum/admin/Admin";
-import DisplayUser from "./pages/forum/admin/display user/DisplayUser";
-import DisplayAdmin from "./pages/forum/admin/display admin/DisplayAdmin";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/admin/all_users" element={<DisplayUser />} />
             <Route path="/admin/all_admins" element={<DisplayAdmin />} />
           </Route>
+          <Route path="*" element={<Default />} />
         </Routes>
       </BrowserRouter>
     </div>
