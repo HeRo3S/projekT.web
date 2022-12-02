@@ -13,7 +13,7 @@ function News() {
 
   const fetchNews = async () => {
     try {
-      const { data: news } = await getNews();
+      const { data: news } = await getNews(1);
       if (news) {
         setNews(news.slice(0, 3));
       }
@@ -24,7 +24,9 @@ function News() {
     }
   };
 
-  useEffect(() => fetchNews, []);
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
   return (
     <>

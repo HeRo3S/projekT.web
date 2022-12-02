@@ -6,6 +6,7 @@ function HomeThread({ thread }) {
   const article = thread?.article;
   const userAccount = thread?.article?.UserAccount;
   const latestComment = (thread?.latestComment ?? [])[0];
+
   return (
     <div className="homethreadContainer">
       <img src={require("../../../images/avatar-test.jpg")} alt="Avatar" />
@@ -14,7 +15,6 @@ function HomeThread({ thread }) {
           <h3>{article?.a_name}</h3>
         </Link>
         <div>
-          {/* TODO must have user profile page here */}
           <Link className="link" to={`/forum/user/${userAccount?.id}`}>
             {userAccount?.username}
           </Link>

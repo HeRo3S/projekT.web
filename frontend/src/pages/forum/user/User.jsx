@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getUserInfo } from "../../../api/user.service";
 import { setMessage } from "../../../redux/features/messageSlice";
 import { SEVERITY } from "../../../utils/enum";
+import { memberRole } from "../../../utils/utils";
 import "./user.css";
 
 function User() {
@@ -27,7 +28,9 @@ function User() {
       );
     }
   };
-  useEffect(() => fetchUserInfo(user_id), [user_id]);
+  useEffect(() => {
+    fetchUserInfo(user_id);
+  }, []);
 
   return (
     <div id="user-page" className="main">
@@ -41,14 +44,15 @@ function User() {
           <img src={require("../../../images/avatar-test.jpg")} alt="" />
           <div className="member-description">
             <div>
-              <span>Rena Ryuugu</span> #<span>1</span>
+              <span>{userInfo?.username}</span> #<span>{userInfo?.id}</span>
             </div>
 
             <span className="role">
-              Role: <span>Member</span>
+              Role:{" "}
+              <span>{memberRole(userInfo?.userInfo?.permissionLevel)}</span>
             </span>
           </div>
-          <button className="normalBtn">Change Avatar</button>
+          {/* <button className="normalBtn">Change Avatar</button> */}
         </div>
       </div>
     </div>

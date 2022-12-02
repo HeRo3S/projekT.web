@@ -79,7 +79,7 @@ exports.getArticle = async function (id) {
         include: [
           {
             model: UserInfo,
-            attributes: ["displayName"],
+            attributes: ["displayName", "permissionLevel"],
           },
         ],
       },
@@ -136,7 +136,7 @@ exports.getComment = async function (id, amount, sort) {
         include: [
           {
             model: UserInfo,
-            attributes: ["displayName"],
+            attributes: ["displayName", "permissionLevel"],
           },
         ],
       },
@@ -180,7 +180,7 @@ exports.getArticleList = async function (category, amount, sort) {
     include: [
       {
         model: UserAccount,
-        attributes: ["username"],
+        attributes: ["id", "username"],
         include: [
           {
             model: UserInfo,
