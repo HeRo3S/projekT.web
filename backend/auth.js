@@ -8,15 +8,12 @@ const UserInfo = require("./models/user_info");
 const jwt = require("jsonwebtoken");
 var regMsg = [];
 
-<<<<<<< HEAD
 exports.PERMISSION_LEVEL = {
-    SUPER_ADMIN: 0,
-    ADMIN: 1,
-    USER: 2,
+  SUPER_ADMIN: 0,
+  ADMIN: 1,
+  USER: 2,
 };
 
-=======
->>>>>>> 342bd53d4e88c6d1335f27ca39ba07a4263e52a1
 require("dotenv").config();
 
 /**
