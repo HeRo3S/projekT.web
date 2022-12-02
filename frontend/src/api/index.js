@@ -20,7 +20,6 @@ const authHeader = () => {
 
 export const instance = axios.create({
   baseURL: "http://localhost:3001/",
-  headers: authHeader(),
 });
 
 instance.interceptors.request.use(

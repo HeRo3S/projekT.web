@@ -1,10 +1,31 @@
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import PersonIcon from "@mui/icons-material/Person";
 import ReplyIcon from "@mui/icons-material/Reply";
-import { Link, Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { logout } from "../../redux/features/authSlice";
+import { setMessage } from "../../redux/features/messageSlice";
+import { SEVERITY } from "../../utils/enum";
+import AlertPopup from "../forum/alert/AlertPopup";
 import "./navbaradmin.css";
 
 function NavBarAdmin() {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
+        dispatch(
+          setMessage({ message: "Goodbye!", severity: SEVERITY.SUCCESS })
+        );
+        navigate("/forum");
+      });
+  };
+
   return (
     <>
       <div id="nav-bar-admin">
@@ -30,15 +51,16 @@ function NavBarAdmin() {
           <div id="profile-content">
             <img src={require("../../images/avatar-admin.jpg")} alt="" />
             <div id="admin-name">
-              <span>Rika Furude</span>
+              <span>{user?.username}</span>
               <span>Forum's Manager</span>
             </div>
           </div>
         </div>
 
-        <button>Log out</button>
+        {user && <button onClick={handleLogout}>LOGOUT</button>}
       </div>
 
+      <AlertPopup />
       <Outlet />
     </>
   );
