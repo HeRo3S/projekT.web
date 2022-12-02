@@ -35,6 +35,7 @@ function DisplayUser() {
 
         {res && (
           <Pagination
+            className="pagination"
             page={page}
             count={Math.ceil(res.total / res.per_page)}
             onChange={handleChangePagination}

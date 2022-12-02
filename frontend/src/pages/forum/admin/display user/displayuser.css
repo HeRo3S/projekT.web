@@ -1,15 +1,24 @@
 .display-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 90%;
   height: 90%;
-  padding: 70px 50px 0;
+  padding: 50px;
   background-color: #fff;
   box-shadow: 0 4px 8px 4px rgb(107 119 128 / 12%);
   overflow: auto;
 }
 
-.display-block ul {
+.display-block > ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   list-style-type: none;
+  overflow: auto;
+}
+
+.display-block .pagination {
+  display: flex;
+  justify-content: center;
 }
