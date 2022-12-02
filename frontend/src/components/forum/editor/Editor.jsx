@@ -7,7 +7,7 @@ import "./editor.css";
 
 Quill.register("modules/imageResize", ImageResize);
 
-function Editor({ content, setContent }) {
+function Editor({ setContent }) {
   var modules = {
     toolbar: [
       [{ font: [] }, { size: [] }],
@@ -31,14 +31,7 @@ function Editor({ content, setContent }) {
     },
   };
 
-  return (
-    <ReactQuill
-      theme="snow"
-      value={content}
-      onChange={setContent}
-      modules={modules}
-    />
-  );
+  return <ReactQuill theme="snow" onChange={setContent} modules={modules} />;
 }
 
 export default Editor;

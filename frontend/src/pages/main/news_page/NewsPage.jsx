@@ -1,39 +1,44 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { Pagination } from "@mui/material";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { getNews } from "../../../api/user.service";
 import New from "../../../components/home/news/New";
-import { setMessage } from "../../../redux/features/messageSlice";
-import { SEVERITY } from "../../../utils/enum";
 import "./news_page.css";
 
 function NewsPage() {
-  const [news, setNews] = useState([]);
+  const [page, setPage] = useState(1);
 
-  const dispatch = useDispatch();
+  const {
+    isLoading,
+    data: res,
+    isFetching,
+  } = useQuery(["/news", page], () => getNews(page), {
+    keepPreviousData: true,
+  });
 
-  const fetchNews = async () => {
-    try {
-      const { data } = await getNews();
-      setNews(data.data);
-    } catch (err) {
-      dispatch(
-        setMessage({ message: err.message, severity: SEVERITY.WARNING })
-      );
-    }
+  const handleChangePagination = (e, selectedPage) => {
+    setPage(selectedPage);
   };
-
-  useEffect(() => fetchNews, []);
 
   return (
     <>
       <div id="news-page" className="main">
         <div id="news-page-content" className="content">
           <h2>News</h2>
-          <div className="news-container">
-            {news.map((newData) => (
-              <New newData={newData} />
-            ))}
-          </div>
+          {res && (
+            <>
+              <div className="news-container">
+                {res.data.map((newData) => (
+                  <New newData={newData} />
+                ))}
+              </div>
+              <Pagination
+                count={Math.ceil(res.total / res.per_page)}
+                page={page}
+                onChange={handleChangePagination}
+              />
+            </>
+          )}
         </div>
       </div>
 

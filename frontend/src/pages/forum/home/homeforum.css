@@ -44,3 +44,12 @@
   padding: 15px;
   border-top: 1px solid #e0e0e0;
 }
+
+#home-forum .pagination {
+  float: right;
+  margin-bottom: 100px;
+}
+
+#home-forum .pagination ul li button {
+  color: #0961ba;
+}

@@ -6,7 +6,7 @@ var logger = require("morgan");
 var cors = require("cors");
 var app = express();
 var session = require("express-session");
-const articleRouter = require('./article_router')
+const articleRouter = require("./article_router");
 const userRouter = require("./user_manager");
 const admin_router = require("./admin_router")
 var db_process = require("./article_process");
@@ -67,9 +67,15 @@ app.use((req, res, next) => {
   next();
 });
 
+<<<<<<< HEAD
 app.use("/", authRouter)
 app.use('/', articleRouter)
 app.use("/", admin_router)
+=======
+app.use("/", authRouter);
+app.use("/", articleRouter);
+// app.use("/", userRouter);
+>>>>>>> 342bd53d4e88c6d1335f27ca39ba07a4263e52a1
 // //Send data to MySQL Server
 
 // app.post('/post', function(request, response){

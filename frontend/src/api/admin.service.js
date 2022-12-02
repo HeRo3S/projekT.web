@@ -34,3 +34,12 @@ const updateUserToAdmin = async (userID) => {
     throw err;
   }
 };
+
+const updateAdminToUser = async (userID) => {
+  try {
+    const res = await instance.post(`admin/demoteUser/${userID}`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
