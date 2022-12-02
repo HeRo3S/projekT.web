@@ -3,11 +3,14 @@ const UserAccount = require("./models/user");
 const UserInfo = require("./models/user_info");
 const moment = require("moment");
 
-exports.getUserList = async (amount, orderBy, sort) =>
+exports.getUserList = async (amount, orderBy, sort, level) =>
 {
     data = []
     await UserAccount.findAll({
         attributes:["id", "email", "username", "createdAt"],
+        where:{
+            permissionLevel: level
+        },
         include: UserInfo,
         order: [[orderBy, sort]],
         group:["UserAccount.id"],

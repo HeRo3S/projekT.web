@@ -200,14 +200,16 @@ exports.getArticleList = async function (category, amount, sort) {
     throw error;
   });
   var data = [];
+  test = true
   for (sub of raw_data) {
     sub = sub.toJSON();
     sub.createdAt.toUTCString();
     sub.createdAt = moment(sub.createdAt).local().format("DD/MM/YYYY HH:mm");
     sub.updatedAt.toUTCString();
     sub.updatedAt = moment(sub.updatedAt).local().format("DD/MM/YYYY HH:mm");
-    sub.lastestComment = await this.getComment(sub.id, 1, "DESC");
-    data.push(sub);
+    newSub = {article: sub}
+    newSub.lastestComment = await this.getComment(sub.id, 1, "DESC");
+    data.push(newSub);
   }
   return data;
 };

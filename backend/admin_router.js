@@ -17,7 +17,7 @@ router.route("/admin/users").get(verifyToken, async (req, res) => {
     page = req.query.page;
   }
   try {
-    data = await user_process.getUserList(1000, "createdAt", "ASC");
+    data = await user_process.getUserList(1000, "createdAt", "ASC", 2);
     total_length = data.length;
     data = Paginate(data, page, per_page);
     return res
@@ -28,6 +28,27 @@ router.route("/admin/users").get(verifyToken, async (req, res) => {
     return res.status(400).send({ message: "An error has occurred" });
   }
 });
+
+router.route("/admin/admin").get(verifyToken, async (req, res) => {
+    if (req.user.permissionLevel < PERMISSION_LEVEL.SUPER_ADMIN) {
+      return res.status(403).send({ message: "Unauthorized" });
+    }
+    page = 1;
+    if (req.query.page != null) {
+      page = req.query.page;
+    }
+    try {
+      data = await user_process.getUserList(1000, "createdAt", "ASC", 1);
+      total_length = data.length;
+      data = Paginate(data, page, per_page);
+      return res
+        .status(200)
+        .send({ data: data, per_page: per_page, total: total_length });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ message: "An error has occurred" });
+    }
+  });
 
 router.route("/admin/delete/thread/:id").get(verifyToken, async (req, res) => {
   if (req.user.permissionLevel > PERMISSION_LEVEL.ADMIN) {
