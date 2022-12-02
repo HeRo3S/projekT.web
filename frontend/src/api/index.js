@@ -14,8 +14,8 @@ const authHeader = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (user && user.accessToken) {
-    return { "x-access-token": user.accessToken };
-  } else return {};
+    return user.accessToken;
+  } else return null;
 };
 
 export const instance = axios.create({
@@ -48,6 +48,7 @@ instance.interceptors.request.use(
           );
         }
       }
+      config.headers["x-access-token"] = authHeader();
     }
     return config;
   },

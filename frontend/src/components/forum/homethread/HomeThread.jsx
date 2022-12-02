@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./homethread.css";
 
 function HomeThread({ thread }) {
-  console.log(thread);
   const article = thread?.article;
   const userAccount = thread?.article?.UserAccount;
   const latestComment = (thread?.latestComment ?? [])[0];
@@ -16,7 +15,7 @@ function HomeThread({ thread }) {
         </Link>
         <div>
           {/* TODO must have user profile page here */}
-          <Link className="link" to="/forum/user/:user_id">
+          <Link className="link" to={`/forum/user/${userAccount?.id}`}>
             {userAccount?.username}
           </Link>
           <span>{article?.updatedAt}</span>

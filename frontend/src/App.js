@@ -32,7 +32,7 @@ function App() {
             <Route path="/forum/register" element={<Register />} />
             <Route path="/forum/login" element={<Login />} />
             <Route path="/forum/thread/:thread_id" element={<Thread />} />
-            <Route path="/forum/user/:users_id" element={<User />} />
+            <Route path="/forum/user/:user_id" element={<User />} />
             <Route path="/forum/post-thread" element={<PostThread />} />
             <Route path="/forum/create-news" element={<CreateNews />} />
           </Route>
