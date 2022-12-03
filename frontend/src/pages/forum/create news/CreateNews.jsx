@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postNews } from "../../../api/user.service";
 import Editor from "../../../components/forum/editor/Editor";
-import UploadAndDisplayImage from "../../../components/forum/upload image/UploadImage";
 import { setMessage } from "../../../redux/features/messageSlice";
 import { SEVERITY } from "../../../utils/enum";
 import "./createnews.css";
@@ -54,7 +53,7 @@ function CreateNews() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <Editor content={content} setContent={setContent} />
+          <Editor setContent={setContent} />
           <button type="submit" className="normalBtn">
             Create
           </button>

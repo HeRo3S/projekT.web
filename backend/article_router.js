@@ -1,8 +1,8 @@
 const express = require("express");
-const { PERMISSION_LEVEL } = require("./auth");
 const router = express.Router();
 const article_process = require("./article_process");
 const { verifyToken } = require("./auth");
+const { PERMISSION_LEVEL } = require("./utils/enum");
 
 const per_page_news = 9;
 const per_page_comment = 7;
@@ -96,7 +96,7 @@ router
   .route("/news/:id?")
   .post(verifyToken, async (req, res) => {
     try {
-      if (req.user.userInfo.permissionlevel > PERMISSION_LEVEL.ADMIN) {
+      if (req.user.userInfo.permissionLevel > PERMISSION_LEVEL.ADMIN) {
         return res.status(403).send({ message: "Unauthorized" });
       }
       const news = await article_process.sendArticle(

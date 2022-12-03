@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBarAdmin from "./components/navbarAdmin/NavBarAdmin";
 import NavbarForum from "./components/navbarForum/NavbarForum";
@@ -16,8 +17,11 @@ import User from "./pages/forum/user/User";
 import Home from "./pages/main/home/Home";
 import DetailsNew from "./pages/main/news_page/DetailsNew";
 import NewsPage from "./pages/main/news_page/NewsPage";
+import { PERMISSION_LEVEL } from "./utils/enum";
 
 function App() {
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -33,14 +37,20 @@ function App() {
             <Route path="/forum/login" element={<Login />} />
             <Route path="/forum/thread/:thread_id" element={<Thread />} />
             <Route path="/forum/user/:user_id" element={<User />} />
-            <Route path="/forum/post-thread" element={<PostThread />} />
-            <Route path="/forum/create-news" element={<CreateNews />} />
+            {user && (
+              <>
+                <Route path="/forum/post-thread" element={<PostThread />} />
+                <Route path="/forum/create-news" element={<CreateNews />} />
+              </>
+            )}
           </Route>
-          <Route path="/admin" element={<NavBarAdmin />}>
-            <Route index element={<Admin />}></Route>
-            <Route path="/admin/all_users" element={<DisplayUser />} />
-            <Route path="/admin/all_admins" element={<DisplayAdmin />} />
-          </Route>
+          {user?.userInfo?.permissionLevel === PERMISSION_LEVEL.SUPER_ADMIN && (
+            <Route path="/admin" element={<NavBarAdmin />}>
+              <Route index element={<Admin />}></Route>
+              <Route path="/admin/all_users" element={<DisplayUser />} />
+              <Route path="/admin/all_admins" element={<DisplayAdmin />} />
+            </Route>
+          )}
           <Route path="*" element={<Default />} />
         </Routes>
       </BrowserRouter>
