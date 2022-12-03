@@ -179,7 +179,7 @@ function Thread() {
                 <time dateTime="2022-10-09 19:00" className="message-head">
                   {thread?.updatedAt}
                 </time>
-                <div className="message-body">
+                <div className="message-body ql-editor">
                   {parse(thread?.content || "")}
                 </div>
                 <div className="message-foot">
@@ -218,7 +218,7 @@ function Thread() {
                 </div>
               </div>
 
-              <div className="reply-content">
+              <div className="reply-content editor">
                 <Editor setContent={setClientContent} />
                 <button type="submit" className="normalBtn">
                   Post

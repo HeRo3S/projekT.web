@@ -10,7 +10,7 @@ Quill.register("modules/imageResize", ImageResize);
 function Editor({ setContent }) {
   var modules = {
     toolbar: [
-      [{ font: [] }, { size: [] }],
+      [{ size: [] }],
       [{ align: [] }, "direction"],
       ["bold", "italic", "underline", "strike"],
       [{ color: [] }, { background: [] }],

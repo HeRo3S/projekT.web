@@ -38,7 +38,11 @@ function CreateNews() {
       <div id="create-news-content" className="content">
         <h3>Create News</h3>
 
-        <form action="" className="create-news-form" onSubmit={handleSubmit}>
+        <form
+          action=""
+          className="create-news-form editor"
+          onSubmit={handleSubmit}
+        >
           {/* <label htmlFor="news-date">Date</label>
           <br />
           <br />

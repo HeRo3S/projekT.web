@@ -28,7 +28,9 @@ function Comment({ comment }) {
         <time dateTime="2022-10-09 19:00" className="message-head">
           {comment?.createdAt}
         </time>
-        <div className="message-body">{parse(comment?.content || "")}</div>
+        <div className="message-body ql-editor">
+          {parse(comment?.content || "")}
+        </div>
         <div className="message-foot">
           <Link to="reply" smooth="true">
             <ReplyIcon />
