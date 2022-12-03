@@ -45,7 +45,9 @@ export const login = createAsyncThunk(
     } catch (err) {
       if (err.response.status === 401) {
         const message = "Wrong credentials!";
-        thunkAPI.dispatch(setMessage({ message, severity: SEVERITY.ALERT }));
+        thunkAPI.dispatch(
+          setMessage({ message: message, severity: SEVERITY.ALERT })
+        );
       }
       return thunkAPI.rejectWithValue();
     }
