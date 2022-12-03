@@ -43,7 +43,7 @@ function PostThread() {
       <div id="post-thread-content" className="content">
         <h3>Post Thread</h3>
 
-        <form className="post-thread-form" onSubmit={handleSubmit}>
+        <form className="post-thread-form editor" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Thread title"

@@ -29,7 +29,7 @@ function DetailsNew() {
             <h3>{newData?.a_name}</h3>
           </div>
 
-          <div className="news-description">
+          <div className="news-description ql-editor">
             {parse(newData?.content || "")}
           </div>
         </div>
