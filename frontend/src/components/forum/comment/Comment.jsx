@@ -26,7 +26,7 @@ function Comment({ comment }) {
 
       <div className="message">
         <time dateTime="2022-10-09 19:00" className="message-head">
-          {comment?.updatedAt}
+          {comment?.createdAt}
         </time>
         <div className="message-body">{parse(comment?.content || "")}</div>
         <div className="message-foot">

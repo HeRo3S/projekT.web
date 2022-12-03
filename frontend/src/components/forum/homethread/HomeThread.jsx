@@ -18,7 +18,7 @@ function HomeThread({ thread }) {
           <Link className="link" to={`/forum/user/${userAccount?.id}`}>
             {userAccount?.username}
           </Link>
-          <span>{article?.updatedAt}</span>
+          <span>{article?.createdAt}</span>
         </div>
       </div>
       <div className="stateContainer">
@@ -33,7 +33,7 @@ function HomeThread({ thread }) {
             <span>
               Latest comment by {latestComment?.UserAccount?.username}
             </span>
-            <span>at {latestComment?.updatedAt}</span>
+            <span>at {latestComment?.createdAt}</span>
           </>
         )}
       </div>
