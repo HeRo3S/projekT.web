@@ -49,7 +49,7 @@ app.use(logger("dev"));
 app.use(cors());
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
+app.use(express.json({ limit: "1gb" }));
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));

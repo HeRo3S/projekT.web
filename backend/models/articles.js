@@ -1,42 +1,41 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 var Comment = require("./comment");
 var Tag = require("./tag");
-var db_sequelize = require('./db_sequelize');
+var db_sequelize = require("./db_sequelize");
 var Article = db_sequelize.define("Article", {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false
-    },
-    authorId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    category:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
-    ,
-    a_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    content: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    }
-})
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  authorId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  a_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+});
 Tag.hasMany(Article, {
-    foreignKey: 'tagId',
-})
+  foreignKey: "tagId",
+});
 Article.hasMany(Comment, {
-    foreignKey: 'articleId',
-})
+  foreignKey: "articleId",
+});
 // Article.hasOne(Comment, {
 //     foreignKey: 'lastComment'
 // })
 Comment.belongsTo(Article, {
-    foreignKey: 'articleId',
-})
+  foreignKey: "articleId",
+});
 module.exports = Article;
