@@ -6,6 +6,8 @@ import { SEVERITY } from "../utils/enum";
 
 let store;
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 export const injectStore = (_store) => {
   store = _store;
 };
@@ -19,7 +21,8 @@ const authHeader = () => {
 };
 
 export const instance = axios.create({
-  baseURL: "http://localhost:3001/",
+  // baseURL: "http://localhost:3001/",
+  baseURL: baseURL,
 });
 
 instance.interceptors.request.use(

@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-alpine AS builder
 
 WORKDIR /usr/src/app
 
@@ -9,6 +9,19 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 3000
+ARG BASE_URL
+ENV REACT_APP_BASE_URL=${BASE_URL}
 
-CMD ["yarn", "start"]
+RUN yarn build
+
+### second stage
+FROM caddy:2.6.2-alpine
+
+ARG CADDYFILE
+COPY --from=builder /usr/src/app/${CADDYFILE} /etc/caddy/Caddyfile
+
+COPY --from=builder /usr/src/app/build/ /srv
+
+EXPOSE 80
+
+EXPOSE 443

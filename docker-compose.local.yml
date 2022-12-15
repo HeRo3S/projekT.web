@@ -1,0 +1,22 @@
+version: "3"
+services:
+  react-app:
+    image: react-app-production:local
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - projekT-web
+  api-server:
+    image: api-server
+    env_file:
+      - backend/.env
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    networks:
+      - projekT-web
+networks:
+  projekT-web:
+    driver: bridge
