@@ -6,7 +6,7 @@ import { SEVERITY } from "../utils/enum";
 
 let store;
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
 
 export const injectStore = (_store) => {
   store = _store;

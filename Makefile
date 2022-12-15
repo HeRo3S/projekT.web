@@ -17,8 +17,8 @@ run-local:
 ###
 
 build-production:
-	cd client && $(MAKE) build-production
-	cd server %% $(MAKE) build
+	cd frontend && $(MAKE) build-production
+	cd backend && $(MAKE) build
 
 run-production:
 	docker-compose -f docker-compose.yml up
