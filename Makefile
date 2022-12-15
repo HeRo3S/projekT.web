@@ -21,4 +21,4 @@ build-production:
 	cd backend && $(MAKE) build
 
 run-production:
-	docker-compose -f docker-compose.yml up
+	docker compose -f docker-compose.yml up
